@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="bg-gradient-to-r from-gray-50 via-white to-gray-50 text-gray-800 border-t border-gray-200">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
           {/* Company Info */}
           <div className="space-y-4">
@@ -39,56 +39,27 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Available Calculators */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-gray-900">Quick Links</h4>
+            <h4 className="text-lg font-semibold text-gray-900">Available Calculators</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-                  Home
-                </a>
+                <span className="text-gray-600 text-sm">Savings Growth Calculator</span>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-                  About Us
-                </a>
+                <span className="text-gray-600 text-sm">Paycheck Calculator</span>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-                  Services
-                </a>
+                <span className="text-gray-600 text-sm">Credit Card Payoff</span>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-gray-900">Services</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-                  Financial Planning
-                </a>
+                <span className="text-gray-600 text-sm">Save for Goal</span>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-                  Investment Tools
-                </a>
+                <span className="text-gray-600 text-sm">Save a Million</span>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-                  Budget Calculator
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-                  Savings Tracker
-                </a>
+                <span className="text-gray-600 text-sm">Car Calculator</span>
               </li>
             </ul>
           </div>
@@ -140,17 +111,6 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2 text-gray-600 text-sm">
               <span>© {currentYear} Stickball. All rights reserved.</span>
-            </div>
-            <div className="flex items-center space-x-6 text-sm">
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200">
-                Terms of Service
-              </a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-200">
-                Cookie Policy
-              </a>
             </div>
             <div className="flex items-center space-x-1 text-gray-600 text-sm">
               <span>Made with</span>

@@ -134,7 +134,7 @@ export default function Calculators() {
         {/* Calculator Dialog */}
         {selectedCalc && (
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogContent className="min-w-fit max-h-[90vh] overflow-y-auto">
+            <DialogContent className="min-w-fit max-h-[90vh] overflow-y-auto custom-scrollbar">
               <DialogHeader>
                 <DialogTitle className="flex items-center space-x-3 text-left">
                   {selectedCalc.icon}
