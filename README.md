@@ -1,6 +1,6 @@
 # Finance Calculator
 
-A modern, responsive web application built with Next.js and React that provides a comprehensive suite of financial calculators to help users make informed financial decisions.
+A modern, responsive web application built with Next.js 15 and React 19 that provides a comprehensive suite of financial calculators to help users make informed financial decisions.
 
 ## ✨ Features
 
@@ -12,6 +12,11 @@ A modern, responsive web application built with Next.js and React that provides 
 - **Save a Million Calculator** - Plan your path to millionaire status
 - **Car Calculator** - Calculate car loan payments and total costs
 
+### 🌐 Internationalization
+- **Multi-language Support** - English, Spanish, and Portuguese
+- **Automatic Locale Detection** - Smart language switching
+- **Localized Content** - All calculators and UI elements translated
+
 ### 🎨 Modern UI/UX
 - **Responsive Design** - Works seamlessly on desktop, tablet, and mobile devices
 - **Dark/Light Theme Support** - Automatic theme switching based on system preferences
@@ -20,11 +25,12 @@ A modern, responsive web application built with Next.js and React that provides 
 - **Accessibility** - Built with accessibility best practices
 
 ### 🛠️ Technical Features
-- **Next.js 14** - Latest React framework with App Router
+- **Next.js 15** - Latest React framework with App Router
+- **React 19** - Latest React with enhanced performance
 - **TypeScript** - Full type safety and better development experience
-- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
+- **Tailwind CSS 4** - Latest utility-first CSS framework
 - **Radix UI** - Accessible, unstyled UI components
-- **Custom CSS Variables** - Consistent theming and design system
+- **next-intl** - Internationalization framework
 
 ## 🚀 Getting Started
 
@@ -43,15 +49,11 @@ A modern, responsive web application built with Next.js and React that provides 
 2. **Install dependencies**
    ```bash
    npm install
-   # or
-   yarn install
    ```
 
 3. **Run the development server**
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
 4. **Open your browser**
@@ -92,24 +94,13 @@ The application features custom-designed scrollbars that are slim and iconic:
 
 ```
 src/
-├── app/                    # Next.js App Router
-│   ├── globals.css        # Global styles and custom scrollbars
-│   ├── layout.tsx         # Root layout component
-│   └── page.tsx           # Home page
-├── components/             # React components
-│   ├── ui/                # Reusable UI components
-│   │   ├── dialog.tsx     # Dialog component with custom scrollbars
-│   │   ├── button.tsx     # Button component
-│   │   └── ...            # Other UI components
-│   ├── Calculators.tsx    # Main calculators grid
-│   ├── CreditCardPayoff.tsx
-│   ├── PayCheck.tsx
-│   ├── SavingsGrow.tsx
-│   ├── SaveForGoal.tsx
-│   ├── SaveMillion.tsx
-│   └── CarCalculator.tsx
-├── interfaces/             # TypeScript interfaces
-└── lib/                   # Utility functions
+├── app/[locale]/        # Next.js App Router with internationalization
+├── components/           # React components
+│   ├── ui/              # Reusable UI components
+│   └── ...              # Calculator components
+├── messages/             # Internationalization files (en, es, pt)
+├── interfaces/           # TypeScript interfaces
+└── lib/                 # Utility functions
 ```
 
 ## 🎯 Available Scripts
@@ -118,78 +109,37 @@ src/
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
 
-## 🎨 Customization
+## 🌐 Language Support
 
-### Adding New Calculators
-1. Create a new component in `src/components/`
-2. Add the calculator to the `calculators` array in `Calculators.tsx`
-3. Include appropriate icon and metadata
-
-### Styling
-- **Tailwind CSS** - Modify `tailwind.config.js` for design system changes
-- **CSS Variables** - Update `src/app/globals.css` for theme modifications
-- **Custom Scrollbars** - Modify scrollbar styles in `globals.css`
-
-### Theming
-The application supports both light and dark themes with automatic switching. Customize colors by modifying CSS variables in `globals.css`.
-
-## 🌐 Browser Support
-
-- **Chrome** 90+
-- **Firefox** 88+
-- **Safari** 14+
-- **Edge** 90+
+The application supports three languages:
+- **English (en)** - Default language
+- **Spanish (es)** - Español
+- **Portuguese (pt)** - Português
 
 ## 📱 Responsive Design
 
-The application is fully responsive and optimized for:
-- **Desktop** - Full feature set with side-by-side layouts
-- **Tablet** - Adaptive layouts with touch-friendly interactions
-- **Mobile** - Mobile-first design with optimized touch targets
+Fully responsive and optimized for desktop, tablet, and mobile devices with touch-friendly interactions.
 
 ## 🔧 Development
 
-### Code Style
 - **TypeScript** - Strict type checking enabled
 - **ESLint** - Code quality and consistency
-- **Prettier** - Code formatting (if configured)
-
-### Component Architecture
 - **Functional Components** - Modern React with hooks
-- **Props Interface** - TypeScript interfaces for component props
-- **State Management** - React useState for local state
-- **Event Handling** - Proper event handling with TypeScript
+- **Internationalization** - Built with next-intl
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
 5. Open a Pull Request
-
-## 📞 Support
-
-If you have any questions or need help:
-- Open an issue on GitHub
-- Check the documentation
-- Review the code examples
-
-## 🚀 Roadmap
-
-- [ ] Additional financial calculators
-- [ ] Data persistence and user accounts
-- [ ] Export functionality (PDF, CSV)
-- [ ] Mobile app version
-- [ ] Advanced charting and analytics
-- [ ] Multi-currency support
 
 ---
 
-**Built with ❤️ using Next.js, React, and TypeScript**
+**Built with ❤️ using Next.js 15, React 19, and TypeScript**
