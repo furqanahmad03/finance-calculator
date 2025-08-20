@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -74,6 +75,9 @@ interface PayCheckResults {
   netPay: string;
   takeHomePercentage: string;
   effectiveTaxRate: string;
+  grossAnnual: string;
+  totalDeductions: string;
+  netAnnual: string;
   breakdown: {
     grossAnnual: string;
     totalDeductions: string;
@@ -83,6 +87,7 @@ interface PayCheckResults {
 }
 
 export default function PayCheck() {
+  const t = useTranslations();
   const [formData, setFormData] = useState<PayCheckForm>({
     annualSalary: "",
     payFrequency: "bi-weekly",
@@ -280,6 +285,9 @@ export default function PayCheck() {
       netPay: netPayPerPeriod,
       takeHomePercentage: takeHomePercentage.toFixed(1),
       effectiveTaxRate: effectiveTaxRate.toFixed(1),
+      grossAnnual: grossIncome.toFixed(2),
+      totalDeductions: totalPreTaxDeductions.toFixed(2),
+      netAnnual: netPay.toFixed(2),
       breakdown: {
         grossAnnual: grossIncome.toFixed(2),
         totalDeductions: totalPreTaxDeductions.toFixed(2),
@@ -312,8 +320,8 @@ export default function PayCheck() {
 
   return (
     <CalculatorLayout
-      title="Paycheck Calculator"
-      description="Calculate your take-home pay after taxes, deductions, and adjustments"
+      title={t('payCheck.title')}
+      description={t('payCheck.description')}
       icon={<DollarSign className="w-6 h-6 text-blue-600" />}
     >
       <div className="space-y-8">
@@ -322,10 +330,10 @@ export default function PayCheck() {
           <CardHeader className="bg-gradient-to-r py-3 from-blue-600 to-blue-700 text-white rounded-t-lg">
             <CardTitle className="flex items-center space-x-3 text-xl">
               <Calculator className="w-6 h-6 text-yellow-300" />
-              <span>Required Information</span>
+              <span>{t('payCheck.requiredInformation.title')}</span>
             </CardTitle>
             <p className="text-blue-100 text-sm font-normal mt-1">
-              Fill in these essential details for basic paycheck calculation
+              {t('payCheck.requiredInformation.description')}
             </p>
           </CardHeader>
           <CardContent className="p-8">
@@ -337,7 +345,7 @@ export default function PayCheck() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>Annual Salary (Gross Job Income)</span>
+                    <span>{t('payCheck.requiredInformation.annualSalary.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -345,11 +353,11 @@ export default function PayCheck() {
                     name="annualSalary"
                     value={formData.annualSalary}
                     onChange={handleInputChange}
-                    placeholder="75,000"
+                    placeholder={t('payCheck.requiredInformation.annualSalary.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Your yearly salary before taxes
+                    {t('payCheck.requiredInformation.annualSalary.help')}
                   </p>
                 </div>
 
@@ -359,7 +367,7 @@ export default function PayCheck() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Pay Frequency</span>
+                    <span>{t('payCheck.requiredInformation.payFrequency.label')}</span>
                   </label>
                   <Select
                     onValueChange={(value) =>
@@ -368,18 +376,18 @@ export default function PayCheck() {
                     defaultValue={formData.payFrequency}
                   >
                     <SelectTrigger className="w-full !h-12 !text-sm px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium">
-                      <SelectValue placeholder="Select frequency" />
+                      <SelectValue placeholder={t('payCheck.requiredInformation.payFrequency.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="weekly">Weekly</SelectItem>
-                      <SelectItem value="bi-weekly">Bi-weekly</SelectItem>
-                      <SelectItem value="semi-monthly">Semi-monthly</SelectItem>
-                      <SelectItem value="monthly">Monthly</SelectItem>
-                      <SelectItem value="yearly">Yearly</SelectItem>
+                      <SelectItem value="weekly">{t('payCheck.requiredInformation.payFrequency.options.weekly')}</SelectItem>
+                      <SelectItem value="bi-weekly">{t('payCheck.requiredInformation.payFrequency.options.bi-weekly')}</SelectItem>
+                      <SelectItem value="semi-monthly">{t('payCheck.requiredInformation.payFrequency.options.semi-monthly')}</SelectItem>
+                      <SelectItem value="monthly">{t('payCheck.requiredInformation.payFrequency.options.monthly')}</SelectItem>
+                      <SelectItem value="yearly">{t('payCheck.requiredInformation.payFrequency.options.yearly')}</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-gray-500">
-                    How often you get paid
+                    {t('payCheck.requiredInformation.payFrequency.help')}
                   </p>
                 </div>
 
@@ -389,7 +397,7 @@ export default function PayCheck() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span>Filing Status</span>
+                    <span>{t('payCheck.requiredInformation.filingStatus.label')}</span>
                   </label>
                   <Select
                     onValueChange={(value) =>
@@ -398,17 +406,17 @@ export default function PayCheck() {
                     defaultValue={formData.filingStatus}
                   >
                     <SelectTrigger className="w-full !h-12 !text-sm px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium">
-                      <SelectValue placeholder="Select status" />
+                      <SelectValue placeholder={t('payCheck.requiredInformation.filingStatus.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="single">Single</SelectItem>
-                      <SelectItem value="married-jointly">Married Filing Jointly</SelectItem>
-                      <SelectItem value="married-separately">Married Filing Separately</SelectItem>
-                      <SelectItem value="head-of-household">Head of Household</SelectItem>
+                      <SelectItem value="single">{t('payCheck.requiredInformation.filingStatus.options.single')}</SelectItem>
+                      <SelectItem value="married-jointly">{t('payCheck.requiredInformation.filingStatus.options.married-jointly')}</SelectItem>
+                      <SelectItem value="married-separately">{t('payCheck.requiredInformation.filingStatus.options.married-separately')}</SelectItem>
+                      <SelectItem value="head-of-household">{t('payCheck.requiredInformation.filingStatus.options.head-of-household')}</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-gray-500">
-                    Your tax filing status
+                    {t('payCheck.requiredInformation.filingStatus.help')}
                   </p>
                 </div>
 
@@ -418,7 +426,7 @@ export default function PayCheck() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span>State Income Tax Rate</span>
+                    <span>{t('payCheck.requiredInformation.stateTaxRate.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -426,12 +434,12 @@ export default function PayCheck() {
                     name="stateTaxRate"
                     value={formData.stateTaxRate}
                     onChange={handleInputChange}
-                    placeholder="5.0"
+                    placeholder={t('payCheck.requiredInformation.stateTaxRate.placeholder')}
                     step="0.1"
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Your state's income tax rate (%)
+                    {t('payCheck.requiredInformation.stateTaxRate.help')}
                   </p>
                 </div>
 
@@ -441,7 +449,7 @@ export default function PayCheck() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
-                    <span>City/Municipal Tax Rate</span>
+                    <span>{t('payCheck.requiredInformation.cityTaxRate.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -449,19 +457,19 @@ export default function PayCheck() {
                     name="cityTaxRate"
                     value={formData.cityTaxRate}
                     onChange={handleInputChange}
-                    placeholder="2.0"
+                    placeholder={t('payCheck.requiredInformation.cityTaxRate.placeholder')}
                     step="0.1"
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Your city's income tax rate (%)
+                    {t('payCheck.requiredInformation.cityTaxRate.help')}
                   </p>
                 </div>
 
                 <div className="space-y-3">
                   <label className="block text-sm font-semibold text-gray-800 flex items-center space-x-2">
                     <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span>Self-Employed / Independent Contractor</span>
+                    <span>{t('payCheck.requiredInformation.selfEmployed.label')}</span>
                   </label>
                   <div className="flex items-center space-x-4 pt-2">
                     <label className="flex items-center space-x-2">
@@ -471,7 +479,7 @@ export default function PayCheck() {
                           handleCheckboxChange("isSelfEmployed", checked as boolean)
                         }
                       />
-                      <span className="text-sm text-gray-700">Yes</span>
+                      <span className="text-sm text-gray-700">{t('payCheck.requiredInformation.selfEmployed.yes')}</span>
                     </label>
                     <label className="flex items-center space-x-2">
                       <Checkbox
@@ -480,11 +488,11 @@ export default function PayCheck() {
                           handleCheckboxChange("isSelfEmployed", !(checked as boolean))
                         }
                       />
-                      <span className="text-sm text-gray-700">No</span>
+                      <span className="text-sm text-gray-700">{t('payCheck.requiredInformation.selfEmployed.no')}</span>
                     </label>
                   </div>
                   <p className="text-xs text-gray-500">
-                    Are you self-employed or an independent contractor?
+                    {t('payCheck.requiredInformation.selfEmployed.help')}
                   </p>
                 </div>
               </div>
@@ -496,7 +504,7 @@ export default function PayCheck() {
                   variant="outline"
                   className="border-blue-300 text-blue-700 hover:bg-blue-50"
                 >
-                  {showOptionalFields ? "Hide" : "Show"} Optional Fields for Accuracy
+                  {showOptionalFields ? t('payCheck.optionalFields.hide') : t('payCheck.optionalFields.show')}
                 </Button>
               </div>
 
@@ -507,12 +515,12 @@ export default function PayCheck() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
                       <TrendingUp className="w-5 h-5 text-green-600" />
-                      <span>Additional Income</span>
+                      <span>{t('payCheck.optionalFields.additionalIncome.title')}</span>
                     </h3>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       <div className="space-y-3">
                         <label htmlFor="otherEarnedIncome" className="block text-sm font-medium text-gray-700">
-                          Other Earned Income (2nd/3rd job, freelance)
+                          {t('payCheck.optionalFields.additionalIncome.otherEarnedIncome.label')}
                         </label>
                         <Input
                           type="number"
@@ -520,13 +528,13 @@ export default function PayCheck() {
                           name="otherEarnedIncome"
                           value={formData.otherEarnedIncome}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.additionalIncome.otherEarnedIncome.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="unearnedIncome" className="block text-sm font-medium text-gray-700">
-                          Unearned Income (interest, dividends, rental)
+                          {t('payCheck.optionalFields.additionalIncome.unearnedIncome.label')}
                         </label>
                         <Input
                           type="number"
@@ -534,7 +542,7 @@ export default function PayCheck() {
                           name="unearnedIncome"
                           value={formData.unearnedIncome}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.additionalIncome.unearnedIncome.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
@@ -545,12 +553,12 @@ export default function PayCheck() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
                       <User className="w-5 h-5 text-blue-600" />
-                      <span>Dependents</span>
+                      <span>{t('payCheck.optionalFields.dependents.title')}</span>
                     </h3>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       <div className="space-y-3">
                         <label htmlFor="childrenUnder17" className="block text-sm font-medium text-gray-700">
-                          Children Under Age 17
+                          {t('payCheck.optionalFields.dependents.childrenUnder17.label')}
                         </label>
                         <Input
                           type="number"
@@ -558,13 +566,13 @@ export default function PayCheck() {
                           name="childrenUnder17"
                           value={formData.childrenUnder17}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.dependents.childrenUnder17.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="otherDependents" className="block text-sm font-medium text-gray-700">
-                          Other Dependents
+                          {t('payCheck.optionalFields.dependents.otherDependents.label')}
                         </label>
                         <Input
                           type="number"
@@ -572,7 +580,7 @@ export default function PayCheck() {
                           name="otherDependents"
                           value={formData.otherDependents}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.dependents.otherDependents.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
@@ -583,12 +591,12 @@ export default function PayCheck() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
                       <TrendingDown className="w-5 h-5 text-red-600" />
-                      <span>Pre-tax Deductions</span>
+                      <span>{t('payCheck.optionalFields.preTaxDeductions.title')}</span>
                     </h3>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       <div className="space-y-3">
                         <label htmlFor="retirement401k" className="block text-sm font-medium text-gray-700">
-                          401(k)/403(b) Contributions
+                          {t('payCheck.optionalFields.preTaxDeductions.retirement401k.label')}
                         </label>
                         <Input
                           type="number"
@@ -596,13 +604,13 @@ export default function PayCheck() {
                           name="retirement401k"
                           value={formData.retirement401k}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.preTaxDeductions.retirement401k.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="healthInsurance" className="block text-sm font-medium text-gray-700">
-                          Health Insurance Premiums
+                          {t('payCheck.optionalFields.preTaxDeductions.healthInsurance.label')}
                         </label>
                         <Input
                           type="number"
@@ -610,13 +618,13 @@ export default function PayCheck() {
                           name="healthInsurance"
                           value={formData.healthInsurance}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.preTaxDeductions.healthInsurance.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="hsaFsa" className="block text-sm font-medium text-gray-700">
-                          HSA/FSA Contributions
+                          {t('payCheck.optionalFields.preTaxDeductions.hsaFsa.label')}
                         </label>
                         <Input
                           type="number"
@@ -624,13 +632,13 @@ export default function PayCheck() {
                           name="hsaFsa"
                           value={formData.hsaFsa}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.preTaxDeductions.hsaFsa.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="otherPreTax" className="block text-sm font-medium text-gray-700">
-                          Other Pre-tax Deductions
+                          {t('payCheck.optionalFields.preTaxDeductions.otherPreTax.label')}
                         </label>
                         <Input
                           type="number"
@@ -638,7 +646,7 @@ export default function PayCheck() {
                           name="otherPreTax"
                           value={formData.otherPreTax}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.preTaxDeductions.otherPreTax.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
@@ -649,12 +657,12 @@ export default function PayCheck() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
                       <PiggyBank className="w-5 h-5 text-green-600" />
-                      <span>Post-tax Adjustments</span>
+                      <span>{t('payCheck.optionalFields.postTaxAdjustments.title')}</span>
                     </h3>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       <div className="space-y-3">
                         <label htmlFor="iraContributions" className="block text-sm font-medium text-gray-700">
-                          IRA Contributions
+                          {t('payCheck.optionalFields.postTaxAdjustments.iraContributions.label')}
                         </label>
                         <Input
                           type="number"
@@ -662,13 +670,13 @@ export default function PayCheck() {
                           name="iraContributions"
                           value={formData.iraContributions}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.postTaxAdjustments.iraContributions.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="studentLoanInterest" className="block text-sm font-medium text-gray-700">
-                          Student Loan Interest
+                          {t('payCheck.optionalFields.postTaxAdjustments.studentLoanInterest.label')}
                         </label>
                         <Input
                           type="number"
@@ -676,13 +684,13 @@ export default function PayCheck() {
                           name="studentLoanInterest"
                           value={formData.studentLoanInterest}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.postTaxAdjustments.studentLoanInterest.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="otherAdjustments" className="block text-sm font-medium text-gray-700">
-                          Other Adjustments
+                          {t('payCheck.optionalFields.postTaxAdjustments.otherAdjustments.label')}
                         </label>
                         <Input
                           type="number"
@@ -690,7 +698,7 @@ export default function PayCheck() {
                           name="otherAdjustments"
                           value={formData.otherAdjustments}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.postTaxAdjustments.otherAdjustments.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
@@ -701,12 +709,12 @@ export default function PayCheck() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
                       <Receipt className="w-5 h-5 text-purple-600" />
-                      <span>Itemized Deductions (if not using standard)</span>
+                      <span>{t('payCheck.optionalFields.itemizedDeductions.title')}</span>
                     </h3>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       <div className="space-y-3">
                         <label htmlFor="mortgageInterest" className="block text-sm font-medium text-gray-700">
-                          Mortgage Interest
+                          {t('payCheck.optionalFields.itemizedDeductions.mortgageInterest.label')}
                         </label>
                         <Input
                           type="number"
@@ -714,13 +722,13 @@ export default function PayCheck() {
                           name="mortgageInterest"
                           value={formData.mortgageInterest}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.itemizedDeductions.mortgageInterest.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="charitableDonations" className="block text-sm font-medium text-gray-700">
-                          Charitable Donations
+                          {t('payCheck.optionalFields.itemizedDeductions.charitableDonations.label')}
                         </label>
                         <Input
                           type="number"
@@ -728,13 +736,13 @@ export default function PayCheck() {
                           name="charitableDonations"
                           value={formData.charitableDonations}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.itemizedDeductions.charitableDonations.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="stateLocalTaxes" className="block text-sm font-medium text-gray-700">
-                          State/Local Income Taxes
+                          {t('payCheck.optionalFields.itemizedDeductions.stateLocalTaxes.label')}
                         </label>
                         <Input
                           type="number"
@@ -742,13 +750,13 @@ export default function PayCheck() {
                           name="stateLocalTaxes"
                           value={formData.stateLocalTaxes}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.itemizedDeductions.stateLocalTaxes.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="propertyTaxes" className="block text-sm font-medium text-gray-700">
-                          Property Taxes
+                          {t('payCheck.optionalFields.itemizedDeductions.propertyTaxes.label')}
                         </label>
                         <Input
                           type="number"
@@ -756,13 +764,13 @@ export default function PayCheck() {
                           name="propertyTaxes"
                           value={formData.propertyTaxes}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.itemizedDeductions.propertyTaxes.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="salesTaxes" className="block text-sm font-medium text-gray-700">
-                          Sales Taxes
+                          {t('payCheck.optionalFields.itemizedDeductions.salesTaxes.label')}
                         </label>
                         <Input
                           type="number"
@@ -770,13 +778,13 @@ export default function PayCheck() {
                           name="salesTaxes"
                           value={formData.salesTaxes}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.itemizedDeductions.salesTaxes.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
                       <div className="space-y-3">
                         <label htmlFor="medicalExpenses" className="block text-sm font-medium text-gray-700">
-                          Medical Expenses (above threshold)
+                          {t('payCheck.optionalFields.itemizedDeductions.medicalExpenses.label')}
                         </label>
                         <Input
                           type="number"
@@ -784,7 +792,7 @@ export default function PayCheck() {
                           name="medicalExpenses"
                           value={formData.medicalExpenses}
                           onChange={handleInputChange}
-                          placeholder="0"
+                          placeholder={t('payCheck.optionalFields.itemizedDeductions.medicalExpenses.placeholder')}
                           className="w-full h-11 px-3 border border-gray-300 rounded-md"
                         />
                       </div>
@@ -800,7 +808,7 @@ export default function PayCheck() {
                   className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Calculator className="w-5 h-5 mr-2" />
-                  Calculate Paycheck
+                  {t('payCheck.calculateButton')}
                 </Button>
               </div>
             </div>
@@ -813,7 +821,7 @@ export default function PayCheck() {
             <CardHeader className="bg-gradient-to-r py-4 from-blue-600 to-blue-700 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-3 text-xl">
                 <DollarSign className="w-6 h-6 text-yellow-300" />
-                <span>Your Paycheck Breakdown</span>
+                <span>{t('payCheck.results.title')}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-8">
@@ -821,40 +829,40 @@ export default function PayCheck() {
                 {/* Per Pay Period Summary */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
-                    <h3 className="font-semibold text-blue-800 text-lg mb-3">Per {formData.payFrequency.replace('-', ' ')} Pay Period</h3>
+                    <h3 className="font-semibold text-blue-800 text-lg mb-3">{t('payCheck.results.perPayPeriod', { frequency: formData.payFrequency.replace('-', ' ') })}</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700">Gross Pay:</span>
+                        <span className="text-gray-700">{t('payCheck.results.grossPay')}</span>
                         <span className="font-bold text-blue-900">{formatCurrency(results.grossPay)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700">Net Pay:</span>
+                        <span className="text-gray-700">{t('payCheck.results.netPay')}</span>
                         <span className="font-bold text-green-600 text-lg">{formatCurrency(results.netPay)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700">Take Home %:</span>
+                        <span className="text-gray-700">{t('payCheck.results.takeHomePercentage')}</span>
                         <span className="font-bold text-blue-900">{formatPercentage(results.takeHomePercentage)}</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
-                    <h3 className="font-semibold text-green-800 text-lg mb-3">Tax Summary</h3>
+                    <h3 className="font-semibold text-green-800 text-lg mb-3">{t('payCheck.results.taxSummary')}</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700">Federal Tax:</span>
+                        <span className="text-gray-700">{t('payCheck.results.federalTax')}</span>
                         <span className="font-bold text-green-900">{formatCurrency(results.federalTax)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700">State Tax:</span>
+                        <span className="text-gray-700">{t('payCheck.results.stateTax')}</span>
                         <span className="font-bold text-green-900">{formatCurrency(results.stateTax)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700">FICA Taxes:</span>
+                        <span className="text-gray-700">{t('payCheck.results.ficaTaxes')}</span>
                         <span className="font-bold text-green-900">{formatCurrency((parseFloat(results.socialSecurityTax) + parseFloat(results.medicareTax)).toString())}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700">Effective Tax Rate:</span>
+                        <span className="text-gray-700">{t('payCheck.results.effectiveTaxRate')}</span>
                         <span className="font-bold text-green-900">{formatPercentage(results.effectiveTaxRate)}</span>
                       </div>
                     </div>
@@ -863,65 +871,56 @@ export default function PayCheck() {
 
                 {/* Detailed Breakdown */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                  <div className="bg-white p-6 rounded-xl border border-gray-200">
-                    <h4 className="font-semibold text-gray-900 text-base border-b border-gray-200 pb-2 flex items-center space-x-2">
-                      <TrendingDown className="w-4 h-4 text-red-600" />
-                      <span>Deductions</span>
-                    </h4>
-                    <div className="pt-3 space-y-2">
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
+                    <h3 className="font-semibold text-purple-800 text-lg mb-3">{t('payCheck.results.deductions')}</h3>
+                    <div className="space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Pre-tax:</span>
-                        <span className="font-semibold text-gray-900">{formatCurrency(results.preTaxDeductions)}</span>
+                        <span className="text-gray-700">{t('payCheck.results.preTax')}</span>
+                        <span className="font-bold text-purple-900">{formatCurrency(results.preTaxDeductions)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Post-tax:</span>
-                        <span className="font-semibold text-gray-900">{formatCurrency(results.postTaxAdjustments)}</span>
+                        <span className="text-gray-700">{t('payCheck.results.postTax')}</span>
+                        <span className="font-bold text-purple-900">{formatCurrency(results.postTaxAdjustments)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Itemized:</span>
-                        <span className="font-semibold text-gray-900">{formatCurrency(results.itemizedDeductions)}</span>
+                        <span className="text-gray-700">{t('payCheck.results.itemized')}</span>
+                        <span className="font-bold text-purple-900">{formatCurrency(results.itemizedDeductions)}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-white p-6 rounded-xl border border-gray-200">
-                    <h4 className="font-semibold text-gray-900 text-base border-b border-gray-200 pb-2 flex items-center space-x-2">
-                      <Building className="w-4 h-4 text-blue-600" />
-                      <span>Tax Details</span>
-                    </h4>
-                    <div className="pt-3 space-y-2">
+                  <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
+                    <h3 className="font-semibold text-orange-800 text-lg mb-3">{t('payCheck.results.taxDetails')}</h3>
+                    <div className="space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Social Security:</span>
-                        <span className="font-semibold text-gray-900">{formatCurrency(results.socialSecurityTax)}</span>
+                        <span className="text-gray-700">{t('payCheck.results.socialSecurity')}</span>
+                        <span className="font-bold text-orange-900">{formatCurrency(results.socialSecurityTax)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Medicare:</span>
-                        <span className="font-semibold text-gray-900">{formatCurrency(results.medicareTax)}</span>
+                        <span className="text-gray-700">{t('payCheck.results.medicare')}</span>
+                        <span className="font-bold text-orange-900">{formatCurrency(results.medicareTax)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">City Tax:</span>
-                        <span className="font-semibold text-gray-900">{formatCurrency(results.cityTax)}</span>
+                        <span className="text-gray-700">{t('payCheck.results.cityTax')}</span>
+                        <span className="font-bold text-orange-900">{formatCurrency(results.cityTax)}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-white p-6 rounded-xl border border-gray-200">
-                    <h4 className="font-semibold text-gray-900 text-base border-b border-gray-200 pb-2 flex items-center space-x-2">
-                      <Calendar className="w-4 h-4 text-purple-600" />
-                      <span>Annual Summary</span>
-                    </h4>
-                    <div className="pt-3 space-y-2">
+                  <div className="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl border border-teal-200">
+                    <h3 className="font-semibold text-teal-800 text-lg mb-3">{t('payCheck.results.annualSummary')}</h3>
+                    <div className="space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Gross Annual:</span>
-                        <span className="font-semibold text-gray-900">{formatCurrency(results.breakdown.grossAnnual)}</span>
+                        <span className="text-gray-700">{t('payCheck.results.grossAnnual')}</span>
+                        <span className="font-bold text-teal-900">{formatCurrency(results.grossAnnual)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Total Deductions:</span>
-                        <span className="font-semibold text-gray-900">{formatCurrency(results.breakdown.totalDeductions)}</span>
+                        <span className="text-gray-700">{t('payCheck.results.totalDeductions')}</span>
+                        <span className="font-bold text-teal-900">{formatCurrency(results.totalDeductions)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Net Annual:</span>
-                        <span className="font-semibold text-gray-900">{formatCurrency(results.breakdown.netAnnual)}</span>
+                        <span className="text-gray-700">{t('payCheck.results.netAnnual')}</span>
+                        <span className="font-bold text-teal-900 text-lg">{formatCurrency(results.netAnnual)}</span>
                       </div>
                     </div>
                   </div>

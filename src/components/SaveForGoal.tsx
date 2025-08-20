@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,7 +27,6 @@ import {
   Calculator,
   DollarSign,
   Calendar,
-  Percent,
   PiggyBank,
   TrendingUp,
   Clock,
@@ -60,6 +60,7 @@ interface SaveForGoalResults {
 }
 
 export default function SaveForGoal() {
+  const t = useTranslations();
   const [formData, setFormData] = useState<SaveForGoalForm>({
     goalAmount: "",
     currentSavings: "",
@@ -215,8 +216,8 @@ export default function SaveForGoal() {
 
   return (
     <CalculatorLayout
-      title="Save For Goal Calculator"
-      description="Calculate how to reach your specific savings goal with regular contributions and compound interest"
+      title={t('saveForGoal.title')}
+      description={t('saveForGoal.description')}
       icon={<Target className="w-6 h-6 text-purple-600" />}
     >
       <div className="space-y-8">
@@ -225,10 +226,10 @@ export default function SaveForGoal() {
           <CardHeader className="bg-gradient-to-r py-3 from-purple-600 to-purple-700 text-white rounded-t-lg">
             <CardTitle className="flex items-center space-x-3 text-xl">
               <DollarSign className="w-6 h-6 text-yellow-300" />
-              <span>Required Information</span>
+              <span>{t('saveForGoal.requiredInformation.title')}</span>
             </CardTitle>
             <p className="text-purple-100 text-sm font-normal mt-1">
-              Fill in these essential details to calculate your path to your specific goal
+              {t('saveForGoal.requiredInformation.description')}
             </p>
           </CardHeader>
           <CardContent className="p-8">
@@ -240,7 +241,7 @@ export default function SaveForGoal() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span>Total Desired Goal / Item Cost</span>
+                    <span>{t('saveForGoal.requiredInformation.goalAmount.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -248,11 +249,11 @@ export default function SaveForGoal() {
                     name="goalAmount"
                     value={formData.goalAmount}
                     onChange={handleInputChange}
-                    placeholder="5,000"
+                    placeholder={t('saveForGoal.requiredInformation.goalAmount.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    The total cost of what you want to save for
+                    {t('saveForGoal.requiredInformation.goalAmount.help')}
                   </p>
                 </div>
 
@@ -262,7 +263,7 @@ export default function SaveForGoal() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>Current Savings Balance</span>
+                    <span>{t('saveForGoal.requiredInformation.currentSavings.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -270,11 +271,11 @@ export default function SaveForGoal() {
                     name="currentSavings"
                     value={formData.currentSavings}
                     onChange={handleInputChange}
-                    placeholder="1,000"
+                    placeholder={t('saveForGoal.requiredInformation.currentSavings.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    How much do you currently have saved?
+                    {t('saveForGoal.requiredInformation.currentSavings.help')}
                   </p>
                 </div>
 
@@ -284,7 +285,7 @@ export default function SaveForGoal() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Other Income (Monetary Gifts)</span>
+                    <span>{t('saveForGoal.requiredInformation.otherIncome.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -292,11 +293,11 @@ export default function SaveForGoal() {
                     name="otherIncome"
                     value={formData.otherIncome}
                     onChange={handleInputChange}
-                    placeholder="500"
+                    placeholder={t('saveForGoal.requiredInformation.otherIncome.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    One-time contributions, gifts, or other income
+                    {t('saveForGoal.requiredInformation.otherIncome.help')}
                   </p>
                 </div>
 
@@ -306,7 +307,7 @@ export default function SaveForGoal() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span>Regular Savings Contribution</span>
+                    <span>{t('saveForGoal.requiredInformation.contributionAmount.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -314,11 +315,11 @@ export default function SaveForGoal() {
                     name="contributionAmount"
                     value={formData.contributionAmount}
                     onChange={handleInputChange}
-                    placeholder="200"
+                    placeholder={t('saveForGoal.requiredInformation.contributionAmount.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    How much are you contributing to your savings?
+                    {t('saveForGoal.requiredInformation.contributionAmount.help')}
                   </p>
                 </div>
 
@@ -328,7 +329,7 @@ export default function SaveForGoal() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
-                    <span>Contribution Frequency</span>
+                    <span>{t('saveForGoal.requiredInformation.contributionFrequency.label')}</span>
                   </label>
                   <Select
                     onValueChange={(value) =>
@@ -337,18 +338,18 @@ export default function SaveForGoal() {
                     defaultValue={formData.contributionFrequency}
                   >
                     <SelectTrigger className="w-full !h-12 !text-sm px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium">
-                      <SelectValue placeholder="Select frequency" />
+                      <SelectValue placeholder={t('saveForGoal.requiredInformation.contributionFrequency.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="weekly">Weekly</SelectItem>
-                      <SelectItem value="biweekly">Bi-weekly</SelectItem>
-                      <SelectItem value="monthly">Monthly</SelectItem>
-                      <SelectItem value="quarterly">Quarterly</SelectItem>
-                      <SelectItem value="yearly">Yearly</SelectItem>
+                      <SelectItem value="weekly">{t('saveForGoal.requiredInformation.contributionFrequency.options.weekly')}</SelectItem>
+                      <SelectItem value="biweekly">{t('saveForGoal.requiredInformation.contributionFrequency.options.biweekly')}</SelectItem>
+                      <SelectItem value="monthly">{t('saveForGoal.requiredInformation.contributionFrequency.options.monthly')}</SelectItem>
+                      <SelectItem value="quarterly">{t('saveForGoal.requiredInformation.contributionFrequency.options.quarterly')}</SelectItem>
+                      <SelectItem value="yearly">{t('saveForGoal.requiredInformation.contributionFrequency.options.yearly')}</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-gray-500">
-                    How frequently are you contributing?
+                    {t('saveForGoal.requiredInformation.contributionFrequency.help')}
                   </p>
                 </div>
 
@@ -358,7 +359,7 @@ export default function SaveForGoal() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                    <span>Annual Interest Rate (Optional)</span>
+                    <span>{t('saveForGoal.requiredInformation.annualInterestRate.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -366,12 +367,12 @@ export default function SaveForGoal() {
                     name="annualInterestRate"
                     value={formData.annualInterestRate}
                     onChange={handleInputChange}
-                    placeholder="5.0"
+                    placeholder={t('saveForGoal.requiredInformation.annualInterestRate.placeholder')}
                     step="0.1"
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Expected annual return rate (APY) - leave as 0 if no growth
+                    {t('saveForGoal.requiredInformation.annualInterestRate.help')}
                   </p>
                 </div>
 
@@ -381,7 +382,7 @@ export default function SaveForGoal() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span>Target Timeline (Optional)</span>
+                    <span>{t('saveForGoal.requiredInformation.targetTimeline.label')}</span>
                   </label>
                   <div className="flex space-x-2">
                     <Input
@@ -390,7 +391,7 @@ export default function SaveForGoal() {
                       name="targetTimeline"
                       value={formData.targetTimeline}
                       onChange={handleInputChange}
-                      placeholder="12"
+                      placeholder={t('saveForGoal.requiredInformation.targetTimeline.placeholder')}
                       className="flex-1 h-12 px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium"
                     />
                     <Select
@@ -403,13 +404,13 @@ export default function SaveForGoal() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="months">Months</SelectItem>
-                        <SelectItem value="years">Years</SelectItem>
+                        <SelectItem value="months">{t('saveForGoal.requiredInformation.targetTimeline.units.months')}</SelectItem>
+                        <SelectItem value="years">{t('saveForGoal.requiredInformation.targetTimeline.units.years')}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <p className="text-xs text-gray-500">
-                    How fast you want to reach your goal (optional)
+                    {t('saveForGoal.requiredInformation.targetTimeline.help')}
                   </p>
                 </div>
               </div>
@@ -421,7 +422,7 @@ export default function SaveForGoal() {
                   className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Calculator className="w-5 h-5 mr-2" />
-                  Calculate Path to Goal
+                  {t('saveForGoal.calculateButton')}
                 </Button>
               </div>
             </div>
@@ -434,7 +435,7 @@ export default function SaveForGoal() {
             <CardHeader className="bg-gradient-to-r py-4 from-purple-600 to-purple-700 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-3 text-xl">
                 <TrendingUp className="w-6 h-6 text-yellow-300" />
-                <span>Your Path to {formatCurrency(formData.goalAmount)}</span>
+                <span>{t('saveForGoal.results.title', { goal: formatCurrency(formData.goalAmount) })}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-8">
@@ -444,46 +445,46 @@ export default function SaveForGoal() {
                   <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <Clock className="w-6 h-6 text-purple-600" />
-                      <h3 className="font-semibold text-purple-800">Time to Goal</h3>
+                      <h3 className="font-semibold text-purple-800">{t('saveForGoal.results.timeToGoal')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-purple-900">
-                      {results.yearsToGoal} years
+                      {results.yearsToGoal} {t('saveForGoal.results.years')}
                     </div>
                     <div className="text-sm text-purple-600">
-                      {results.monthsToGoal} months
+                      {results.monthsToGoal} {t('saveForGoal.results.months')}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
                     <div className="flex items-center space-x-2 mb-3">
                       <Gift className="w-6 h-6 text-blue-600" />
-                      <h3 className="font-semibold text-blue-800">Current Gap</h3>
+                      <h3 className="font-semibold text-blue-800">{t('saveForGoal.results.currentGap')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-blue-900">
                       {formatCurrency(results.shortfall)}
                     </div>
                     <div className="text-sm text-blue-600">
-                      Still need to save
+                      {t('saveForGoal.results.stillNeedToSave')}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <PiggyBank className="w-6 h-6 text-green-600" />
-                      <h3 className="font-semibold text-green-800">Total Contributed</h3>
+                      <h3 className="font-semibold text-green-800">{t('saveForGoal.results.totalContributed')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-green-900">
                       {formatCurrency(results.totalContributed)}
                     </div>
                     <div className="text-sm text-green-600">
-                      Over {results.yearsToGoal} years
+                      {t('saveForGoal.results.overYears', { years: results.yearsToGoal })}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <Target className="w-6 h-6 text-orange-600" />
-                      <h3 className="font-semibold text-orange-800">Final Balance</h3>
+                      <h3 className="font-semibold text-orange-800">{t('saveForGoal.results.finalBalance')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-orange-900">
                       {formatCurrency(results.projectedBalance)}
@@ -493,7 +494,7 @@ export default function SaveForGoal() {
                         ? 'bg-green-100 text-green-700' 
                         : 'bg-red-100 text-red-700'
                     }`}>
-                      {results.achievable ? 'Goal Achieved!' : 'Below Goal'}
+                      {results.achievable ? t('saveForGoal.results.goalAchieved') : t('saveForGoal.results.belowGoal')}
                     </div>
                   </div>
                 </div>
@@ -502,7 +503,7 @@ export default function SaveForGoal() {
                 <div className="bg-white p-6 rounded-xl border border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
                     <TrendingUp className="w-5 h-5 text-purple-600" />
-                    <span>Projected Growth Over Time</span>
+                    <span>{t('saveForGoal.results.projectedGrowth')}</span>
                   </h3>
                   <div className="h-80">
                     <ResponsiveContainer width="100%" height="100%">
@@ -520,8 +521,8 @@ export default function SaveForGoal() {
                           tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                         />
                         <Tooltip 
-                          formatter={(value: any) => [formatCurrency(value), 'Balance']}
-                          labelFormatter={(label) => `Month ${label}`}
+                          formatter={(value: string | number) => [formatCurrency(value.toString()), t('saveForGoal.results.balanceLabel')]}
+                          labelFormatter={(label) => t('saveForGoal.results.monthLabel', { month: label })}
                         />
                         <Line 
                           type="monotone" 
@@ -540,7 +541,7 @@ export default function SaveForGoal() {
                   <div className="bg-gradient-to-r from-purple-50 to-violet-50 p-6 rounded-xl border border-purple-200">
                     <h4 className="font-semibold text-gray-900 text-base border-b border-purple-200 pb-2 flex items-center space-x-2">
                       <Calculator className="w-4 h-4 text-purple-600" />
-                      <span>Required Monthly Contribution</span>
+                      <span>{t('saveForGoal.results.requiredMonthlyContribution')}</span>
                     </h4>
                     <div className="pt-3">
                       <div className="text-3xl font-bold text-purple-600 mb-2">
@@ -548,8 +549,12 @@ export default function SaveForGoal() {
                       </div>
                       <p className="text-sm text-gray-600">
                         {formData.targetTimeline 
-                          ? `To reach your goal of ${formatCurrency(formData.goalAmount)} in ${formData.targetTimeline} ${formData.timelineUnit}`
-                          : 'Set a target timeline to see required monthly contribution'
+                          ? t('saveForGoal.results.toReachGoalInTimeline', { 
+                              goal: formatCurrency(formData.goalAmount), 
+                              timeline: formData.targetTimeline, 
+                              unit: formData.timelineUnit === 'years' ? t('saveForGoal.results.years') : t('saveForGoal.results.months')
+                            })
+                          : t('saveForGoal.results.setTargetTimeline')
                         }
                       </p>
                     </div>
@@ -558,24 +563,24 @@ export default function SaveForGoal() {
                   <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200">
                     <h4 className="font-semibold text-gray-900 text-base border-b border-blue-200 pb-2 flex items-center space-x-2">
                       <Calendar className="w-4 h-4 text-blue-600" />
-                      <span>Timeline Summary</span>
+                      <span>{t('saveForGoal.results.timelineSummary')}</span>
                     </h4>
                     <div className="pt-3 space-y-2">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Goal Amount:</span>
+                        <span className="text-gray-700 text-sm">{t('saveForGoal.results.goalAmount')}</span>
                         <span className="font-semibold text-gray-900">{formatCurrency(formData.goalAmount)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Current Savings:</span>
+                        <span className="text-gray-700 text-sm">{t('saveForGoal.results.currentSavings')}</span>
                         <span className="font-semibold text-gray-900">{formatCurrency(formData.currentSavings)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Other Income:</span>
+                        <span className="text-gray-700 text-sm">{t('saveForGoal.results.otherIncome')}</span>
                         <span className="font-semibold text-gray-900">{formatCurrency(formData.otherIncome)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Time to Goal:</span>
-                        <span className="font-semibold text-gray-900">{results.yearsToGoal} years</span>
+                        <span className="text-gray-700 text-sm">{t('saveForGoal.results.timeToGoal')}</span>
+                        <span className="font-semibold text-gray-900">{results.yearsToGoal} {t('saveForGoal.results.years')}</span>
                       </div>
                     </div>
                   </div>

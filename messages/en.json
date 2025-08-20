@@ -3,5 +3,618 @@
     "loading": "Loading...",
     "error": "Error",
     "success": "Success"
+  },
+  "navbar": {
+    "companyName": "Stickball",
+    "companyTagline": "FINANCE",
+    "mainTitle": "MONEY",
+    "subtitle": "How you save, spend & earn."
+  },
+  "footer": {
+    "companyName": "Stickball",
+    "companyDescription": "Empowering individuals to take control of their financial future through smart tools and insights.",
+    "availableCalculators": "Available Calculators",
+    "savingsGrowthCalculator": "Savings Growth Calculator",
+    "paycheckCalculator": "Paycheck Calculator",
+    "creditCardPayoff": "Credit Card Payoff",
+    "saveForGoal": "Save for Goal",
+    "saveAMillion": "Save a Million",
+    "carCalculator": "Car Calculator",
+    "contactUs": "Contact Us",
+    "email": "info@stickball.com",
+    "phone": "+1 (555) 123-4567",
+    "address": "123 Finance St, NY 10001",
+    "copyright": "© {year} Stickball. All rights reserved.",
+    "madeWith": "Made with",
+    "forYou": "for you"
+  },
+  "calculators": {
+    "pageTitle": "Financial Calculators",
+    "pageDescription": "Choose from our comprehensive suite of financial tools to help you make informed decisions about your money",
+    "clickToOpen": "Click to Open",
+    "car": {
+      "title": "Car Calculator",
+      "description": "Calculate car loan payments, interest, and total cost"
+    },
+    "saveMillion": {
+      "title": "Save Million",
+      "description": "Plan your path to saving one million dollars"
+    },
+    "saveGoal": {
+      "title": "Save for Goal",
+      "description": "Calculate how much to save for specific financial goals"
+    },
+    "savingsGrowth": {
+      "title": "Savings Growth",
+      "description": "See how your savings grow with compound interest"
+    },
+    "paycheck": {
+      "title": "Paycheck Calculator",
+      "description": "Calculate take-home pay after taxes and deductions"
+    },
+    "creditCard": {
+      "title": "Credit Card Payoff",
+      "description": "Plan your credit card debt payoff strategy"
+    }
+  },
+  "carCalculator": {
+    "title": "Car Loan Calculator",
+    "description": "Calculate car loan payments, affordability, and total cost with trade-in considerations",
+    "requiredInformation": {
+      "title": "Required Information",
+      "description": "Fill in these essential details to calculate your car loan",
+      "downPayment": {
+        "label": "Down Payment Amount",
+        "placeholder": "5,000",
+        "help": "Cash you have saved for the purchase"
+      },
+      "tradeInValue": {
+        "label": "Trade-in Value",
+        "placeholder": "8,000",
+        "help": "What dealer will pay for your current car"
+      },
+      "outstandingLoanBalance": {
+        "label": "Outstanding Loan Balance",
+        "placeholder": "3,000",
+        "help": "Remaining balance on your current car loan"
+      },
+      "loanTerm": {
+        "label": "Loan Term (Years)",
+        "placeholder": "Select a term",
+        "options": {
+          "1": "1 Year (12 Months)",
+          "2": "2 Years (24 Months)",
+          "3": "3 Years (36 Months)",
+          "4": "4 Years (48 Months)",
+          "5": "5 Years (60 Months)",
+          "6": "6 Years (72 Months)",
+          "7": "7 Years (84 Months)",
+          "8": "8 Years (96 Months)",
+          "9": "9 Years (108 Months)",
+          "10": "10 Years (120 Months)"
+        }
+      },
+      "interestRate": {
+        "label": "Interest Rate (APR %)",
+        "placeholder": "6.5",
+        "help": "Annual percentage rate you expect"
+      },
+      "salesTaxRate": {
+        "label": "Sales Tax Rate (%)",
+        "placeholder": "8.25",
+        "help": "Tax rate in your county/state"
+      },
+      "monthlyPaymentBudget": {
+        "label": "Monthly Payment Budget",
+        "placeholder": "400",
+        "help": "Maximum monthly payment you can afford"
+      }
+    },
+    "advancedOptions": {
+      "title": "Advanced Options",
+      "description": "Additional fields for enhanced accuracy and flexibility",
+      "showAdvanced": "Show Advanced Options for More Accuracy",
+      "dealerRebates": {
+        "label": "Dealer/Manufacturer Rebates",
+        "placeholder": "1,000",
+        "help": "Manufacturer incentives and rebates"
+      },
+      "additionalFees": {
+        "label": "Additional Fees",
+        "placeholder": "500",
+        "help": "Registration, documentation, title fees"
+      },
+      "desiredPayoffHorizon": {
+        "label": "Desired Payoff Horizon",
+        "placeholder": "Select payoff horizon",
+        "help": "Years to pay off (if shorter than loan term)"
+      },
+      "incomeGuidelinePercentage": {
+        "label": "Income Guideline Percentage",
+        "placeholder": "15",
+        "help": "% of monthly take-home pay for car expenses"
+      }
+    },
+    "calculateButton": "Calculate My Car Loan",
+    "results": {
+      "title": "Your Loan Analysis",
+      "description": "Detailed breakdown of your car financing options",
+      "costDistribution": "Cost Distribution",
+      "loanDetails": "Loan Details",
+      "costBreakdown": "Cost Breakdown",
+      "affordability": "Affordability",
+      "recommendedBudget": "Recommended Budget",
+      "monthlyPayment": "Monthly Payment",
+      "loanAmount": "Loan Amount",
+      "totalInterest": "Total Interest",
+      "totalPayment": "Total Payment",
+      "downPayment": "Down Payment",
+      "tradeInNetValue": "Trade-in Net Value",
+      "totalCost": "Total Cost",
+      "otherCosts": "Other Costs",
+      "affordable": "Affordable",
+      "overBudget": "Over Budget",
+      "percentageOfTotal": "{percentage}% of total"
+    }
+  },
+  "saveMillion": {
+    "title": "Save Million Calculator",
+    "description": "Calculate how long it will take to reach your savings goal with compound interest",
+    "requiredInformation": {
+      "title": "Required Information",
+      "description": "Fill in these essential details to calculate your path to your savings goal",
+      "savingsGoal": {
+        "label": "Savings Goal",
+        "placeholder": "1,000,000",
+        "help": "Your target savings amount (default: $1,000,000)"
+      },
+      "currentAge": {
+        "label": "Current Age",
+        "placeholder": "30",
+        "help": "Your current age in years"
+      },
+      "targetAge": {
+        "label": "Target Age",
+        "placeholder": "65",
+        "help": "Age when you want to reach your goal"
+      },
+      "currentSavings": {
+        "label": "Current Savings",
+        "placeholder": "50,000",
+        "help": "Money you currently have saved"
+      },
+      "contributionAmount": {
+        "label": "Contribution Amount",
+        "placeholder": "1,000",
+        "help": "Amount you are depositing regularly"
+      },
+      "contributionFrequency": {
+        "label": "Contribution Frequency",
+        "placeholder": "Select frequency",
+        "help": "How frequently are you contributing?",
+        "options": {
+          "weekly": "Weekly",
+          "biweekly": "Bi-weekly",
+          "monthly": "Monthly",
+          "quarterly": "Quarterly",
+          "yearly": "Yearly"
+        }
+      },
+      "annualInterestRate": {
+        "label": "Annual Interest Rate",
+        "placeholder": "7.5",
+        "help": "Expected annual return rate (APY)"
+      }
+    },
+    "calculateButton": "Calculate Path to Goal",
+    "results": {
+      "title": "Your Path to {goal}",
+      "timeToGoal": "Time to Goal",
+      "totalContributed": "Total Contributed",
+      "interestEarned": "Interest Earned",
+      "finalBalance": "Final Balance",
+      "projectedGrowth": "Projected Growth Over Time",
+      "requiredMonthlyContribution": "Required Monthly Contribution",
+      "timelineSummary": "Timeline Summary",
+      "startAge": "Start Age:",
+      "targetAge": "Target Age:",
+      "yearsToGoal": "Years to Goal:",
+      "monthsToGoal": "Months to Goal:",
+      "overYears": "Over {years} years",
+      "compoundGrowth": "Compound growth",
+      "goalAchieved": "Goal Achieved!",
+      "belowGoal": "Below Goal",
+      "toReachGoal": "To reach your goal of {goal} by age {age}",
+      "ageLabel": "Age {age}",
+      "balanceLabel": "Balance"
+    }
+  },
+  "creditCardPayoff": {
+    "title": "Credit Card Payoff Calculator",
+    "description": "Calculate how long it will take to pay off your credit card debt or find the monthly payment needed",
+    "debtDetails": {
+      "title": "Debt Details",
+      "description": "Enter your credit card information to start calculating",
+      "balance": {
+        "label": "Total Credit Card Balance",
+        "placeholder": "5,000",
+        "help": "Total amount of debt on your card"
+      },
+      "annualInterestRate": {
+        "label": "Annual Interest Rate (APR)",
+        "placeholder": "18.99",
+        "help": "Interest rate you pay on this card"
+      }
+    },
+    "paymentApproach": {
+      "title": "Choose Your Payment Approach",
+      "monthlyPayment": {
+        "label": "I know my monthly payment amount",
+        "description": "Fixed amount you plan to pay each month"
+      },
+      "payoffTimeline": {
+        "label": "I want to pay off in a specific time",
+        "description": "Number of months (or years) in which you want to pay off the debt"
+      },
+      "monthlyPaymentAmount": {
+        "label": "Monthly Payment Amount",
+        "placeholder": "200"
+      },
+      "desiredPayoffTimeline": {
+        "label": "Desired Payoff Timeline",
+        "placeholder": "24",
+        "units": {
+          "months": "Months",
+          "years": "Years"
+        }
+      }
+    },
+    "calculateButton": "Calculate Payoff Plan",
+    "results": {
+      "title": "Your Payoff Plan",
+      "monthsToPayoff": "Months to Payoff",
+      "monthlyPayment": "Monthly Payment",
+      "totalInterest": "Total Interest",
+      "totalCost": "Total Cost",
+      "payoffTimeline": "Payoff Timeline",
+      "balanceReduction": "Balance Reduction Over Time",
+      "monthlyBreakdown": "Monthly Payment Breakdown",
+      "estimatedPayoffDate": "Estimated Payoff Date",
+      "potentialSavings": "Potential Savings",
+      "vsMinimumPayment": "vs. minimum payment",
+      "neverPaymentTooLow": "Never (payment too low)",
+      "timeToDebtFreedom": "Time to debt freedom",
+      "yourPlannedPayment": "Your planned payment",
+      "requiredToMeetTimeline": "Required to meet timeline",
+      "interestCostOverPeriod": "Interest cost over the payoff period",
+      "balancePlusInterest": "Balance + interest",
+      "monthLabel": "Month {month}",
+      "amountLabel": "Amount",
+      "totalPayment": "Total Payment",
+      "principal": "Principal",
+      "interest": "Interest"
+    }
+  },
+  "payCheck": {
+    "title": "Paycheck Calculator",
+    "description": "Calculate your take-home pay after taxes, deductions, and adjustments",
+    "requiredInformation": {
+      "title": "Required Information",
+      "description": "Fill in these essential details for basic paycheck calculation",
+      "annualSalary": {
+        "label": "Annual Salary (Gross Job Income)",
+        "placeholder": "75,000",
+        "help": "Your yearly salary before taxes"
+      },
+      "payFrequency": {
+        "label": "Pay Frequency",
+        "placeholder": "Select frequency",
+        "help": "How often you get paid",
+        "options": {
+          "weekly": "Weekly",
+          "bi-weekly": "Bi-weekly",
+          "semi-monthly": "Semi-monthly",
+          "monthly": "Monthly",
+          "yearly": "Yearly"
+        }
+      },
+      "filingStatus": {
+        "label": "Filing Status",
+        "placeholder": "Select status",
+        "help": "Your tax filing status",
+        "options": {
+          "single": "Single",
+          "married-jointly": "Married Filing Jointly",
+          "married-separately": "Married Filing Separately",
+          "head-of-household": "Head of Household"
+        }
+      },
+      "stateTaxRate": {
+        "label": "State Income Tax Rate",
+        "placeholder": "5.0",
+        "help": "Your state's income tax rate (%)"
+      },
+      "cityTaxRate": {
+        "label": "City/Municipal Tax Rate",
+        "placeholder": "2.0",
+        "help": "Your city's income tax rate (%)"
+      },
+      "selfEmployed": {
+        "label": "Self-Employed / Independent Contractor",
+        "help": "Are you self-employed or an independent contractor?",
+        "yes": "Yes",
+        "no": "No"
+      }
+    },
+    "optionalFields": {
+      "show": "Show Optional Fields for Accuracy",
+      "hide": "Hide Optional Fields for Accuracy",
+      "additionalIncome": {
+        "title": "Additional Income",
+        "otherEarnedIncome": {
+          "label": "Other Earned Income (2nd/3rd job, freelance)",
+          "placeholder": "0"
+        },
+        "unearnedIncome": {
+          "label": "Unearned Income (interest, dividends, rental)",
+          "placeholder": "0"
+        }
+      },
+      "dependents": {
+        "title": "Dependents",
+        "childrenUnder17": {
+          "label": "Children Under Age 17",
+          "placeholder": "0"
+        },
+        "otherDependents": {
+          "label": "Other Dependents",
+          "placeholder": "0"
+        }
+      },
+      "preTaxDeductions": {
+        "title": "Pre-tax Deductions",
+        "retirement401k": {
+          "label": "401(k)/403(b) Contributions",
+          "placeholder": "0"
+        },
+        "healthInsurance": {
+          "label": "Health Insurance Premiums",
+          "placeholder": "0"
+        },
+        "hsaFsa": {
+          "label": "HSA/FSA Contributions",
+          "placeholder": "0"
+        },
+        "otherPreTax": {
+          "label": "Other Pre-tax Deductions",
+          "placeholder": "0"
+        }
+      },
+      "postTaxAdjustments": {
+        "title": "Post-tax Adjustments",
+        "iraContributions": {
+          "label": "IRA Contributions",
+          "placeholder": "0"
+        },
+        "studentLoanInterest": {
+          "label": "Student Loan Interest",
+          "placeholder": "0"
+        },
+        "otherAdjustments": {
+          "label": "Other Adjustments",
+          "placeholder": "0"
+        }
+      },
+      "itemizedDeductions": {
+        "title": "Itemized Deductions (if not using standard)",
+        "mortgageInterest": {
+          "label": "Mortgage Interest",
+          "placeholder": "0"
+        },
+        "charitableDonations": {
+          "label": "Charitable Donations",
+          "placeholder": "0"
+        },
+        "stateLocalTaxes": {
+          "label": "State/Local Income Taxes",
+          "placeholder": "0"
+        },
+        "propertyTaxes": {
+          "label": "Property Taxes",
+          "placeholder": "0"
+        },
+        "salesTaxes": {
+          "label": "Sales Taxes",
+          "placeholder": "0"
+        },
+        "medicalExpenses": {
+          "label": "Medical Expenses (above threshold)",
+          "placeholder": "0"
+        }
+      }
+    },
+    "calculateButton": "Calculate Paycheck",
+    "results": {
+      "title": "Your Paycheck Breakdown",
+      "perPayPeriod": "Per {frequency} Pay Period",
+      "taxSummary": "Tax Summary",
+      "deductions": "Deductions",
+      "taxDetails": "Tax Details",
+      "annualSummary": "Annual Summary",
+      "grossPay": "Gross Pay:",
+      "netPay": "Net Pay:",
+      "takeHomePercentage": "Take Home %:",
+      "federalTax": "Federal Tax:",
+      "stateTax": "State Tax:",
+      "ficaTaxes": "FICA Taxes:",
+      "effectiveTaxRate": "Effective Tax Rate:",
+      "preTax": "Pre-tax:",
+      "postTax": "Post-tax:",
+      "itemized": "Itemized:",
+      "socialSecurity": "Social Security:",
+      "medicare": "Medicare:",
+      "cityTax": "City Tax:",
+      "grossAnnual": "Gross Annual:",
+      "totalDeductions": "Total Deductions:",
+      "netAnnual": "Net Annual:"
+    }
+  },
+  "saveForGoal": {
+    "title": "Save For Goal Calculator",
+    "description": "Calculate how to reach your specific savings goal with regular contributions and compound interest",
+    "requiredInformation": {
+      "title": "Required Information",
+      "description": "Fill in these essential details to calculate your path to your specific goal",
+      "goalAmount": {
+        "label": "Total Desired Goal / Item Cost",
+        "placeholder": "5,000",
+        "help": "The total cost of what you want to save for"
+      },
+      "currentSavings": {
+        "label": "Current Savings Balance",
+        "placeholder": "1,000",
+        "help": "How much do you currently have saved?"
+      },
+      "otherIncome": {
+        "label": "Other Income (Monetary Gifts)",
+        "placeholder": "500",
+        "help": "One-time contributions, gifts, or other income"
+      },
+      "contributionAmount": {
+        "label": "Regular Savings Contribution",
+        "placeholder": "200",
+        "help": "How much are you contributing to your savings?"
+      },
+      "contributionFrequency": {
+        "label": "Contribution Frequency",
+        "placeholder": "Select frequency",
+        "help": "How frequently are you contributing?",
+        "options": {
+          "weekly": "Weekly",
+          "biweekly": "Bi-weekly",
+          "monthly": "Monthly",
+          "quarterly": "Quarterly",
+          "yearly": "Yearly"
+        }
+      },
+      "annualInterestRate": {
+        "label": "Annual Interest Rate (Optional)",
+        "placeholder": "5.0",
+        "help": "Expected annual return rate (APY) - leave as 0 if no growth"
+      },
+      "targetTimeline": {
+        "label": "Target Timeline (Optional)",
+        "placeholder": "12",
+        "help": "How fast you want to reach your goal (optional)",
+        "units": {
+          "months": "Months",
+          "years": "Years"
+        }
+      }
+    },
+    "calculateButton": "Calculate Path to Goal",
+    "results": {
+      "title": "Your Path to {goal}",
+      "timeToGoal": "Time to Goal",
+      "currentGap": "Current Gap",
+      "stillNeedToSave": "Still need to save",
+      "totalContributed": "Total Contributed",
+      "overYears": "Over {years} years",
+      "finalBalance": "Final Balance",
+      "goalAchieved": "Goal Achieved!",
+      "belowGoal": "Below Goal",
+      "projectedGrowth": "Projected Growth Over Time",
+      "requiredMonthlyContribution": "Required Monthly Contribution",
+      "toReachGoalInTimeline": "To reach your goal of {goal} in {timeline} {unit}",
+      "setTargetTimeline": "Set a target timeline to see required monthly contribution",
+      "timelineSummary": "Timeline Summary",
+      "goalAmount": "Goal Amount:",
+      "currentSavings": "Current Savings:",
+      "otherIncome": "Other Income:",
+      "timeToGoal": "Time to Goal:",
+      "years": "years",
+      "months": "months",
+      "monthLabel": "Month {month}",
+      "balanceLabel": "Balance"
+    }
+  },
+  "savingsGrow": {
+    "title": "Savings Growth Calculator",
+    "description": "Calculate how your savings will grow over time with compound interest and regular contributions",
+    "requiredInformation": {
+      "title": "Required Information",
+      "description": "Fill in these details to see how your savings will grow over time",
+      "initialBalance": {
+        "label": "Initial Balance / Starting Deposit",
+        "placeholder": "10,000",
+        "help": "Your starting savings amount"
+      },
+      "annualInterestRate": {
+        "label": "Expected Annual Interest Rate",
+        "placeholder": "5.5",
+        "help": "APY / annual return rate"
+      },
+      "contributionAmount": {
+        "label": "Regular Contribution Amount",
+        "placeholder": "5,000",
+        "help": "Amount you will add each year"
+      },
+      "contributionFrequency": {
+        "label": "Contribution Frequency",
+        "placeholder": "Select frequency",
+        "help": "How often you contribute (optional if not fixed annual)",
+        "options": {
+          "weekly": "Weekly",
+          "biweekly": "Bi-weekly",
+          "monthly": "Monthly",
+          "quarterly": "Quarterly",
+          "yearly": "Yearly"
+        }
+      },
+      "years": {
+        "label": "Number of Years",
+        "placeholder": "10",
+        "help": "Time horizon for your savings"
+      },
+      "compoundingFrequency": {
+        "label": "Compounding Frequency",
+        "placeholder": "Select frequency",
+        "help": "How often interest compounds (optional for precision)",
+        "options": {
+          "daily": "Daily",
+          "monthly": "Monthly",
+          "quarterly": "Quarterly",
+          "yearly": "Yearly"
+        }
+      }
+    },
+    "calculateButton": "Calculate Growth",
+    "results": {
+      "title": "Your Savings Growth Projection",
+      "finalBalance": "Final Balance",
+      "afterYears": "After {years} years",
+      "totalContributed": "Total Contributed",
+      "regularContributions": "Regular contributions",
+      "interestEarned": "Interest Earned",
+      "compoundGrowth": "Compound growth",
+      "growthPercentage": "Growth %",
+      "totalReturn": "Total return",
+      "savingsGrowthOverTime": "Savings Growth Over Time",
+      "breakdownOfFinalBalance": "Breakdown of Final Balance",
+      "growthBreakdown": "Growth Breakdown",
+      "projectionSummary": "Projection Summary",
+      "initialAmount": "Initial Amount:",
+      "contributions": "Contributions:",
+      "interestEarnedLabel": "Interest Earned:",
+      "growthPercent": "Growth %:",
+      "timePeriod": "Time Period:",
+      "contributionFrequency": "Contribution Frequency:",
+      "compounding": "Compounding:",
+      "annualRate": "Annual Rate:",
+      "years": "years",
+      "yearLabel": "Year {year}",
+      "balanceLabel": "Balance",
+      "amountLabel": "Amount"
+    }
   }
 }

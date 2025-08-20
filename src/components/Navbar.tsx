@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   DollarSign,
   TrendingUp,
@@ -9,6 +10,8 @@ import {
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
+  const t = useTranslations();
+  
   return (
     <nav className="bg-gradient-to-r from-gray-100 via-white to-gray-100 shadow-lg border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -27,10 +30,10 @@ export default function Navbar() {
             {/* Company Name with Enhanced Typography */}
             <div className="flex flex-col">
               <span className="text-gray-900 font-bold text-xl tracking-wider leading-none">
-                Stickball
+                {t('navbar.companyName')}
               </span>
               <span className="text-gray-600 text-xs font-medium tracking-widest uppercase">
-                FINANCE
+                {t('navbar.companyTagline')}
               </span>
             </div>
           </div>
@@ -44,7 +47,7 @@ export default function Navbar() {
                   <DollarSign className="w-4 h-4 text-gray-700" />
                 </div>
                 <h1 className="text-gray-900 font-bold text-lg md:text-xl lg:text-2xl tracking-wide">
-                  MONEY
+                  {t('navbar.mainTitle')}
                 </h1>
                 <div className="w-6 h-6 bg-gray-200 rounded-lg flex items-center justify-center">
                   <TrendingUp className="w-4 h-4 text-gray-700" />
@@ -55,7 +58,7 @@ export default function Navbar() {
               <div className="flex items-center justify-center space-x-2">
                 <PiggyBank className="w-3 h-3 text-gray-600" />
                 <p className="text-gray-600 text-xs md:text-sm font-medium">
-                  How you save, spend & earn.
+                  {t('navbar.subtitle')}
                 </p>
               </div>
             </div>

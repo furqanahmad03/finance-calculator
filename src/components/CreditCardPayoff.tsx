@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -62,6 +63,8 @@ interface CreditCardPayoffResults {
 }
 
 export default function CreditCardPayoff() {
+  const t = useTranslations();
+  
   const [formData, setFormData] = useState<CreditCardPayoffForm>({
     balance: "",
     annualInterestRate: "",
@@ -243,8 +246,8 @@ export default function CreditCardPayoff() {
 
   return (
     <CalculatorLayout
-      title="Credit Card Payoff Calculator"
-      description="Calculate how long it will take to pay off your credit card debt or find the monthly payment needed"
+      title={t('creditCardPayoff.title')}
+      description={t('creditCardPayoff.description')}
       icon={<CreditCard className="w-6 h-6 text-red-600" />}
     >
       <div className="space-y-8">
@@ -253,10 +256,10 @@ export default function CreditCardPayoff() {
           <CardHeader className="bg-gradient-to-r py-3 from-red-600 to-red-700 text-white rounded-t-lg">
             <CardTitle className="flex items-center space-x-3 text-xl">
               <DollarSign className="w-6 h-6 text-yellow-300" />
-              <span>Debt Details</span>
+              <span>{t('creditCardPayoff.debtDetails.title')}</span>
             </CardTitle>
             <p className="text-red-100 text-sm font-normal mt-1">
-              Enter your credit card information to start calculating
+              {t('creditCardPayoff.debtDetails.description')}
             </p>
           </CardHeader>
           <CardContent className="p-8">
@@ -268,7 +271,7 @@ export default function CreditCardPayoff() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span>Total Credit Card Balance</span>
+                    <span>{t('creditCardPayoff.debtDetails.balance.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -276,11 +279,11 @@ export default function CreditCardPayoff() {
                     name="balance"
                     value={formData.balance}
                     onChange={handleInputChange}
-                    placeholder="5,000"
+                    placeholder={t('creditCardPayoff.debtDetails.balance.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Total amount of debt on your card
+                    {t('creditCardPayoff.debtDetails.balance.help')}
                   </p>
                 </div>
 
@@ -290,7 +293,7 @@ export default function CreditCardPayoff() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span>Annual Interest Rate (APR)</span>
+                    <span>{t('creditCardPayoff.debtDetails.annualInterestRate.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -298,12 +301,12 @@ export default function CreditCardPayoff() {
                     name="annualInterestRate"
                     value={formData.annualInterestRate}
                     onChange={handleInputChange}
-                    placeholder="18.99"
+                    placeholder={t('creditCardPayoff.debtDetails.annualInterestRate.placeholder')}
                     step="0.01"
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Interest rate you pay on this card
+                    {t('creditCardPayoff.debtDetails.annualInterestRate.help')}
                   </p>
                 </div>
               </div>
@@ -312,7 +315,7 @@ export default function CreditCardPayoff() {
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
                   <Target className="w-5 h-5 text-red-600" />
-                  <span>Choose Your Payment Approach</span>
+                  <span>{t('creditCardPayoff.paymentApproach.title')}</span>
                 </h3>
                 
                 <RadioGroup
@@ -323,13 +326,13 @@ export default function CreditCardPayoff() {
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="monthly-payment" id="monthly-payment" />
                     <Label htmlFor="monthly-payment" className="text-sm font-medium text-gray-700">
-                      I know my monthly payment amount
+                      {t('creditCardPayoff.paymentApproach.monthlyPayment.label')}
                     </Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="payoff-timeline" id="payoff-timeline" />
                     <Label htmlFor="payoff-timeline" className="text-sm font-medium text-gray-700">
-                      I want to pay off in a specific time
+                      {t('creditCardPayoff.paymentApproach.payoffTimeline.label')}
                     </Label>
                   </div>
                 </RadioGroup>
@@ -342,7 +345,7 @@ export default function CreditCardPayoff() {
                       className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                     >
                       <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <span>Monthly Payment Amount</span>
+                      <span>{t('creditCardPayoff.paymentApproach.monthlyPaymentAmount.label')}</span>
                     </label>
                     <Input
                       type="number"
@@ -350,11 +353,11 @@ export default function CreditCardPayoff() {
                       name="monthlyPayment"
                       value={formData.monthlyPayment}
                       onChange={handleInputChange}
-                      placeholder="200"
+                      placeholder={t('creditCardPayoff.paymentApproach.monthlyPaymentAmount.placeholder')}
                       className="w-full h-12 px-4 border-2 border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-100 rounded-sm transition-all duration-200 text-lg font-medium"
                     />
                     <p className="text-xs text-gray-500">
-                      Fixed amount you plan to pay each month
+                      {t('creditCardPayoff.paymentApproach.monthlyPayment.description')}
                     </p>
                   </div>
                 ) : (
@@ -364,7 +367,7 @@ export default function CreditCardPayoff() {
                       className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                     >
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>Desired Payoff Timeline</span>
+                      <span>{t('creditCardPayoff.paymentApproach.desiredPayoffTimeline.label')}</span>
                     </label>
                     <div className="flex space-x-2">
                       <Input
@@ -373,7 +376,7 @@ export default function CreditCardPayoff() {
                         name="payoffMonths"
                         value={formData.payoffMonths}
                         onChange={handleInputChange}
-                        placeholder="24"
+                        placeholder={t('creditCardPayoff.paymentApproach.desiredPayoffTimeline.placeholder')}
                         className="flex-1 h-12 px-4 border-2 border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-100 rounded-sm transition-all duration-200 text-lg font-medium"
                       />
                       <Select
@@ -384,13 +387,13 @@ export default function CreditCardPayoff() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="months">Months</SelectItem>
-                          <SelectItem value="years">Years</SelectItem>
+                          <SelectItem value="months">{t('creditCardPayoff.paymentApproach.desiredPayoffTimeline.units.months')}</SelectItem>
+                          <SelectItem value="years">{t('creditCardPayoff.paymentApproach.desiredPayoffTimeline.units.years')}</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <p className="text-xs text-gray-500">
-                      Number of months (or years) in which you want to pay off the debt
+                      {t('creditCardPayoff.paymentApproach.payoffTimeline.description')}
                     </p>
                   </div>
                 )}
@@ -403,7 +406,7 @@ export default function CreditCardPayoff() {
                   className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Calculator className="w-5 h-5 mr-2" />
-                  Calculate Payoff Plan
+                  {t('creditCardPayoff.calculateButton')}
                 </Button>
               </div>
             </div>
@@ -416,7 +419,7 @@ export default function CreditCardPayoff() {
             <CardHeader className="bg-gradient-to-r py-4 from-red-600 to-red-700 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-3 text-xl">
                 <TrendingDown className="w-6 h-6 text-yellow-300" />
-                <span>Your Payoff Plan</span>
+                <span>{t('creditCardPayoff.results.title')}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-8">
@@ -426,52 +429,52 @@ export default function CreditCardPayoff() {
                   <div className="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl border border-red-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <Clock className="w-6 h-6 text-red-600" />
-                      <h3 className="font-semibold text-red-800">Months to Payoff</h3>
+                      <h3 className="font-semibold text-red-800">{t('creditCardPayoff.results.monthsToPayoff')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-red-900">
                       {results.monthsToPayoff === 999 ? "∞" : results.monthsToPayoff}
                     </div>
                     <div className="text-sm text-red-600">
-                      {results.monthsToPayoff === 999 ? "Never (payment too low)" : "Time to debt freedom"}
+                      {results.monthsToPayoff === 999 ? t('creditCardPayoff.results.neverPaymentTooLow') : t('creditCardPayoff.results.timeToDebtFreedom')}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <DollarSign className="w-6 h-6 text-blue-600" />
-                      <h3 className="font-semibold text-blue-800">Monthly Payment</h3>
+                      <h3 className="font-semibold text-blue-800">{t('creditCardPayoff.results.monthlyPayment')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-blue-900">
                       {formatCurrency(results.requiredMonthlyPayment)}
                     </div>
                     <div className="text-sm text-blue-600">
-                      {formData.paymentApproach === "monthly-payment" ? "Your planned payment" : "Required to meet timeline"}
+                      {formData.paymentApproach === "monthly-payment" ? t('creditCardPayoff.results.yourPlannedPayment') : t('creditCardPayoff.results.requiredToMeetTimeline')}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <Percent className="w-6 h-6 text-orange-600" />
-                      <h3 className="font-semibold text-orange-800">Total Interest</h3>
+                      <h3 className="font-semibold text-orange-800">{t('creditCardPayoff.results.totalInterest')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-orange-900">
                       {formatCurrency(results.totalInterest)}
                     </div>
                     <div className="text-sm text-orange-600">
-                      Interest cost over the payoff period
+                      {t('creditCardPayoff.results.interestCostOverPeriod')}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <Target className="w-6 h-6 text-purple-600" />
-                      <h3 className="font-semibold text-purple-800">Total Cost</h3>
+                      <h3 className="font-semibold text-purple-800">{t('creditCardPayoff.results.totalCost')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-purple-900">
                       {formatCurrency(results.totalCost)}
                     </div>
                     <div className="text-sm text-purple-600">
-                      Balance + interest
+                      {t('creditCardPayoff.results.balancePlusInterest')}
                     </div>
                   </div>
                 </div>
@@ -480,21 +483,21 @@ export default function CreditCardPayoff() {
                 <div className="bg-white p-6 rounded-xl border border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
                     <Calendar className="w-5 h-5 text-red-600" />
-                    <span>Payoff Timeline</span>
+                    <span>{t('creditCardPayoff.results.payoffTimeline')}</span>
                   </h3>
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
-                        <h4 className="font-semibold text-green-800 text-sm mb-2">Estimated Payoff Date</h4>
+                        <h4 className="font-semibold text-green-800 text-sm mb-2">{t('creditCardPayoff.results.estimatedPayoffDate')}</h4>
                         <div className="text-xl font-bold text-green-600">{results.payoffDate}</div>
                       </div>
                       <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg border border-blue-200">
-                        <h4 className="font-semibold text-blue-800 text-sm mb-2">Potential Savings</h4>
+                        <h4 className="font-semibold text-blue-800 text-sm mb-2">{t('creditCardPayoff.results.potentialSavings')}</h4>
                         <div className="text-xl font-bold text-blue-600">
                           {results.savings === "0" ? "N/A" : formatCurrency(results.savings)}
                         </div>
                         <div className="text-xs text-blue-600">
-                          vs. minimum payment
+                          {t('creditCardPayoff.results.vsMinimumPayment')}
                         </div>
                       </div>
                     </div>
@@ -505,7 +508,7 @@ export default function CreditCardPayoff() {
                 <div className="bg-white p-6 rounded-xl border border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
                     <TrendingDown className="w-5 h-5 text-red-600" />
-                    <span>Balance Reduction Over Time</span>
+                    <span>{t('creditCardPayoff.results.balanceReduction')}</span>
                   </h3>
                   <div className="h-80">
                     <ResponsiveContainer width="100%" height="100%">
@@ -522,8 +525,8 @@ export default function CreditCardPayoff() {
                           tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                         />
                         <Tooltip 
-                          formatter={(value: any) => [formatCurrency(value), 'Amount']}
-                          labelFormatter={(label) => `Month ${label}`}
+                          formatter={(value: any) => [formatCurrency(value), t('creditCardPayoff.results.amountLabel')]}
+                          labelFormatter={(label) => t('creditCardPayoff.results.monthLabel', { month: label })}
                         />
                         <Area 
                           type="monotone" 
@@ -542,7 +545,7 @@ export default function CreditCardPayoff() {
                 <div className="bg-white p-6 rounded-xl border border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
                     <CreditCard className="w-5 h-5 text-red-600" />
-                    <span>Monthly Payment Breakdown</span>
+                    <span>{t('creditCardPayoff.results.monthlyBreakdown')}</span>
                   </h3>
                   <div className="h-80">
                     <ResponsiveContainer width="100%" height="100%">
@@ -559,8 +562,8 @@ export default function CreditCardPayoff() {
                           tickFormatter={(value) => `$${(value / 100).toFixed(0)}`}
                         />
                         <Tooltip 
-                          formatter={(value: any) => [formatCurrency(value), 'Amount']}
-                          labelFormatter={(label) => `Month ${label}`}
+                          formatter={(value: any) => [formatCurrency(value), t('creditCardPayoff.results.amountLabel')]}
+                          labelFormatter={(label) => t('creditCardPayoff.results.monthLabel', { month: label })}
                         />
                         <Line 
                           type="monotone" 
@@ -568,7 +571,7 @@ export default function CreditCardPayoff() {
                           stroke="#3b82f6" 
                           strokeWidth={3}
                           dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
-                          name="Total Payment"
+                          name={t('creditCardPayoff.results.totalPayment')}
                         />
                         <Line 
                           type="monotone" 
@@ -576,7 +579,7 @@ export default function CreditCardPayoff() {
                           stroke="#10b981" 
                           strokeWidth={3}
                           dot={{ fill: '#10b981', strokeWidth: 2, r: 4 }}
-                          name="Principal"
+                          name={t('creditCardPayoff.results.principal')}
                         />
                         <Line 
                           type="monotone" 
@@ -584,7 +587,7 @@ export default function CreditCardPayoff() {
                           stroke="#f59e0b" 
                           strokeWidth={3}
                           dot={{ fill: '#f59e0b', strokeWidth: 2, r: 4 }}
-                          name="Interest"
+                          name={t('creditCardPayoff.results.interest')}
                         />
                       </LineChart>
                     </ResponsiveContainer>

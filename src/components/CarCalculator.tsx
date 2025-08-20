@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -63,6 +64,8 @@ interface CarCalculatorResults {
 }
 
 export default function CarCalculator() {
+  const t = useTranslations();
+  
   const [formData, setFormData] = useState<CarCalculatorForm>({
     downPayment: "",
     tradeInValue: "",
@@ -140,7 +143,7 @@ export default function CarCalculator() {
 
     // Affordability check
     const affordabilityCheck =
-      monthlyPayment <= monthlyPaymentBudget ? "Affordable" : "Over Budget";
+      monthlyPayment <= monthlyPaymentBudget ? t('carCalculator.results.affordable') : t('carCalculator.results.overBudget');
     const recommendedBudget = (monthlyPaymentBudget * 0.8).toFixed(2); // 20% buffer
 
     setResults({
@@ -170,8 +173,8 @@ export default function CarCalculator() {
 
   return (
     <CalculatorLayout
-      title="Car Loan Calculator"
-      description="Calculate car loan payments, affordability, and total cost with trade-in considerations"
+      title={t('carCalculator.title')}
+      description={t('carCalculator.description')}
       icon={<Car className="w-6 h-6 text-blue-600" />}
     >
       <div className="space-y-8">
@@ -180,10 +183,10 @@ export default function CarCalculator() {
           <CardHeader className="bg-gradient-to-r py-3 from-blue-600 to-blue-700 text-white rounded-t-lg">
             <CardTitle className="flex items-center space-x-3 text-xl">
               <DollarSign className="w-6 h-6 text-yellow-300" />
-              <span>Required Information</span>
+              <span>{t('carCalculator.requiredInformation.title')}</span>
             </CardTitle>
             <p className="text-blue-100 text-sm font-normal mt-1">
-              Fill in these essential details to calculate your car loan
+              {t('carCalculator.requiredInformation.description')}
             </p>
           </CardHeader>
           <CardContent className="p-8">
@@ -195,7 +198,7 @@ export default function CarCalculator() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Down Payment Amount</span>
+                    <span>{t('carCalculator.requiredInformation.downPayment.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -203,11 +206,11 @@ export default function CarCalculator() {
                     name="downPayment"
                     value={formData.downPayment}
                     onChange={handleInputChange}
-                    placeholder="5,000"
+                    placeholder={t('carCalculator.requiredInformation.downPayment.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Cash you have saved for the purchase
+                    {t('carCalculator.requiredInformation.downPayment.help')}
                   </p>
                 </div>
 
@@ -217,7 +220,7 @@ export default function CarCalculator() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>Trade-in Value</span>
+                    <span>{t('carCalculator.requiredInformation.tradeInValue.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -225,11 +228,11 @@ export default function CarCalculator() {
                     name="tradeInValue"
                     value={formData.tradeInValue}
                     onChange={handleInputChange}
-                    placeholder="8,000"
+                    placeholder={t('carCalculator.requiredInformation.tradeInValue.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    What dealer will pay for your current car
+                    {t('carCalculator.requiredInformation.tradeInValue.help')}
                   </p>
                 </div>
 
@@ -239,7 +242,7 @@ export default function CarCalculator() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span>Outstanding Loan Balance</span>
+                    <span>{t('carCalculator.requiredInformation.outstandingLoanBalance.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -247,11 +250,11 @@ export default function CarCalculator() {
                     name="outstandingLoanBalance"
                     value={formData.outstandingLoanBalance}
                     onChange={handleInputChange}
-                    placeholder="3,000"
+                    placeholder={t('carCalculator.requiredInformation.outstandingLoanBalance.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Remaining balance on your current car loan
+                    {t('carCalculator.requiredInformation.outstandingLoanBalance.help')}
                   </p>
                 </div>
 
@@ -261,7 +264,7 @@ export default function CarCalculator() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span>Loan Term (Years)</span>
+                    <span>{t('carCalculator.requiredInformation.loanTerm.label')}</span>
                   </label>
                   <Select
                     onValueChange={(value) =>
@@ -270,19 +273,19 @@ export default function CarCalculator() {
                     defaultValue={formData.loanTerm}
                   >
                     <SelectTrigger className="w-full !h-12 !text-sm px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium">
-                      <SelectValue placeholder="Select a term" />
+                      <SelectValue placeholder={t('carCalculator.requiredInformation.loanTerm.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="1">1 Year (12 Months)</SelectItem>
-                      <SelectItem value="2">2 Years (24 Months)</SelectItem>
-                      <SelectItem value="3">3 Years (36 Months)</SelectItem>
-                      <SelectItem value="4">4 Years (48 Months)</SelectItem>
-                      <SelectItem value="5">5 Years (60 Months)</SelectItem>
-                      <SelectItem value="6">6 Years (72 Months)</SelectItem>
-                      <SelectItem value="7">7 Years (84 Months)</SelectItem>
-                      <SelectItem value="8">8 Years (96 Months)</SelectItem>
-                      <SelectItem value="9">9 Years (108 Months)</SelectItem>
-                      <SelectItem value="10">10 Years (120 Months)</SelectItem>
+                      <SelectItem value="1">{t('carCalculator.requiredInformation.loanTerm.options.1')}</SelectItem>
+                      <SelectItem value="2">{t('carCalculator.requiredInformation.loanTerm.options.2')}</SelectItem>
+                      <SelectItem value="3">{t('carCalculator.requiredInformation.loanTerm.options.3')}</SelectItem>
+                      <SelectItem value="4">{t('carCalculator.requiredInformation.loanTerm.options.4')}</SelectItem>
+                      <SelectItem value="5">{t('carCalculator.requiredInformation.loanTerm.options.5')}</SelectItem>
+                      <SelectItem value="6">{t('carCalculator.requiredInformation.loanTerm.options.6')}</SelectItem>
+                      <SelectItem value="7">{t('carCalculator.requiredInformation.loanTerm.options.7')}</SelectItem>
+                      <SelectItem value="8">{t('carCalculator.requiredInformation.loanTerm.options.8')}</SelectItem>
+                      <SelectItem value="9">{t('carCalculator.requiredInformation.loanTerm.options.9')}</SelectItem>
+                      <SelectItem value="10">{t('carCalculator.requiredInformation.loanTerm.options.10')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -293,7 +296,7 @@ export default function CarCalculator() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span>Interest Rate (APR %)</span>
+                    <span>{t('carCalculator.requiredInformation.interestRate.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -301,12 +304,12 @@ export default function CarCalculator() {
                     name="interestRate"
                     value={formData.interestRate}
                     onChange={handleInputChange}
-                    placeholder="6.5"
+                    placeholder={t('carCalculator.requiredInformation.interestRate.placeholder')}
                     step="0.1"
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Annual percentage rate you expect
+                    {t('carCalculator.requiredInformation.interestRate.help')}
                   </p>
                 </div>
 
@@ -316,7 +319,7 @@ export default function CarCalculator() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
-                    <span>Sales Tax Rate (%)</span>
+                    <span>{t('carCalculator.requiredInformation.salesTaxRate.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -324,12 +327,12 @@ export default function CarCalculator() {
                     name="salesTaxRate"
                     value={formData.salesTaxRate}
                     onChange={handleInputChange}
-                    placeholder="8.25"
+                    placeholder={t('carCalculator.requiredInformation.salesTaxRate.placeholder')}
                     step="0.01"
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Tax rate in your county/state
+                    {t('carCalculator.requiredInformation.salesTaxRate.help')}
                   </p>
                 </div>
 
@@ -339,7 +342,7 @@ export default function CarCalculator() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                    <span>Monthly Payment Budget</span>
+                    <span>{t('carCalculator.requiredInformation.monthlyPaymentBudget.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -347,11 +350,11 @@ export default function CarCalculator() {
                     name="monthlyPaymentBudget"
                     value={formData.monthlyPaymentBudget}
                     onChange={handleInputChange}
-                    placeholder="400"
+                    placeholder={t('carCalculator.requiredInformation.monthlyPaymentBudget.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Maximum monthly payment you can afford
+                    {t('carCalculator.requiredInformation.monthlyPaymentBudget.help')}
                   </p>
                 </div>
               </div>
@@ -377,7 +380,7 @@ export default function CarCalculator() {
               htmlFor="showOptional"
               className="text-sm font-semibold text-gray-700 cursor-pointer"
             >
-              Show Advanced Options for More Accuracy
+              {t('carCalculator.advancedOptions.showAdvanced')}
             </label>
             <div
               className={`w-3 h-3 rounded-full transition-all duration-200 ${
@@ -393,10 +396,10 @@ export default function CarCalculator() {
             <CardHeader className="py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-3 text-xl">
                 <Calculator className="w-6 h-6 text-yellow-300" />
-                <span>Advanced Options</span>
+                <span>{t('carCalculator.advancedOptions.title')}</span>
               </CardTitle>
               <p className="text-purple-100 text-sm font-normal mt-1">
-                Additional fields for enhanced accuracy and flexibility
+                {t('carCalculator.advancedOptions.description')}
               </p>
             </CardHeader>
             <CardContent className="p-8">
@@ -408,7 +411,7 @@ export default function CarCalculator() {
                       className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                     >
                       <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
-                      <span>Dealer/Manufacturer Rebates</span>
+                      <span>{t('carCalculator.advancedOptions.dealerRebates.label')}</span>
                     </label>
                     <Input
                       type="number"
@@ -416,11 +419,11 @@ export default function CarCalculator() {
                       name="dealerRebates"
                       value={formData.dealerRebates}
                       onChange={handleInputChange}
-                      placeholder="1,000"
+                      placeholder={t('carCalculator.advancedOptions.dealerRebates.placeholder')}
                       className="w-full h-12 px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium"
                     />
                     <p className="text-xs text-gray-500">
-                      Manufacturer incentives and rebates
+                      {t('carCalculator.advancedOptions.dealerRebates.help')}
                     </p>
                   </div>
 
@@ -430,7 +433,7 @@ export default function CarCalculator() {
                       className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                     >
                       <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                      <span>Additional Fees</span>
+                      <span>{t('carCalculator.advancedOptions.additionalFees.label')}</span>
                     </label>
                     <Input
                       type="number"
@@ -438,11 +441,11 @@ export default function CarCalculator() {
                       name="additionalFees"
                       value={formData.additionalFees}
                       onChange={handleInputChange}
-                      placeholder="500"
+                      placeholder={t('carCalculator.advancedOptions.additionalFees.placeholder')}
                       className="w-full h-12 px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium"
                     />
                     <p className="text-xs text-gray-500">
-                      Registration, documentation, title fees
+                      {t('carCalculator.advancedOptions.additionalFees.help')}
                     </p>
                   </div>
 
@@ -452,7 +455,7 @@ export default function CarCalculator() {
                       className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                     >
                       <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                      <span>Desired Payoff Horizon</span>
+                      <span>{t('carCalculator.advancedOptions.desiredPayoffHorizon.label')}</span>
                     </label>
                     <Select
                       onValueChange={(value) =>
@@ -461,25 +464,25 @@ export default function CarCalculator() {
                       defaultValue={formData.desiredPayoffHorizon}
                     >
                       <SelectTrigger className="w-full !h-12 !text-sm px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium">
-                        <SelectValue placeholder="Select payoff horizon" />
+                        <SelectValue placeholder={t('carCalculator.advancedOptions.desiredPayoffHorizon.placeholder')} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="1">1 Year (12 Months)</SelectItem>
-                        <SelectItem value="2">2 Years (24 Months)</SelectItem>
-                        <SelectItem value="3">3 Years (36 Months)</SelectItem>
-                        <SelectItem value="4">4 Years (48 Months)</SelectItem>
-                        <SelectItem value="5">5 Years (60 Months)</SelectItem>
-                        <SelectItem value="6">6 Years (72 Months)</SelectItem>
-                        <SelectItem value="7">7 Years (84 Months)</SelectItem>
-                        <SelectItem value="8">8 Years (96 Months)</SelectItem>
-                        <SelectItem value="9">9 Years (108 Months)</SelectItem>
+                        <SelectItem value="1">{t('carCalculator.requiredInformation.loanTerm.options.1')}</SelectItem>
+                        <SelectItem value="2">{t('carCalculator.requiredInformation.loanTerm.options.2')}</SelectItem>
+                        <SelectItem value="3">{t('carCalculator.requiredInformation.loanTerm.options.3')}</SelectItem>
+                        <SelectItem value="4">{t('carCalculator.requiredInformation.loanTerm.options.4')}</SelectItem>
+                        <SelectItem value="5">{t('carCalculator.requiredInformation.loanTerm.options.5')}</SelectItem>
+                        <SelectItem value="6">{t('carCalculator.requiredInformation.loanTerm.options.6')}</SelectItem>
+                        <SelectItem value="7">{t('carCalculator.requiredInformation.loanTerm.options.7')}</SelectItem>
+                        <SelectItem value="8">{t('carCalculator.requiredInformation.loanTerm.options.8')}</SelectItem>
+                        <SelectItem value="9">{t('carCalculator.requiredInformation.loanTerm.options.9')}</SelectItem>
                         <SelectItem value="10">
-                          10 Years (120 Months)
+                          {t('carCalculator.requiredInformation.loanTerm.options.10')}
                         </SelectItem>
                       </SelectContent>
                     </Select>
                     <p className="text-xs text-gray-500">
-                      Years to pay off (if shorter than loan term)
+                      {t('carCalculator.advancedOptions.desiredPayoffHorizon.help')}
                     </p>
                   </div>
 
@@ -489,7 +492,7 @@ export default function CarCalculator() {
                       className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                     >
                       <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
-                      <span>Income Guideline Percentage</span>
+                      <span>{t('carCalculator.advancedOptions.incomeGuidelinePercentage.label')}</span>
                     </label>
                     <Input
                       type="number"
@@ -497,12 +500,12 @@ export default function CarCalculator() {
                       name="incomeGuidelinePercentage"
                       value={formData.incomeGuidelinePercentage}
                       onChange={handleInputChange}
-                      placeholder="15"
+                      placeholder={t('carCalculator.advancedOptions.incomeGuidelinePercentage.placeholder')}
                       step="0.1"
                       className="w-full h-12 px-4 border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 rounded-sm transition-all duration-200 text-lg font-medium"
                     />
                     <p className="text-xs text-gray-500">
-                      % of monthly take-home pay for car expenses
+                      {t('carCalculator.advancedOptions.incomeGuidelinePercentage.help')}
                     </p>
                   </div>
                 </div>
@@ -519,7 +522,7 @@ export default function CarCalculator() {
             className="px-12 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold text-lg rounded-sm shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-lg transition-all duration-300 transform hover:scale-105"
           >
             <Calculator className="w-6 h-6 mr-3" />
-            Calculate My Car Loan
+            {t('carCalculator.calculateButton')}
           </Button>
         </div>
 
@@ -529,10 +532,10 @@ export default function CarCalculator() {
             <CardHeader className="py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-3 text-xl">
                 <PiggyBank className="w-6 h-6 text-yellow-300" />
-                <span>Your Loan Analysis</span>
+                <span>{t('carCalculator.results.title')}</span>
               </CardTitle>
               <p className="text-green-100 text-sm font-normal mt-1">
-                Detailed breakdown of your car financing options
+                {t('carCalculator.results.description')}
               </p>
             </CardHeader>
             <CardContent className="p-8">
@@ -543,7 +546,7 @@ export default function CarCalculator() {
                   <div className="flex-1">
                     <h4 className="font-semibold text-gray-900 text-base border-b border-gray-200 pb-2 mb-4 flex items-center space-x-2">
                       <DollarSign className="w-4 h-4 text-blue-600" />
-                      <span>Cost Distribution</span>
+                      <span>{t('carCalculator.results.costDistribution')}</span>
                     </h4>
 
                     <ResponsiveContainer width="100%" height={300}>
@@ -551,7 +554,7 @@ export default function CarCalculator() {
                         <Pie
                           data={[
                             {
-                              name: "Loan Amount",
+                              name: t('carCalculator.results.loanAmount'),
                               value: parseFloat(results.loanAmount),
                               fill: "#3b82f6",
                               percentage: (
@@ -561,7 +564,7 @@ export default function CarCalculator() {
                               ).toFixed(1),
                             },
                             {
-                              name: "Down Payment",
+                              name: t('carCalculator.results.downPayment'),
                               value: parseFloat(results.downPaymentAmount),
                               fill: "#10b981",
                               percentage: (
@@ -571,7 +574,7 @@ export default function CarCalculator() {
                               ).toFixed(1),
                             },
                             {
-                              name: "Other Costs",
+                              name: t('carCalculator.results.otherCosts'),
                               value:
                                 parseFloat(results.totalCost) -
                                 parseFloat(results.loanAmount) -
@@ -623,7 +626,7 @@ export default function CarCalculator() {
                                     ${data.value.toLocaleString()}
                                   </div>
                                   <div className="text-gray-500 text-sm">
-                                    {data.percentage}% of total
+                                    {t('carCalculator.results.percentageOfTotal', { percentage: data.percentage })}
                                   </div>
                                 </div>
                               );
@@ -642,7 +645,7 @@ export default function CarCalculator() {
                         <span className="flex items-center space-x-2">
                           <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
                           <span className="text-gray-600 text-xs font-medium">
-                            Loan Amount
+                            {t('carCalculator.results.loanAmount')}
                           </span>
                         </span>
                         <span className="text-right">
@@ -667,7 +670,7 @@ export default function CarCalculator() {
                         <span className="flex items-center space-x-2">
                           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                           <span className="text-gray-600 text-xs font-medium">
-                            Down Payment
+                            {t('carCalculator.results.downPayment')}
                           </span>
                         </span>
                         <span className="text-right">
@@ -695,7 +698,7 @@ export default function CarCalculator() {
                         <span className="flex items-center space-x-2">
                           <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                           <span className="text-gray-600 text-xs font-medium">
-                            Other Costs
+                            {t('carCalculator.results.otherCosts')}
                           </span>
                         </span>
                         <span className="text-right">
@@ -730,12 +733,12 @@ export default function CarCalculator() {
                   <div className="space-y-4">
                     <h4 className="font-semibold text-gray-900 text-base border-b border-blue-200 pb-2 flex items-center space-x-2">
                       <DollarSign className="w-4 h-4 text-blue-600" />
-                      <span>Loan Details</span>
+                      <span>{t('carCalculator.results.loanDetails')}</span>
                     </h4>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                         <span className="text-gray-700 text-sm font-medium">
-                          Monthly Payment
+                          {t('carCalculator.results.monthlyPayment')}
                         </span>
                         <span className="font-bold text-lg text-blue-600">
                           ${results.monthlyPayment}
@@ -743,7 +746,7 @@ export default function CarCalculator() {
                       </div>
                       <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                         <span className="text-gray-700 text-sm font-medium">
-                          Loan Amount
+                          {t('carCalculator.results.loanAmount')}
                         </span>
                         <span className="font-bold text-base text-gray-900">
                           ${parseFloat(results.loanAmount).toLocaleString()}
@@ -751,7 +754,7 @@ export default function CarCalculator() {
                       </div>
                       <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
                         <span className="text-gray-700 text-sm font-medium">
-                          Total Interest
+                          {t('carCalculator.results.totalInterest')}
                         </span>
                         <span className="font-bold text-base text-orange-600">
                           ${parseFloat(results.totalInterest).toLocaleString()}
@@ -759,7 +762,7 @@ export default function CarCalculator() {
                       </div>
                       <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
                         <span className="text-gray-700 text-sm font-medium">
-                          Total Payment
+                          {t('carCalculator.results.totalPayment')}
                         </span>
                         <span className="font-bold text-base text-purple-600">
                           ${parseFloat(results.totalPayment).toLocaleString()}
@@ -772,12 +775,12 @@ export default function CarCalculator() {
                   <div className="space-y-4">
                     <h4 className="font-semibold text-gray-900 text-base border-b border-green-200 pb-2 flex items-center space-x-2">
                       <PiggyBank className="w-4 h-4 text-green-600" />
-                      <span>Cost Breakdown</span>
+                      <span>{t('carCalculator.results.costBreakdown')}</span>
                     </h4>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
                         <span className="text-gray-700 text-sm font-medium">
-                          Down Payment
+                          {t('carCalculator.results.downPayment')}
                         </span>
                         <span className="font-bold text-base text-green-600">
                           $
@@ -788,7 +791,7 @@ export default function CarCalculator() {
                       </div>
                       <div className="flex justify-between items-center p-3 bg-teal-50 rounded-lg">
                         <span className="text-gray-700 text-sm font-medium">
-                          Trade-in Net Value
+                          {t('carCalculator.results.tradeInNetValue')}
                         </span>
                         <span className="font-bold text-base text-teal-600">
                           $
@@ -797,7 +800,7 @@ export default function CarCalculator() {
                       </div>
                       <div className="flex justify-between items-center p-3 bg-indigo-50 rounded-lg">
                         <span className="text-gray-700 text-sm font-medium">
-                          Total Cost
+                          {t('carCalculator.results.totalCost')}
                         </span>
                         <span className="font-bold text-base text-indigo-600">
                           ${parseFloat(results.totalCost).toLocaleString()}
@@ -808,11 +811,11 @@ export default function CarCalculator() {
                       <div className="border-t border-gray-200 pt-3 space-y-3">
                         <div className="flex justify-between items-center p-3 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg">
                           <span className="text-gray-700 text-sm font-medium">
-                            Affordability
+                            {t('carCalculator.results.affordability')}
                           </span>
                           <span
                             className={`font-bold text-sm px-3 py-1 rounded-full ${
-                              results.affordabilityCheck === "Affordable"
+                              results.affordabilityCheck === t('carCalculator.results.affordable')
                                 ? "bg-green-100 text-green-700"
                                 : "bg-red-100 text-red-700"
                             }`}
@@ -822,7 +825,7 @@ export default function CarCalculator() {
                         </div>
                         <div className="flex justify-between items-center p-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg">
                           <span className="text-gray-700 text-sm font-medium">
-                            Recommended Budget
+                            {t('carCalculator.results.recommendedBudget')}
                           </span>
                           <span className="font-bold text-base text-blue-600">
                             ${results.recommendedBudget}

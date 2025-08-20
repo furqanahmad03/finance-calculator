@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -60,6 +61,7 @@ interface SavingsGrowResults {
 }
 
 export default function SavingsGrow() {
+  const t = useTranslations();
   const [formData, setFormData] = useState<SavingsGrowForm>({
     initialBalance: "",
     annualInterestRate: "",
@@ -217,8 +219,8 @@ export default function SavingsGrow() {
 
   return (
     <CalculatorLayout
-      title="Savings Growth Calculator"
-      description="Calculate how your savings will grow over time with compound interest and regular contributions"
+      title={t('savingsGrow.title')}
+      description={t('savingsGrow.description')}
       icon={<TrendingUp className="w-6 h-6 text-emerald-600" />}
     >
       <div className="space-y-8">
@@ -227,10 +229,10 @@ export default function SavingsGrow() {
           <CardHeader className="bg-gradient-to-r py-3 from-emerald-600 to-emerald-700 text-white rounded-t-lg">
             <CardTitle className="flex items-center space-x-3 text-xl">
               <DollarSign className="w-6 h-6 text-yellow-300" />
-              <span>Required Information</span>
+              <span>{t('savingsGrow.requiredInformation.title')}</span>
             </CardTitle>
             <p className="text-emerald-100 text-sm font-normal mt-1">
-              Fill in these details to see how your savings will grow over time
+              {t('savingsGrow.requiredInformation.description')}
             </p>
           </CardHeader>
           <CardContent className="p-8">
@@ -242,7 +244,7 @@ export default function SavingsGrow() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                    <span>Initial Balance / Starting Deposit</span>
+                    <span>{t('savingsGrow.requiredInformation.initialBalance.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -250,11 +252,11 @@ export default function SavingsGrow() {
                     name="initialBalance"
                     value={formData.initialBalance}
                     onChange={handleInputChange}
-                    placeholder="10,000"
+                    placeholder={t('savingsGrow.requiredInformation.initialBalance.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Your starting savings amount
+                    {t('savingsGrow.requiredInformation.initialBalance.help')}
                   </p>
                 </div>
 
@@ -264,7 +266,7 @@ export default function SavingsGrow() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>Expected Annual Interest Rate</span>
+                    <span>{t('savingsGrow.requiredInformation.annualInterestRate.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -272,12 +274,12 @@ export default function SavingsGrow() {
                     name="annualInterestRate"
                     value={formData.annualInterestRate}
                     onChange={handleInputChange}
-                    placeholder="5.5"
+                    placeholder={t('savingsGrow.requiredInformation.annualInterestRate.placeholder')}
                     step="0.1"
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    APY / annual return rate
+                    {t('savingsGrow.requiredInformation.annualInterestRate.help')}
                   </p>
                 </div>
 
@@ -287,7 +289,7 @@ export default function SavingsGrow() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span>Regular Contribution Amount</span>
+                    <span>{t('savingsGrow.requiredInformation.contributionAmount.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -295,11 +297,11 @@ export default function SavingsGrow() {
                     name="contributionAmount"
                     value={formData.contributionAmount}
                     onChange={handleInputChange}
-                    placeholder="5,000"
+                    placeholder={t('savingsGrow.requiredInformation.contributionAmount.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Amount you will add each year
+                    {t('savingsGrow.requiredInformation.contributionAmount.help')}
                   </p>
                 </div>
 
@@ -309,7 +311,7 @@ export default function SavingsGrow() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span>Contribution Frequency</span>
+                    <span>{t('savingsGrow.requiredInformation.contributionFrequency.label')}</span>
                   </label>
                   <Select
                     onValueChange={(value) =>
@@ -318,18 +320,18 @@ export default function SavingsGrow() {
                     defaultValue={formData.contributionFrequency}
                   >
                     <SelectTrigger className="w-full !h-12 !text-sm px-4 border-2 border-gray-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 rounded-sm transition-all duration-200 text-lg font-medium">
-                      <SelectValue placeholder="Select frequency" />
+                      <SelectValue placeholder={t('savingsGrow.requiredInformation.contributionFrequency.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="weekly">Weekly</SelectItem>
-                      <SelectItem value="biweekly">Bi-weekly</SelectItem>
-                      <SelectItem value="monthly">Monthly</SelectItem>
-                      <SelectItem value="quarterly">Quarterly</SelectItem>
-                      <SelectItem value="yearly">Yearly</SelectItem>
+                      <SelectItem value="weekly">{t('savingsGrow.requiredInformation.contributionFrequency.options.weekly')}</SelectItem>
+                      <SelectItem value="biweekly">{t('savingsGrow.requiredInformation.contributionFrequency.options.biweekly')}</SelectItem>
+                      <SelectItem value="monthly">{t('savingsGrow.requiredInformation.contributionFrequency.options.monthly')}</SelectItem>
+                      <SelectItem value="quarterly">{t('savingsGrow.requiredInformation.contributionFrequency.options.quarterly')}</SelectItem>
+                      <SelectItem value="yearly">{t('savingsGrow.requiredInformation.contributionFrequency.options.yearly')}</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-gray-500">
-                    How often you contribute (optional if not fixed annual)
+                    {t('savingsGrow.requiredInformation.contributionFrequency.help')}
                   </p>
                 </div>
 
@@ -339,7 +341,7 @@ export default function SavingsGrow() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
-                    <span>Number of Years</span>
+                    <span>{t('savingsGrow.requiredInformation.years.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -347,11 +349,11 @@ export default function SavingsGrow() {
                     name="years"
                     value={formData.years}
                     onChange={handleInputChange}
-                    placeholder="10"
+                    placeholder={t('savingsGrow.requiredInformation.years.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Time horizon for your savings
+                    {t('savingsGrow.requiredInformation.years.help')}
                   </p>
                 </div>
 
@@ -361,7 +363,7 @@ export default function SavingsGrow() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                    <span>Compounding Frequency</span>
+                    <span>{t('savingsGrow.requiredInformation.compoundingFrequency.label')}</span>
                   </label>
                   <Select
                     onValueChange={(value) =>
@@ -370,17 +372,17 @@ export default function SavingsGrow() {
                     defaultValue={formData.compoundingFrequency}
                   >
                     <SelectTrigger className="w-full !h-12 !text-sm px-4 border-2 border-gray-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 rounded-sm transition-all duration-200 text-lg font-medium">
-                      <SelectValue placeholder="Select frequency" />
+                      <SelectValue placeholder={t('savingsGrow.requiredInformation.compoundingFrequency.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="daily">Daily</SelectItem>
-                      <SelectItem value="monthly">Monthly</SelectItem>
-                      <SelectItem value="quarterly">Quarterly</SelectItem>
-                      <SelectItem value="yearly">Yearly</SelectItem>
+                      <SelectItem value="daily">{t('savingsGrow.requiredInformation.compoundingFrequency.options.daily')}</SelectItem>
+                      <SelectItem value="monthly">{t('savingsGrow.requiredInformation.compoundingFrequency.options.monthly')}</SelectItem>
+                      <SelectItem value="quarterly">{t('savingsGrow.requiredInformation.compoundingFrequency.options.quarterly')}</SelectItem>
+                      <SelectItem value="yearly">{t('savingsGrow.requiredInformation.compoundingFrequency.options.yearly')}</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-gray-500">
-                    How often interest compounds (optional for precision)
+                    {t('savingsGrow.requiredInformation.compoundingFrequency.help')}
                   </p>
                 </div>
               </div>
@@ -392,7 +394,7 @@ export default function SavingsGrow() {
                   className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Calculator className="w-5 h-5 mr-2" />
-                  Calculate Growth
+                  {t('savingsGrow.calculateButton')}
                 </Button>
               </div>
             </div>
@@ -405,7 +407,7 @@ export default function SavingsGrow() {
             <CardHeader className="bg-gradient-to-r py-4 from-emerald-600 to-emerald-700 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-3 text-xl">
                 <TrendingUp className="w-6 h-6 text-yellow-300" />
-                <span>Your Savings Growth Projection</span>
+                <span>{t('savingsGrow.results.title')}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-8">
@@ -415,52 +417,52 @@ export default function SavingsGrow() {
                   <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 p-6 rounded-xl border border-emerald-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <TrendingUp className="w-6 h-6 text-emerald-600" />
-                      <h3 className="font-semibold text-emerald-800">Final Balance</h3>
+                      <h3 className="font-semibold text-emerald-800">{t('savingsGrow.results.finalBalance')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-emerald-900">
                       {formatCurrency(results.finalBalance)}
                     </div>
                     <div className="text-sm text-emerald-600">
-                      After {formData.years} years
+                      {t('savingsGrow.results.afterYears', { years: formData.years })}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <PiggyBank className="w-6 h-6 text-blue-600" />
-                      <h3 className="font-semibold text-blue-800">Total Contributed</h3>
+                      <h3 className="font-semibold text-blue-800">{t('savingsGrow.results.totalContributed')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-blue-900">
                       {formatCurrency(results.totalContributed)}
                     </div>
                     <div className="text-sm text-blue-600">
-                      Regular contributions
+                      {t('savingsGrow.results.regularContributions')}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <BarChart3 className="w-6 h-6 text-purple-600" />
-                      <h3 className="font-semibold text-purple-800">Interest Earned</h3>
+                      <h3 className="font-semibold text-purple-800">{t('savingsGrow.results.interestEarned')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-purple-900">
                       {formatCurrency(results.interestEarned)}
                     </div>
                     <div className="text-sm text-purple-600">
-                      Compound growth
+                      {t('savingsGrow.results.compoundGrowth')}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <Percent className="w-6 h-6 text-orange-600" />
-                      <h3 className="font-semibold text-orange-800">Growth %</h3>
+                      <h3 className="font-semibold text-orange-800">{t('savingsGrow.results.growthPercentage')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-orange-900">
                       {formatPercentage(results.breakdown.growthPercentage)}
                     </div>
                     <div className="text-sm text-orange-600">
-                      Total return
+                      {t('savingsGrow.results.totalReturn')}
                     </div>
                   </div>
                 </div>
@@ -469,7 +471,7 @@ export default function SavingsGrow() {
                 <div className="bg-white p-6 rounded-xl border border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
                     <TrendingUp className="w-5 h-5 text-emerald-600" />
-                    <span>Savings Growth Over Time</span>
+                    <span>{t('savingsGrow.results.savingsGrowthOverTime')}</span>
                   </h3>
                   <div className="h-80">
                     <ResponsiveContainer width="100%" height="100%">
@@ -486,8 +488,8 @@ export default function SavingsGrow() {
                           tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                         />
                         <Tooltip 
-                          formatter={(value: any) => [formatCurrency(value), 'Balance']}
-                          labelFormatter={(label) => `Year ${label}`}
+                          formatter={(value: string | number) => [formatCurrency(value.toString()), t('savingsGrow.results.balanceLabel')]}
+                          labelFormatter={(label) => t('savingsGrow.results.yearLabel', { year: label })}
                         />
                         <Area 
                           type="monotone" 
@@ -506,7 +508,7 @@ export default function SavingsGrow() {
                 <div className="bg-white p-6 rounded-xl border border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
                     <BarChart3 className="w-5 h-5 text-emerald-600" />
-                    <span>Breakdown of Final Balance</span>
+                    <span>{t('savingsGrow.results.breakdownOfFinalBalance')}</span>
                   </h3>
                   <div className="h-80">
                     <ResponsiveContainer width="100%" height="100%">
@@ -523,8 +525,8 @@ export default function SavingsGrow() {
                           tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                         />
                         <Tooltip 
-                          formatter={(value: any) => [formatCurrency(value), 'Amount']}
-                          labelFormatter={(label) => `Year ${label}`}
+                          formatter={(value: string | number) => [formatCurrency(value.toString()), t('savingsGrow.results.amountLabel')]}
+                          labelFormatter={(label) => t('savingsGrow.results.yearLabel', { year: label })}
                         />
                         <Line 
                           type="monotone" 
@@ -532,7 +534,7 @@ export default function SavingsGrow() {
                           stroke="#3b82f6" 
                           strokeWidth={3}
                           dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
-                          name="Total Contributed"
+                          name={t('savingsGrow.results.totalContributed')}
                         />
                         <Line 
                           type="monotone" 
@@ -540,7 +542,7 @@ export default function SavingsGrow() {
                           stroke="#8b5cf6" 
                           strokeWidth={3}
                           dot={{ fill: '#8b5cf6', strokeWidth: 2, r: 4 }}
-                          name="Interest Earned"
+                          name={t('savingsGrow.results.interestEarned')}
                         />
                       </LineChart>
                     </ResponsiveContainer>
@@ -552,23 +554,23 @@ export default function SavingsGrow() {
                   <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-6 rounded-xl border border-emerald-200">
                     <h4 className="font-semibold text-gray-900 text-base border-b border-emerald-200 pb-2 flex items-center space-x-2">
                       <Calculator className="w-4 h-4 text-emerald-600" />
-                      <span>Growth Breakdown</span>
+                      <span>{t('savingsGrow.results.growthBreakdown')}</span>
                     </h4>
                     <div className="pt-3 space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Initial Amount:</span>
+                        <span className="text-gray-700 text-sm">{t('savingsGrow.results.initialAmount')}</span>
                         <span className="font-semibold text-gray-900">{formatCurrency(results.breakdown.initialAmount)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Contributions:</span>
+                        <span className="text-gray-700 text-sm">{t('savingsGrow.results.contributions')}</span>
                         <span className="font-semibold text-gray-900">{formatCurrency(results.breakdown.contributionsTotal)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Interest Earned:</span>
+                        <span className="text-gray-700 text-sm">{t('savingsGrow.results.interestEarnedLabel')}</span>
                         <span className="font-semibold text-gray-900">{formatCurrency(results.breakdown.interestTotal)}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Growth %:</span>
+                        <span className="text-gray-700 text-sm">{t('savingsGrow.results.growthPercent')}</span>
                         <span className="font-semibold text-gray-900">{formatPercentage(results.breakdown.growthPercentage)}</span>
                       </div>
                     </div>
@@ -577,23 +579,23 @@ export default function SavingsGrow() {
                   <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200">
                     <h4 className="font-semibold text-gray-900 text-base border-b border-blue-200 pb-2 flex items-center space-x-2">
                       <Calendar className="w-4 h-4 text-blue-600" />
-                      <span>Projection Summary</span>
+                      <span>{t('savingsGrow.results.projectionSummary')}</span>
                     </h4>
                     <div className="pt-3 space-y-2">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Time Period:</span>
-                        <span className="font-semibold text-gray-900">{formData.years} years</span>
+                        <span className="text-gray-700 text-sm">{t('savingsGrow.results.timePeriod')}</span>
+                        <span className="font-semibold text-gray-900">{formData.years} {t('savingsGrow.results.years')}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Contribution Frequency:</span>
+                        <span className="text-gray-700 text-sm">{t('savingsGrow.results.contributionFrequency')}</span>
                         <span className="font-semibold text-gray-900">{formData.contributionFrequency}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Compounding:</span>
+                        <span className="text-gray-700 text-sm">{t('savingsGrow.results.compounding')}</span>
                         <span className="font-semibold text-gray-900">{formData.compoundingFrequency}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Annual Rate:</span>
+                        <span className="text-gray-700 text-sm">{t('savingsGrow.results.annualRate')}</span>
                         <span className="font-semibold text-gray-900">{formData.annualInterestRate}%</span>
                       </div>
                     </div>

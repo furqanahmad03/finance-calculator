@@ -3,5 +3,618 @@
     "loading": "Cargando...",
     "error": "Error",
     "success": "Éxito"
+  },
+  "navbar": {
+    "companyName": "Stickball",
+    "companyTagline": "FINANZAS",
+    "mainTitle": "DINERO",
+    "subtitle": "Cómo ahorras, gastas y ganas."
+  },
+  "footer": {
+    "companyName": "Stickball",
+    "companyDescription": "Empoderando a las personas para tomar el control de su futuro financiero a través de herramientas inteligentes y conocimientos.",
+    "availableCalculators": "Calculadoras Disponibles",
+    "savingsGrowthCalculator": "Calculadora de Crecimiento de Ahorros",
+    "paycheckCalculator": "Calculadora de Nómina",
+    "creditCardPayoff": "Pago de Tarjeta de Crédito",
+    "saveForGoal": "Ahorrar para un Objetivo",
+    "saveAMillion": "Ahorrar un Millón",
+    "carCalculator": "Calculadora de Auto",
+    "contactUs": "Contáctanos",
+    "email": "info@stickball.com",
+    "phone": "+1 (555) 123-4567",
+    "address": "123 Finance St, NY 10001",
+    "copyright": "© {year} Stickball. Todos los derechos reservados.",
+    "madeWith": "Hecho con",
+    "forYou": "para ti"
+  },
+  "calculators": {
+    "pageTitle": "Calculadoras Financieras",
+    "pageDescription": "Elige de nuestra suite completa de herramientas financieras para ayudarte a tomar decisiones informadas sobre tu dinero",
+    "clickToOpen": "Clic para Abrir",
+    "car": {
+      "title": "Calculadora de Auto",
+      "description": "Calcula los pagos del préstamo del auto, intereses y costo total"
+    },
+    "saveMillion": {
+      "title": "Ahorrar Millón",
+      "description": "Planifica tu camino para ahorrar un millón de dólares"
+    },
+    "saveGoal": {
+      "title": "Ahorrar para Objetivo",
+      "description": "Calcula cuánto ahorrar para objetivos financieros específicos"
+    },
+    "savingsGrowth": {
+      "title": "Crecimiento de Ahorros",
+      "description": "Ve cómo crecen tus ahorros con interés compuesto"
+    },
+    "paycheck": {
+      "title": "Calculadora de Nómina",
+      "description": "Calcula el salario neto después de impuestos y deducciones"
+    },
+    "creditCard": {
+      "title": "Pago de Tarjeta de Crédito",
+      "description": "Planifica tu estrategia de pago de deuda de tarjeta de crédito"
+    }
+  },
+  "carCalculator": {
+    "title": "Calculadora de Préstamo de Auto",
+    "description": "Calcula los pagos del préstamo del auto, asequibilidad y costo total con consideraciones de intercambio",
+    "requiredInformation": {
+      "title": "Información Requerida",
+      "description": "Completa estos detalles esenciales para calcular tu préstamo de auto",
+      "downPayment": {
+        "label": "Monto de Pago Inicial",
+        "placeholder": "5,000",
+        "help": "Efectivo que tienes ahorrado para la compra"
+      },
+      "tradeInValue": {
+        "label": "Valor de Intercambio",
+        "placeholder": "8,000",
+        "help": "Lo que el concesionario pagará por tu auto actual"
+      },
+      "outstandingLoanBalance": {
+        "label": "Saldo Pendiente del Préstamo",
+        "placeholder": "3,000",
+        "help": "Saldo restante en tu préstamo de auto actual"
+      },
+      "loanTerm": {
+        "label": "Plazo del Préstamo (Años)",
+        "placeholder": "Selecciona un plazo",
+        "options": {
+          "1": "1 Año (12 Meses)",
+          "2": "2 Años (24 Meses)",
+          "3": "3 Años (36 Meses)",
+          "4": "4 Años (48 Meses)",
+          "5": "5 Años (60 Meses)",
+          "6": "6 Años (72 Meses)",
+          "7": "7 Años (84 Meses)",
+          "8": "8 Años (96 Meses)",
+          "9": "9 Años (108 Meses)",
+          "10": "10 Años (120 Meses)"
+        }
+      },
+      "interestRate": {
+        "label": "Tasa de Interés (APR %)",
+        "placeholder": "6.5",
+        "help": "Tasa de porcentaje anual que esperas"
+      },
+      "salesTaxRate": {
+        "label": "Tasa de Impuesto de Venta (%)",
+        "placeholder": "8.25",
+        "help": "Tasa de impuesto en tu condado/estado"
+      },
+      "monthlyPaymentBudget": {
+        "label": "Presupuesto de Pago Mensual",
+        "placeholder": "400",
+        "help": "Pago mensual máximo que puedes pagar"
+      }
+    },
+    "advancedOptions": {
+      "title": "Opciones Avanzadas",
+      "description": "Campos adicionales para mayor precisión y flexibilidad",
+      "showAdvanced": "Mostrar Opciones Avanzadas para Mayor Precisión",
+      "dealerRebates": {
+        "label": "Reembolsos del Concesionario/Fabricante",
+        "placeholder": "1,000",
+        "help": "Incentivos y reembolsos del fabricante"
+      },
+      "additionalFees": {
+        "label": "Tarifas Adicionales",
+        "placeholder": "500",
+        "help": "Registro, documentación, tarifas de título"
+      },
+      "desiredPayoffHorizon": {
+        "label": "Horizonte de Pago Deseado",
+        "placeholder": "Selecciona horizonte de pago",
+        "help": "Años para pagar (si es menor que el plazo del préstamo)"
+      },
+      "incomeGuidelinePercentage": {
+        "label": "Porcentaje de Guía de Ingresos",
+        "placeholder": "15",
+        "help": "% del salario neto mensual para gastos del auto"
+      }
+    },
+    "calculateButton": "Calcular Mi Préstamo de Auto",
+    "results": {
+      "title": "Tu Análisis de Préstamo",
+      "description": "Desglose detallado de tus opciones de financiamiento del auto",
+      "costDistribution": "Distribución de Costos",
+      "loanDetails": "Detalles del Préstamo",
+      "costBreakdown": "Desglose de Costos",
+      "affordability": "Asequibilidad",
+      "recommendedBudget": "Presupuesto Recomendado",
+      "monthlyPayment": "Pago Mensual",
+      "loanAmount": "Monto del Préstamo",
+      "totalInterest": "Interés Total",
+      "totalPayment": "Pago Total",
+      "downPayment": "Pago Inicial",
+      "tradeInNetValue": "Valor Neto del Intercambio",
+      "totalCost": "Costo Total",
+      "otherCosts": "Otros Costos",
+      "affordable": "Asequible",
+      "overBudget": "Sobre Presupuesto",
+      "percentageOfTotal": "{percentage}% del total"
+    }
+  },
+  "saveMillion": {
+    "title": "Calculadora de Ahorrar Millón",
+    "description": "Calcula cuánto tiempo tomará alcanzar tu meta de ahorros con interés compuesto",
+    "requiredInformation": {
+      "title": "Información Requerida",
+      "description": "Completa estos detalles esenciales para calcular tu camino hacia tu meta de ahorros",
+      "savingsGoal": {
+        "label": "Meta de Ahorros",
+        "placeholder": "1,000,000",
+        "help": "Tu monto objetivo de ahorros (por defecto: $1,000,000)"
+      },
+      "currentAge": {
+        "label": "Edad Actual",
+        "placeholder": "30",
+        "help": "Tu edad actual en años"
+      },
+      "targetAge": {
+        "label": "Edad Objetivo",
+        "placeholder": "65",
+        "help": "Edad cuando quieres alcanzar tu meta"
+      },
+      "currentSavings": {
+        "label": "Ahorros Actuales",
+        "placeholder": "50,000",
+        "help": "Dinero que tienes ahorrado actualmente"
+      },
+      "contributionAmount": {
+        "label": "Monto de Contribución",
+        "placeholder": "1,000",
+        "help": "Monto que estás depositando regularmente"
+      },
+      "contributionFrequency": {
+        "label": "Frecuencia de Contribución",
+        "placeholder": "Selecciona frecuencia",
+        "help": "¿Con qué frecuencia estás contribuyendo?",
+        "options": {
+          "weekly": "Semanal",
+          "biweekly": "Quincenal",
+          "monthly": "Mensual",
+          "quarterly": "Trimestral",
+          "yearly": "Anual"
+        }
+      },
+      "annualInterestRate": {
+        "label": "Tasa de Interés Anual",
+        "placeholder": "7.5",
+        "help": "Tasa de retorno anual esperada (APY)"
+      }
+    },
+    "calculateButton": "Calcular Camino hacia la Meta",
+    "results": {
+      "title": "Tu Camino hacia {goal}",
+      "timeToGoal": "Tiempo hacia la Meta",
+      "totalContributed": "Total Contribuido",
+      "interestEarned": "Interés Ganado",
+      "finalBalance": "Balance Final",
+      "projectedGrowth": "Crecimiento Proyectado en el Tiempo",
+      "requiredMonthlyContribution": "Contribución Mensual Requerida",
+      "timelineSummary": "Resumen de Cronograma",
+      "startAge": "Edad de Inicio:",
+      "targetAge": "Edad Objetivo:",
+      "yearsToGoal": "Años hacia la Meta:",
+      "monthsToGoal": "Meses hacia la Meta:",
+      "overYears": "Durante {years} años",
+      "compoundGrowth": "Crecimiento compuesto",
+      "goalAchieved": "¡Meta Alcanzada!",
+      "belowGoal": "Debajo de la Meta",
+      "toReachGoal": "Para alcanzar tu meta de {goal} a la edad de {age}",
+      "ageLabel": "Edad {age}",
+      "balanceLabel": "Balance"
+    }
+  },
+  "creditCardPayoff": {
+    "title": "Calculadora de Pago de Tarjeta de Crédito",
+    "description": "Calcula cuánto tiempo tomará pagar tu deuda de tarjeta de crédito o encuentra el pago mensual necesario",
+    "debtDetails": {
+      "title": "Detalles de la Deuda",
+      "description": "Ingresa la información de tu tarjeta de crédito para comenzar a calcular",
+      "balance": {
+        "label": "Balance Total de Tarjeta de Crédito",
+        "placeholder": "5,000",
+        "help": "Monto total de deuda en tu tarjeta"
+      },
+      "annualInterestRate": {
+        "label": "Tasa de Interés Anual (APR)",
+        "placeholder": "18.99",
+        "help": "Tasa de interés que pagas en esta tarjeta"
+      }
+    },
+    "paymentApproach": {
+      "title": "Elige tu Enfoque de Pago",
+      "monthlyPayment": {
+        "label": "Sé mi monto de pago mensual",
+        "description": "Monto fijo que planeas pagar cada mes"
+      },
+      "payoffTimeline": {
+        "label": "Quiero pagar en un tiempo específico",
+        "description": "Número de meses (o años) en los que quieres pagar la deuda"
+      },
+      "monthlyPaymentAmount": {
+        "label": "Monto de Pago Mensual",
+        "placeholder": "200"
+      },
+      "desiredPayoffTimeline": {
+        "label": "Cronograma de Pago Deseado",
+        "placeholder": "24",
+        "units": {
+          "months": "Meses",
+          "years": "Años"
+        }
+      }
+    },
+    "calculateButton": "Calcular Plan de Pago",
+    "results": {
+      "title": "Tu Plan de Pago",
+      "monthsToPayoff": "Meses para Pagar",
+      "monthlyPayment": "Pago Mensual",
+      "totalInterest": "Interés Total",
+      "totalCost": "Costo Total",
+      "payoffTimeline": "Cronograma de Pago",
+      "balanceReduction": "Reducción de Balance en el Tiempo",
+      "monthlyBreakdown": "Desglose de Pago Mensual",
+      "estimatedPayoffDate": "Fecha Estimada de Pago",
+      "potentialSavings": "Ahorros Potenciales",
+      "vsMinimumPayment": "vs. pago mínimo",
+      "neverPaymentTooLow": "Nunca (pago muy bajo)",
+      "timeToDebtFreedom": "Tiempo para libertad de deuda",
+      "yourPlannedPayment": "Tu pago planeado",
+      "requiredToMeetTimeline": "Requerido para cumplir cronograma",
+      "interestCostOverPeriod": "Costo de interés durante el período",
+      "balancePlusInterest": "Balance + interés",
+      "monthLabel": "Mes {month}",
+      "amountLabel": "Monto",
+      "totalPayment": "Pago Total",
+      "principal": "Principal",
+      "interest": "Interés"
+    }
+  },
+  "payCheck": {
+    "title": "Calculadora de Nómina",
+    "description": "Calcula tu salario neto después de impuestos, deducciones y ajustes",
+    "requiredInformation": {
+      "title": "Información Requerida",
+      "description": "Completa estos detalles esenciales para el cálculo básico de nómina",
+      "annualSalary": {
+        "label": "Salario Anual (Ingresos Brutos del Trabajo)",
+        "placeholder": "75,000",
+        "help": "Tu salario anual antes de impuestos"
+      },
+      "payFrequency": {
+        "label": "Frecuencia de Pago",
+        "placeholder": "Selecciona frecuencia",
+        "help": "Con qué frecuencia te pagan",
+        "options": {
+          "weekly": "Semanal",
+          "bi-weekly": "Quincenal",
+          "semi-monthly": "Semi-mensual",
+          "monthly": "Mensual",
+          "yearly": "Anual"
+        }
+      },
+      "filingStatus": {
+        "label": "Estado Civil para Impuestos",
+        "placeholder": "Selecciona estado",
+        "help": "Tu estado civil para declaración de impuestos",
+        "options": {
+          "single": "Soltero",
+          "married-jointly": "Casado Declarando Conjuntamente",
+          "married-separately": "Casado Declarando por Separado",
+          "head-of-household": "Jefe de Familia"
+        }
+      },
+      "stateTaxRate": {
+        "label": "Tasa de Impuesto Estatal",
+        "placeholder": "5.0",
+        "help": "Tasa de impuesto estatal sobre ingresos (%)"
+      },
+      "cityTaxRate": {
+        "label": "Tasa de Impuesto Municipal/Ciudad",
+        "placeholder": "2.0",
+        "help": "Tasa de impuesto municipal sobre ingresos (%)"
+      },
+      "selfEmployed": {
+        "label": "Trabajador Independiente / Contratista",
+        "help": "¿Eres trabajador independiente o contratista?",
+        "yes": "Sí",
+        "no": "No"
+      }
+    },
+    "optionalFields": {
+      "show": "Mostrar Campos Opcionales para Mayor Precisión",
+      "hide": "Ocultar Campos Opcionales",
+      "additionalIncome": {
+        "title": "Ingresos Adicionales",
+        "otherEarnedIncome": {
+          "label": "Otros Ingresos Ganados (2do/3er trabajo, freelance)",
+          "placeholder": "0"
+        },
+        "unearnedIncome": {
+          "label": "Ingresos No Ganados (intereses, dividendos, alquiler)",
+          "placeholder": "0"
+        }
+      },
+      "dependents": {
+        "title": "Dependientes",
+        "childrenUnder17": {
+          "label": "Hijos Menores de 17 Años",
+          "placeholder": "0"
+        },
+        "otherDependents": {
+          "label": "Otros Dependientes",
+          "placeholder": "0"
+        }
+      },
+      "preTaxDeductions": {
+        "title": "Deducciones Pre-impuestos",
+        "retirement401k": {
+          "label": "Contribuciones 401(k)/403(b)",
+          "placeholder": "0"
+        },
+        "healthInsurance": {
+          "label": "Primas de Seguro Médico",
+          "placeholder": "0"
+        },
+        "hsaFsa": {
+          "label": "Contribuciones HSA/FSA",
+          "placeholder": "0"
+        },
+        "otherPreTax": {
+          "label": "Otras Deducciones Pre-impuestos",
+          "placeholder": "0"
+        }
+      },
+      "postTaxAdjustments": {
+        "title": "Ajustes Post-impuestos",
+        "iraContributions": {
+          "label": "Contribuciones IRA",
+          "placeholder": "0"
+        },
+        "studentLoanInterest": {
+          "label": "Interés de Préstamo Estudiantil",
+          "placeholder": "0"
+        },
+        "otherAdjustments": {
+          "label": "Otros Ajustes",
+          "placeholder": "0"
+        }
+      },
+      "itemizedDeductions": {
+        "title": "Deducciones Detalladas (si no usas estándar)",
+        "mortgageInterest": {
+          "label": "Interés de Hipoteca",
+          "placeholder": "0"
+        },
+        "charitableDonations": {
+          "label": "Donaciones Caritativas",
+          "placeholder": "0"
+        },
+        "stateLocalTaxes": {
+          "label": "Impuestos Estatales/Locales",
+          "placeholder": "0"
+        },
+        "propertyTaxes": {
+          "label": "Impuestos de Propiedad",
+          "placeholder": "0"
+        },
+        "salesTaxes": {
+          "label": "Impuestos de Venta",
+          "placeholder": "0"
+        },
+        "medicalExpenses": {
+          "label": "Gastos Médicos (por encima del umbral)",
+          "placeholder": "0"
+        }
+      }
+    },
+    "calculateButton": "Calcular Nómina",
+    "results": {
+      "title": "Tu Desglose de Nómina",
+      "perPayPeriod": "Por Período de Pago {frequency}",
+      "taxSummary": "Resumen de Impuestos",
+      "deductions": "Deducciones",
+      "taxDetails": "Detalles de Impuestos",
+      "annualSummary": "Resumen Anual",
+      "grossPay": "Pago Bruto:",
+      "netPay": "Pago Neto:",
+      "takeHomePercentage": "Porcentaje de Llevar a Casa %:",
+      "federalTax": "Impuesto Federal:",
+      "stateTax": "Impuesto Estatal:",
+      "ficaTaxes": "Impuestos FICA:",
+      "effectiveTaxRate": "Tasa de Impuesto Efectiva:",
+      "preTax": "Pre-impuestos:",
+      "postTax": "Post-impuestos:",
+      "itemized": "Detallado:",
+      "socialSecurity": "Seguridad Social:",
+      "medicare": "Medicare:",
+      "cityTax": "Impuesto Municipal:",
+      "grossAnnual": "Bruto Anual:",
+      "totalDeductions": "Deducciones Totales:",
+      "netAnnual": "Neto Anual:"
+    }
+  },
+  "saveForGoal": {
+    "title": "Calculadora de Ahorro para Meta",
+    "description": "Calcula cómo alcanzar tu meta de ahorro específica con contribuciones regulares e interés compuesto",
+    "requiredInformation": {
+      "title": "Información Requerida",
+      "description": "Completa estos detalles esenciales para calcular tu camino hacia tu meta específica",
+      "goalAmount": {
+        "label": "Meta Total Deseada / Costo del Artículo",
+        "placeholder": "5,000",
+        "help": "El costo total de lo que quieres ahorrar"
+      },
+      "currentSavings": {
+        "label": "Balance de Ahorros Actuales",
+        "placeholder": "1,000",
+        "help": "¿Cuánto tienes ahorrado actualmente?"
+      },
+      "otherIncome": {
+        "label": "Otros Ingresos (Regalos Monetarios)",
+        "placeholder": "500",
+        "help": "Contribuciones únicas, regalos u otros ingresos"
+      },
+      "contributionAmount": {
+        "label": "Contribución Regular de Ahorro",
+        "placeholder": "200",
+        "help": "¿Cuánto estás contribuyendo a tus ahorros?"
+      },
+      "contributionFrequency": {
+        "label": "Frecuencia de Contribución",
+        "placeholder": "Selecciona frecuencia",
+        "help": "¿Con qué frecuencia estás contribuyendo?",
+        "options": {
+          "weekly": "Semanal",
+          "biweekly": "Quincenal",
+          "monthly": "Mensual",
+          "quarterly": "Trimestral",
+          "yearly": "Anual"
+        }
+      },
+      "annualInterestRate": {
+        "label": "Tasa de Interés Anual (Opcional)",
+        "placeholder": "5.0",
+        "help": "Tasa de retorno anual esperada (APY) - déjalo en 0 si no hay crecimiento"
+      },
+      "targetTimeline": {
+        "label": "Cronograma Objetivo (Opcional)",
+        "placeholder": "12",
+        "help": "Qué tan rápido quieres alcanzar tu meta (opcional)",
+        "units": {
+          "months": "Meses",
+          "years": "Años"
+        }
+      }
+    },
+    "calculateButton": "Calcular Camino a la Meta",
+    "results": {
+      "title": "Tu Camino a {goal}",
+      "timeToGoal": "Tiempo a la Meta",
+      "currentGap": "Brecha Actual",
+      "stillNeedToSave": "Aún necesitas ahorrar",
+      "totalContributed": "Total Contribuido",
+      "overYears": "Durante {years} años",
+      "finalBalance": "Balance Final",
+      "goalAchieved": "¡Meta Alcanzada!",
+      "belowGoal": "Por Debajo de la Meta",
+      "projectedGrowth": "Crecimiento Proyectado en el Tiempo",
+      "requiredMonthlyContribution": "Contribución Mensual Requerida",
+      "toReachGoalInTimeline": "Para alcanzar tu meta de {goal} en {timeline} {unit}",
+      "setTargetTimeline": "Establece un cronograma objetivo para ver la contribución mensual requerida",
+      "timelineSummary": "Resumen del Cronograma",
+      "goalAmount": "Monto de la Meta:",
+      "currentSavings": "Ahorros Actuales:",
+      "otherIncome": "Otros Ingresos:",
+      "timeToGoal": "Tiempo a la Meta:",
+      "years": "años",
+      "months": "meses",
+      "monthLabel": "Mes {month}",
+      "balanceLabel": "Balance"
+    }
+  },
+  "savingsGrow": {
+    "title": "Calculadora de Crecimiento de Ahorros",
+    "description": "Calcula cómo crecerán tus ahorros con el tiempo con interés compuesto y contribuciones regulares",
+    "requiredInformation": {
+      "title": "Información Requerida",
+      "description": "Completa estos detalles para ver cómo crecerán tus ahorros con el tiempo",
+      "initialBalance": {
+        "label": "Balance Inicial / Depósito de Inicio",
+        "placeholder": "10,000",
+        "help": "Tu monto inicial de ahorros"
+      },
+      "annualInterestRate": {
+        "label": "Tasa de Interés Anual Esperada",
+        "placeholder": "5.5",
+        "help": "APY / tasa de retorno anual"
+      },
+      "contributionAmount": {
+        "label": "Monto de Contribución Regular",
+        "placeholder": "5,000",
+        "help": "Monto que agregarás cada año"
+      },
+      "contributionFrequency": {
+        "label": "Frecuencia de Contribución",
+        "placeholder": "Selecciona frecuencia",
+        "help": "Con qué frecuencia contribuyes (opcional si no es anual fijo)",
+        "options": {
+          "weekly": "Semanal",
+          "biweekly": "Quincenal",
+          "monthly": "Mensual",
+          "quarterly": "Trimestral",
+          "yearly": "Anual"
+        }
+      },
+      "years": {
+        "label": "Número de Años",
+        "placeholder": "10",
+        "help": "Horizonte temporal para tus ahorros"
+      },
+      "compoundingFrequency": {
+        "label": "Frecuencia de Capitalización",
+        "placeholder": "Selecciona frecuencia",
+        "help": "Con qué frecuencia se capitaliza el interés (opcional para precisión)",
+        "options": {
+          "daily": "Diario",
+          "monthly": "Mensual",
+          "quarterly": "Trimestral",
+          "yearly": "Anual"
+        }
+      }
+    },
+    "calculateButton": "Calcular Crecimiento",
+    "results": {
+      "title": "Tu Proyección de Crecimiento de Ahorros",
+      "finalBalance": "Balance Final",
+      "afterYears": "Después de {years} años",
+      "totalContributed": "Total Contribuido",
+      "regularContributions": "Contribuciones regulares",
+      "interestEarned": "Interés Ganado",
+      "compoundGrowth": "Crecimiento compuesto",
+      "growthPercentage": "Crecimiento %",
+      "totalReturn": "Retorno total",
+      "savingsGrowthOverTime": "Crecimiento de Ahorros en el Tiempo",
+      "breakdownOfFinalBalance": "Desglose del Balance Final",
+      "growthBreakdown": "Desglose del Crecimiento",
+      "projectionSummary": "Resumen de la Proyección",
+      "initialAmount": "Monto Inicial:",
+      "contributions": "Contribuciones:",
+      "interestEarnedLabel": "Interés Ganado:",
+      "growthPercent": "Crecimiento %:",
+      "timePeriod": "Período de Tiempo:",
+      "contributionFrequency": "Frecuencia de Contribución:",
+      "compounding": "Capitalización:",
+      "annualRate": "Tasa Anual:",
+      "years": "años",
+      "yearLabel": "Año {year}",
+      "balanceLabel": "Balance",
+      "amountLabel": "Monto"
+    }
   }
 }

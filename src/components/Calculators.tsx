@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { 
   Car, 
   Target, 
@@ -29,52 +30,54 @@ import SavingsGrow from "./SavingsGrow";
 import PayCheck from "./PayCheck";
 import CreditCardPayoff from "./CreditCardPayoff";
 
-const calculators: Calculator[] = [
-  {
-    id: "car",
-    title: "Car Calculator",
-    description: "Calculate car loan payments, interest, and total cost",
-    icon: <Car className="w-8 h-8 text-blue-600" />,
-    component: CarCalculator,
-  },
-  {
-    id: "save-million",
-    title: "Save Million",
-    description: "Plan your path to saving one million dollars",
-    icon: <Target className="w-8 h-8 text-green-600" />,
-    component: SaveMillion,
-  },
-  {
-    id: "save-goal",
-    title: "Save for Goal",
-    description: "Calculate how much to save for specific financial goals",
-    icon: <PiggyBank className="w-8 h-8 text-purple-600" />,
-    component: SaveForGoal,
-  },
-  {
-    id: "savings-grow",
-    title: "Savings Growth",
-    description: "See how your savings grow with compound interest",
-    icon: <TrendingUp className="w-8 h-8 text-orange-600" />,
-    component: SavingsGrow,
-  },
-  {
-    id: "paycheck",
-    title: "Paycheck Calculator",
-    description: "Calculate take-home pay after taxes and deductions",
-    icon: <DollarSign className="w-8 h-8 text-emerald-600" />,
-    component: PayCheck,
-  },
-  {
-    id: "credit-card",
-    title: "Credit Card Payoff",
-    description: "Plan your credit card debt payoff strategy",
-    icon: <CreditCard className="w-8 h-8 text-red-600" />,
-    component: CreditCardPayoff,
-  },
-];
-
 export default function Calculators() {
+  const t = useTranslations();
+  
+  const calculators: Calculator[] = [
+    {
+      id: "car",
+      title: t('calculators.car.title'),
+      description: t('calculators.car.description'),
+      icon: <Car className="w-8 h-8 text-blue-600" />,
+      component: CarCalculator,
+    },
+    {
+      id: "save-million",
+      title: t('calculators.saveMillion.title'),
+      description: t('calculators.saveMillion.description'),
+      icon: <Target className="w-8 h-8 text-green-600" />,
+      component: SaveMillion,
+    },
+    {
+      id: "save-goal",
+      title: t('calculators.saveGoal.title'),
+      description: t('calculators.saveGoal.description'),
+      icon: <PiggyBank className="w-8 h-8 text-purple-600" />,
+      component: SaveForGoal,
+    },
+    {
+      id: "savings-grow",
+      title: t('calculators.savingsGrowth.title'),
+      description: t('calculators.savingsGrowth.description'),
+      icon: <TrendingUp className="w-8 h-8 text-orange-600" />,
+      component: SavingsGrow,
+    },
+    {
+      id: "paycheck",
+      title: t('calculators.paycheck.title'),
+      description: t('calculators.paycheck.description'),
+      icon: <DollarSign className="w-8 h-8 text-emerald-600" />,
+      component: PayCheck,
+    },
+    {
+      id: "credit-card",
+      title: t('calculators.creditCard.title'),
+      description: t('calculators.creditCard.description'),
+      icon: <CreditCard className="w-8 h-8 text-red-600" />,
+      component: CreditCardPayoff,
+    },
+  ];
+
   const [selectedCalculator, setSelectedCalculator] = useState<string | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -91,10 +94,10 @@ export default function Calculators() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Financial Calculators
+            {t('calculators.pageTitle')}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Choose from our comprehensive suite of financial tools to help you make informed decisions about your money
+            {t('calculators.pageDescription')}
           </p>
         </div>
 
@@ -118,7 +121,7 @@ export default function Calculators() {
                 </p>
                 <div className="pt-2">
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                    Click to Open
+                    {t('calculators.clickToOpen')}
                   </span>
                 </div>
               </div>

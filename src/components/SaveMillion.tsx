@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -55,6 +56,8 @@ interface SaveMillionResults {
 }
 
 export default function SaveMillion() {
+  const t = useTranslations();
+  
   const [formData, setFormData] = useState<SaveMillionForm>({
     savingsGoal: "1000000",
     currentAge: "",
@@ -186,8 +189,8 @@ export default function SaveMillion() {
 
   return (
     <CalculatorLayout
-      title="Save Million Calculator"
-      description="Calculate how long it will take to reach your savings goal with compound interest"
+      title={t('saveMillion.title')}
+      description={t('saveMillion.description')}
       icon={<Target className="w-6 h-6 text-green-600" />}
     >
       <div className="space-y-8">
@@ -196,10 +199,10 @@ export default function SaveMillion() {
           <CardHeader className="bg-gradient-to-r py-3 from-green-600 to-green-700 text-white rounded-t-lg">
             <CardTitle className="flex items-center space-x-3 text-xl">
               <DollarSign className="w-6 h-6 text-yellow-300" />
-              <span>Required Information</span>
+              <span>{t('saveMillion.requiredInformation.title')}</span>
             </CardTitle>
             <p className="text-green-100 text-sm font-normal mt-1">
-              Fill in these essential details to calculate your path to your savings goal
+              {t('saveMillion.requiredInformation.description')}
             </p>
           </CardHeader>
           <CardContent className="p-8">
@@ -211,7 +214,7 @@ export default function SaveMillion() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Savings Goal</span>
+                    <span>{t('saveMillion.requiredInformation.savingsGoal.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -219,11 +222,11 @@ export default function SaveMillion() {
                     name="savingsGoal"
                     value={formData.savingsGoal}
                     onChange={handleInputChange}
-                    placeholder="1,000,000"
+                    placeholder={t('saveMillion.requiredInformation.savingsGoal.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-green-500 focus:ring-4 focus:ring-green-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Your target savings amount (default: $1,000,000)
+                    {t('saveMillion.requiredInformation.savingsGoal.help')}
                   </p>
                 </div>
 
@@ -233,7 +236,7 @@ export default function SaveMillion() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>Current Age</span>
+                    <span>{t('saveMillion.requiredInformation.currentAge.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -241,11 +244,11 @@ export default function SaveMillion() {
                     name="currentAge"
                     value={formData.currentAge}
                     onChange={handleInputChange}
-                    placeholder="30"
+                    placeholder={t('saveMillion.requiredInformation.currentAge.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-green-500 focus:ring-4 focus:ring-green-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Your current age in years
+                    {t('saveMillion.requiredInformation.currentAge.help')}
                   </p>
                 </div>
 
@@ -255,7 +258,7 @@ export default function SaveMillion() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span>Target Age</span>
+                    <span>{t('saveMillion.requiredInformation.targetAge.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -263,11 +266,11 @@ export default function SaveMillion() {
                     name="targetAge"
                     value={formData.targetAge}
                     onChange={handleInputChange}
-                    placeholder="65"
+                    placeholder={t('saveMillion.requiredInformation.targetAge.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-green-500 focus:ring-4 focus:ring-green-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Age when you want to reach your goal
+                    {t('saveMillion.requiredInformation.targetAge.help')}
                   </p>
                 </div>
 
@@ -277,7 +280,7 @@ export default function SaveMillion() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span>Current Savings</span>
+                    <span>{t('saveMillion.requiredInformation.currentSavings.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -285,11 +288,11 @@ export default function SaveMillion() {
                     name="currentSavings"
                     value={formData.currentSavings}
                     onChange={handleInputChange}
-                    placeholder="50,000"
+                    placeholder={t('saveMillion.requiredInformation.currentSavings.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-green-500 focus:ring-4 focus:ring-green-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Money you currently have saved
+                    {t('saveMillion.requiredInformation.currentSavings.help')}
                   </p>
                 </div>
 
@@ -299,7 +302,7 @@ export default function SaveMillion() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
-                    <span>Contribution Amount</span>
+                    <span>{t('saveMillion.requiredInformation.contributionAmount.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -307,11 +310,11 @@ export default function SaveMillion() {
                     name="contributionAmount"
                     value={formData.contributionAmount}
                     onChange={handleInputChange}
-                    placeholder="1,000"
+                    placeholder={t('saveMillion.requiredInformation.contributionAmount.placeholder')}
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-green-500 focus:ring-4 focus:ring-green-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Amount you are depositing regularly
+                    {t('saveMillion.requiredInformation.contributionAmount.help')}
                   </p>
                 </div>
 
@@ -321,7 +324,7 @@ export default function SaveMillion() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                    <span>Contribution Frequency</span>
+                    <span>{t('saveMillion.requiredInformation.contributionFrequency.label')}</span>
                   </label>
                   <Select
                     onValueChange={(value) =>
@@ -330,18 +333,18 @@ export default function SaveMillion() {
                     defaultValue={formData.contributionFrequency}
                   >
                     <SelectTrigger className="w-full !h-12 !text-sm px-4 border-2 border-gray-200 focus:border-green-500 focus:ring-4 focus:ring-green-100 rounded-sm transition-all duration-200 text-lg font-medium">
-                      <SelectValue placeholder="Select frequency" />
+                      <SelectValue placeholder={t('saveMillion.requiredInformation.contributionFrequency.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="weekly">Weekly</SelectItem>
-                      <SelectItem value="biweekly">Bi-weekly</SelectItem>
-                      <SelectItem value="monthly">Monthly</SelectItem>
-                      <SelectItem value="quarterly">Quarterly</SelectItem>
-                      <SelectItem value="yearly">Yearly</SelectItem>
+                      <SelectItem value="weekly">{t('saveMillion.requiredInformation.contributionFrequency.options.weekly')}</SelectItem>
+                      <SelectItem value="biweekly">{t('saveMillion.requiredInformation.contributionFrequency.options.biweekly')}</SelectItem>
+                      <SelectItem value="monthly">{t('saveMillion.requiredInformation.contributionFrequency.options.monthly')}</SelectItem>
+                      <SelectItem value="quarterly">{t('saveMillion.requiredInformation.contributionFrequency.options.quarterly')}</SelectItem>
+                      <SelectItem value="yearly">{t('saveMillion.requiredInformation.contributionFrequency.options.yearly')}</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-gray-500">
-                    How frequently are you contributing?
+                    {t('saveMillion.requiredInformation.contributionFrequency.help')}
                   </p>
                 </div>
 
@@ -351,7 +354,7 @@ export default function SaveMillion() {
                     className="block text-sm font-semibold text-gray-800 flex items-center space-x-2"
                   >
                     <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span>Annual Interest Rate</span>
+                    <span>{t('saveMillion.requiredInformation.annualInterestRate.label')}</span>
                   </label>
                   <Input
                     type="number"
@@ -359,12 +362,12 @@ export default function SaveMillion() {
                     name="annualInterestRate"
                     value={formData.annualInterestRate}
                     onChange={handleInputChange}
-                    placeholder="7.5"
+                    placeholder={t('saveMillion.requiredInformation.annualInterestRate.placeholder')}
                     step="0.1"
                     className="w-full h-12 px-4 border-2 border-gray-200 focus:border-green-500 focus:ring-4 focus:ring-green-100 rounded-sm transition-all duration-200 text-lg font-medium"
                   />
                   <p className="text-xs text-gray-500">
-                    Expected annual return rate (APY)
+                    {t('saveMillion.requiredInformation.annualInterestRate.help')}
                   </p>
                 </div>
               </div>
@@ -376,7 +379,7 @@ export default function SaveMillion() {
                   className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Calculator className="w-5 h-5 mr-2" />
-                  Calculate Path to Goal
+                  {t('saveMillion.calculateButton')}
                 </Button>
               </div>
             </div>
@@ -389,7 +392,7 @@ export default function SaveMillion() {
             <CardHeader className="bg-gradient-to-r py-4 from-green-600 to-green-700 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-3 text-xl">
                 <TrendingUp className="w-6 h-6 text-yellow-300" />
-                <span>Your Path to {formatCurrency(formData.savingsGoal)}</span>
+                <span>{t('saveMillion.results.title', { goal: formatCurrency(formData.savingsGoal) })}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-8">
@@ -399,7 +402,7 @@ export default function SaveMillion() {
                   <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <Clock className="w-6 h-6 text-green-600" />
-                      <h3 className="font-semibold text-green-800">Time to Goal</h3>
+                      <h3 className="font-semibold text-green-800">{t('saveMillion.results.timeToGoal')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-green-900">
                       {results.yearsToGoal} years
@@ -412,33 +415,33 @@ export default function SaveMillion() {
                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <PiggyBank className="w-6 h-6 text-blue-600" />
-                      <h3 className="font-semibold text-blue-800">Total Contributed</h3>
+                      <h3 className="font-semibold text-blue-800">{t('saveMillion.results.totalContributed')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-blue-900">
                       {formatCurrency(results.totalContributed)}
                     </div>
                     <div className="text-sm text-blue-600">
-                      Over {results.yearsToGoal} years
+                      {t('saveMillion.results.overYears', { years: results.yearsToGoal })}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <TrendingUp className="w-6 h-6 text-purple-600" />
-                      <h3 className="font-semibold text-purple-800">Interest Earned</h3>
+                      <h3 className="font-semibold text-purple-800">{t('saveMillion.results.interestEarned')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-purple-900">
                       {formatCurrency(results.interestEarned)}
                     </div>
                     <div className="text-sm text-purple-600">
-                      Compound growth
+                      {t('saveMillion.results.compoundGrowth')}
                     </div>
                   </div>
 
                   <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <Target className="w-6 h-6 text-orange-600" />
-                      <h3 className="font-semibold text-orange-800">Final Balance</h3>
+                      <h3 className="font-semibold text-orange-800">{t('saveMillion.results.finalBalance')}</h3>
                     </div>
                     <div className="text-2xl font-bold text-orange-900">
                       {formatCurrency(results.finalBalance)}
@@ -448,7 +451,7 @@ export default function SaveMillion() {
                         ? 'bg-green-100 text-green-700' 
                         : 'bg-red-100 text-red-700'
                     }`}>
-                      {results.achievable ? 'Goal Achieved!' : 'Below Goal'}
+                      {results.achievable ? t('saveMillion.results.goalAchieved') : t('saveMillion.results.belowGoal')}
                     </div>
                   </div>
                 </div>
@@ -457,7 +460,7 @@ export default function SaveMillion() {
                 <div className="bg-white p-6 rounded-xl border border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
                     <TrendingUp className="w-5 h-5 text-green-600" />
-                    <span>Projected Growth Over Time</span>
+                    <span>{t('saveMillion.results.projectedGrowth')}</span>
                   </h3>
                   <div className="h-80">
                     <ResponsiveContainer width="100%" height="100%">
@@ -474,8 +477,8 @@ export default function SaveMillion() {
                           tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                         />
                         <Tooltip 
-                          formatter={(value: any) => [formatCurrency(value), 'Balance']}
-                          labelFormatter={(label) => `Age ${label}`}
+                          formatter={(value: any) => [formatCurrency(value), t('saveMillion.results.balanceLabel')]}
+                          labelFormatter={(label) => t('saveMillion.results.ageLabel', { age: label })}
                         />
                         <Line 
                           type="monotone" 
@@ -494,14 +497,14 @@ export default function SaveMillion() {
                   <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200">
                     <h4 className="font-semibold text-gray-900 text-base border-b border-green-200 pb-2 flex items-center space-x-2">
                       <Calculator className="w-4 h-4 text-green-600" />
-                      <span>Required Monthly Contribution</span>
+                      <span>{t('saveMillion.results.requiredMonthlyContribution')}</span>
                     </h4>
                     <div className="pt-3">
                       <div className="text-3xl font-bold text-green-600 mb-2">
                         {formatCurrency(results.monthlyContributionNeeded)}
                       </div>
                       <p className="text-sm text-gray-600">
-                        To reach your goal of {formatCurrency(formData.savingsGoal)} by age {formData.targetAge}
+                        {t('saveMillion.results.toReachGoal', { goal: formatCurrency(formData.savingsGoal), age: formData.targetAge })}
                       </p>
                     </div>
                   </div>
@@ -509,23 +512,23 @@ export default function SaveMillion() {
                   <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200">
                     <h4 className="font-semibold text-gray-900 text-base border-b border-blue-200 pb-2 flex items-center space-x-2">
                       <Calendar className="w-4 h-4 text-blue-600" />
-                      <span>Timeline Summary</span>
+                      <span>{t('saveMillion.results.timelineSummary')}</span>
                     </h4>
                     <div className="pt-3 space-y-2">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Start Age:</span>
+                        <span className="text-gray-700 text-sm">{t('saveMillion.results.startAge')}</span>
                         <span className="font-semibold text-gray-900">{formData.currentAge}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Target Age:</span>
+                        <span className="text-gray-700 text-sm">{t('saveMillion.results.targetAge')}</span>
                         <span className="font-semibold text-gray-900">{formData.targetAge}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Years to Goal:</span>
+                        <span className="text-gray-700 text-sm">{t('saveMillion.results.yearsToGoal')}</span>
                         <span className="font-semibold text-gray-900">{results.yearsToGoal}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 text-sm">Months to Goal:</span>
+                        <span className="text-gray-700 text-sm">{t('saveMillion.results.monthsToGoal')}</span>
                         <span className="font-semibold text-gray-900">{results.monthsToGoal}</span>
                       </div>
                     </div>

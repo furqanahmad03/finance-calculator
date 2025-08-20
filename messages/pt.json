@@ -3,5 +3,618 @@
     "loading": "Carregando...",
     "error": "Erro",
     "success": "Sucesso"
+  },
+  "navbar": {
+    "companyName": "Stickball",
+    "companyTagline": "FINANÇAS",
+    "mainTitle": "DINHEIRO",
+    "subtitle": "Como você economiza, gasta e ganha."
+  },
+  "footer": {
+    "companyName": "Stickball",
+    "companyDescription": "Capacitando indivíduos a assumir o controle de seu futuro financeiro através de ferramentas inteligentes e insights.",
+    "availableCalculators": "Calculadoras Disponíveis",
+    "savingsGrowthCalculator": "Calculadora de Crescimento de Poupança",
+    "paycheckCalculator": "Calculadora de Salário",
+    "creditCardPayoff": "Pagamento de Cartão de Crédito",
+    "saveForGoal": "Economizar para um Objetivo",
+    "saveAMillion": "Economizar um Milhão",
+    "carCalculator": "Calculadora de Carro",
+    "contactUs": "Entre em Contato",
+    "email": "info@stickball.com",
+    "phone": "+1 (555) 123-4567",
+    "address": "123 Finance St, NY 10001",
+    "copyright": "© {year} Stickball. Todos os direitos reservados.",
+    "madeWith": "Feito com",
+    "forYou": "para você"
+  },
+  "calculators": {
+    "pageTitle": "Calculadoras Financeiras",
+    "pageDescription": "Escolha de nossa suíte completa de ferramentas financeiras para ajudá-lo a tomar decisões informadas sobre seu dinheiro",
+    "clickToOpen": "Clique para Abrir",
+    "car": {
+      "title": "Calculadora de Carro",
+      "description": "Calcule os pagamentos do empréstimo do carro, juros e custo total"
+    },
+    "saveMillion": {
+      "title": "Economizar Milhão",
+      "description": "Planeje seu caminho para economizar um milhão de dólares"
+    },
+    "saveGoal": {
+      "title": "Economizar para Objetivo",
+      "description": "Calcule quanto economizar para objetivos financeiros específicos"
+    },
+    "savingsGrowth": {
+      "title": "Crescimento de Poupança",
+      "description": "Veja como sua poupança cresce com juros compostos"
+    },
+    "paycheck": {
+      "title": "Calculadora de Salário",
+      "description": "Calcule o salário líquido após impostos e deduções"
+    },
+    "creditCard": {
+      "title": "Pagamento de Cartão de Crédito",
+      "description": "Planeje sua estratégia de pagamento de dívida de cartão de crédito"
+    }
+  },
+  "carCalculator": {
+    "title": "Calculadora de Empréstimo de Carro",
+    "description": "Calcule os pagamentos do empréstimo do carro, acessibilidade e custo total com considerações de troca",
+    "requiredInformation": {
+      "title": "Informações Obrigatórias",
+      "description": "Preencha estes detalhes essenciais para calcular seu empréstimo de carro",
+      "downPayment": {
+        "label": "Valor da Entrada",
+        "placeholder": "5,000",
+        "help": "Dinheiro que você tem economizado para a compra"
+      },
+      "tradeInValue": {
+        "label": "Valor da Troca",
+        "placeholder": "8,000",
+        "help": "O que a concessionária pagará pelo seu carro atual"
+      },
+      "outstandingLoanBalance": {
+        "label": "Saldo Pendente do Empréstimo",
+        "placeholder": "3,000",
+        "help": "Saldo restante no seu empréstimo de carro atual"
+      },
+      "loanTerm": {
+        "label": "Prazo do Empréstimo (Anos)",
+        "placeholder": "Selecione um prazo",
+        "options": {
+          "1": "1 Ano (12 Meses)",
+          "2": "2 Anos (24 Meses)",
+          "3": "3 Anos (36 Meses)",
+          "4": "4 Anos (48 Meses)",
+          "5": "5 Anos (60 Meses)",
+          "6": "6 Anos (72 Meses)",
+          "7": "7 Anos (84 Meses)",
+          "8": "8 Anos (96 Meses)",
+          "9": "9 Anos (108 Meses)",
+          "10": "10 Anos (120 Meses)"
+        }
+      },
+      "interestRate": {
+        "label": "Taxa de Juros (APR %)",
+        "placeholder": "6.5",
+        "help": "Taxa de porcentagem anual que você espera"
+      },
+      "salesTaxRate": {
+        "label": "Taxa de Imposto de Venda (%)",
+        "placeholder": "8.25",
+        "help": "Taxa de imposto no seu condado/estado"
+      },
+      "monthlyPaymentBudget": {
+        "label": "Orçamento de Pagamento Mensal",
+        "placeholder": "400",
+        "help": "Pagamento mensal máximo que você pode pagar"
+      }
+    },
+    "advancedOptions": {
+      "title": "Opções Avançadas",
+      "description": "Campos adicionais para maior precisão e flexibilidade",
+      "showAdvanced": "Mostrar Opções Avançadas para Maior Precisão",
+      "dealerRebates": {
+        "label": "Reembolsos da Concessionária/Fabricante",
+        "placeholder": "1,000",
+        "help": "Incentivos e reembolsos do fabricante"
+      },
+      "additionalFees": {
+        "label": "Taxas Adicionais",
+        "placeholder": "500",
+        "help": "Registro, documentação, taxas de título"
+      },
+      "desiredPayoffHorizon": {
+        "label": "Horizonte de Pagamento Desejado",
+        "placeholder": "Selecione horizonte de pagamento",
+        "help": "Anos para pagar (se menor que o prazo do empréstimo)"
+      },
+      "incomeGuidelinePercentage": {
+        "label": "Porcentagem de Diretriz de Renda",
+        "placeholder": "15",
+        "help": "% do salário líquido mensal para despesas do carro"
+      }
+    },
+    "calculateButton": "Calcular Meu Empréstimo de Carro",
+    "results": {
+      "title": "Sua Análise de Empréstimo",
+      "description": "Detalhamento completo de suas opções de financiamento do carro",
+      "costDistribution": "Distribuição de Custos",
+      "loanDetails": "Detalhes do Empréstimo",
+      "costBreakdown": "Detalhamento de Custos",
+      "affordability": "Acessibilidade",
+      "recommendedBudget": "Orçamento Recomendado",
+      "monthlyPayment": "Pagamento Mensal",
+      "loanAmount": "Valor do Empréstimo",
+      "totalInterest": "Juros Totais",
+      "totalPayment": "Pagamento Total",
+      "downPayment": "Entrada",
+      "tradeInNetValue": "Valor Líquido da Troca",
+      "totalCost": "Custo Total",
+      "otherCosts": "Outros Custos",
+      "affordable": "Acessível",
+      "overBudget": "Acima do Orçamento",
+      "percentageOfTotal": "{percentage}% do total"
+    }
+  },
+  "saveMillion": {
+    "title": "Calculadora de Economizar Milhão",
+    "description": "Calcule quanto tempo levará para atingir sua meta de economia com juros compostos",
+    "requiredInformation": {
+      "title": "Informações Obrigatórias",
+      "description": "Preencha estes detalhes essenciais para calcular seu caminho para sua meta de economia",
+      "savingsGoal": {
+        "label": "Meta de Economia",
+        "placeholder": "1,000,000",
+        "help": "Seu valor objetivo de economia (padrão: $1,000,000)"
+      },
+      "currentAge": {
+        "label": "Idade Atual",
+        "placeholder": "30",
+        "help": "Sua idade atual em anos"
+      },
+      "targetAge": {
+        "label": "Idade Objetivo",
+        "placeholder": "65",
+        "help": "Idade quando você quer atingir sua meta"
+      },
+      "currentSavings": {
+        "label": "Economia Atual",
+        "placeholder": "50,000",
+        "help": "Dinheiro que você tem economizado atualmente"
+      },
+      "contributionAmount": {
+        "label": "Valor da Contribuição",
+        "placeholder": "1,000",
+        "help": "Valor que você está depositando regularmente"
+      },
+      "contributionFrequency": {
+        "label": "Frequência de Contribuição",
+        "placeholder": "Selecione frequência",
+        "help": "Com que frequência você está contribuindo?",
+        "options": {
+          "weekly": "Semanal",
+          "biweekly": "Quinzenal",
+          "monthly": "Mensal",
+          "quarterly": "Trimestral",
+          "yearly": "Anual"
+        }
+      },
+      "annualInterestRate": {
+        "label": "Taxa de Juros Anual",
+        "placeholder": "7.5",
+        "help": "Taxa de retorno anual esperada (APY)"
+      }
+    },
+    "calculateButton": "Calcular Caminho para a Meta",
+    "results": {
+      "title": "Seu Caminho para {goal}",
+      "timeToGoal": "Tempo para a Meta",
+      "totalContributed": "Total Contribuído",
+      "interestEarned": "Juros Ganhos",
+      "finalBalance": "Saldo Final",
+      "projectedGrowth": "Crescimento Projetado ao Longo do Tempo",
+      "requiredMonthlyContribution": "Contribuição Mensal Necessária",
+      "timelineSummary": "Resumo da Cronologia",
+      "startAge": "Idade de Início:",
+      "targetAge": "Idade Objetivo:",
+      "yearsToGoal": "Anos para a Meta:",
+      "monthsToGoal": "Meses para a Meta:",
+      "overYears": "Durante {years} anos",
+      "compoundGrowth": "Crescimento composto",
+      "goalAchieved": "Meta Atingida!",
+      "belowGoal": "Abaixo da Meta",
+      "toReachGoal": "Para atingir sua meta de {goal} aos {age} anos",
+      "ageLabel": "Idade {age}",
+      "balanceLabel": "Saldo"
+    }
+  },
+  "creditCardPayoff": {
+    "title": "Calculadora de Pagamento de Cartão de Crédito",
+    "description": "Calcule quanto tempo levará para pagar sua dívida de cartão de crédito ou encontre o pagamento mensal necessário",
+    "debtDetails": {
+      "title": "Detalhes da Dívida",
+      "description": "Digite as informações do seu cartão de crédito para começar a calcular",
+      "balance": {
+        "label": "Saldo Total do Cartão de Crédito",
+        "placeholder": "5,000",
+        "help": "Valor total da dívida no seu cartão"
+      },
+      "annualInterestRate": {
+        "label": "Taxa de Juros Anual (APR)",
+        "placeholder": "18.99",
+        "help": "Taxa de juros que você paga neste cartão"
+      }
+    },
+    "paymentApproach": {
+      "title": "Escolha sua Abordagem de Pagamento",
+      "monthlyPayment": {
+        "label": "Eu sei meu valor de pagamento mensal",
+        "description": "Valor fixo que você planeja pagar a cada mês"
+      },
+      "payoffTimeline": {
+        "label": "Eu quero pagar em um tempo específico",
+        "description": "Número de meses (ou anos) em que você quer pagar a dívida"
+      },
+      "monthlyPaymentAmount": {
+        "label": "Valor do Pagamento Mensal",
+        "placeholder": "200"
+      },
+      "desiredPayoffTimeline": {
+        "label": "Cronograma de Pagamento Desejado",
+        "placeholder": "24",
+        "units": {
+          "months": "Meses",
+          "years": "Anos"
+        }
+      }
+    },
+    "calculateButton": "Calcular Plano de Pagamento",
+    "results": {
+      "title": "Seu Plano de Pagamento",
+      "monthsToPayoff": "Meses para Pagar",
+      "monthlyPayment": "Pagamento Mensal",
+      "totalInterest": "Juros Totais",
+      "totalCost": "Custo Total",
+      "payoffTimeline": "Cronograma de Pagamento",
+      "balanceReduction": "Redução do Saldo ao Longo do Tempo",
+      "monthlyBreakdown": "Detalhamento do Pagamento Mensal",
+      "estimatedPayoffDate": "Data Estimada de Pagamento",
+      "potentialSavings": "Economias Potenciais",
+      "vsMinimumPayment": "vs. pagamento mínimo",
+      "neverPaymentTooLow": "Nunca (pagamento muito baixo)",
+      "timeToDebtFreedom": "Tempo para liberdade da dívida",
+      "yourPlannedPayment": "Seu pagamento planejado",
+      "requiredToMeetTimeline": "Necessário para cumprir cronograma",
+      "interestCostOverPeriod": "Custo de juros durante o período",
+      "balancePlusInterest": "Saldo + juros",
+      "monthLabel": "Mês {month}",
+      "amountLabel": "Valor",
+      "totalPayment": "Pagamento Total",
+      "principal": "Principal",
+      "interest": "Juros"
+    }
+  },
+  "payCheck": {
+    "title": "Calculadora de Salário",
+    "description": "Calcule seu salário líquido após impostos, deduções e ajustes",
+    "requiredInformation": {
+      "title": "Informações Obrigatórias",
+      "description": "Preencha estes detalhes essenciais para o cálculo básico do salário",
+      "annualSalary": {
+        "label": "Salário Anual (Renda Bruta do Trabalho)",
+        "placeholder": "75,000",
+        "help": "Seu salário anual antes de impostos"
+      },
+      "payFrequency": {
+        "label": "Frequência de Pagamento",
+        "placeholder": "Selecione frequência",
+        "help": "Com que frequência você recebe pagamento",
+        "options": {
+          "weekly": "Semanal",
+          "bi-weekly": "Quinzenal",
+          "semi-monthly": "Semi-mensal",
+          "monthly": "Mensal",
+          "yearly": "Anual"
+        }
+      },
+      "filingStatus": {
+        "label": "Status de Declaração",
+        "placeholder": "Selecione status",
+        "help": "Seu status de declaração de imposto",
+        "options": {
+          "single": "Solteiro",
+          "married-jointly": "Casado Declarando Conjuntamente",
+          "married-separately": "Casado Declarando Separadamente",
+          "head-of-household": "Chefe de Família"
+        }
+      },
+      "stateTaxRate": {
+        "label": "Taxa de Imposto Estadual",
+        "placeholder": "5.0",
+        "help": "Taxa de imposto estadual sobre renda (%)"
+      },
+      "cityTaxRate": {
+        "label": "Taxa de Imposto Municipal/Cidade",
+        "placeholder": "2.0",
+        "help": "Taxa de imposto municipal sobre renda (%)"
+      },
+      "selfEmployed": {
+        "label": "Trabalhador Autônomo / Contratante Independente",
+        "help": "Você é trabalhador autônomo ou contratante independente?",
+        "yes": "Sim",
+        "no": "Não"
+      }
+    },
+    "optionalFields": {
+      "show": "Mostrar Campos Opcionais para Maior Precisão",
+      "hide": "Ocultar Campos Opcionais",
+      "additionalIncome": {
+        "title": "Renda Adicional",
+        "otherEarnedIncome": {
+          "label": "Outra Renda Ganha (2º/3º trabalho, freelance)",
+          "placeholder": "0"
+        },
+        "unearnedIncome": {
+          "label": "Renda Não Ganha (juros, dividendos, aluguel)",
+          "placeholder": "0"
+        }
+      },
+      "dependents": {
+        "title": "Dependentes",
+        "childrenUnder17": {
+          "label": "Filhos Menores de 17 Anos",
+          "placeholder": "0"
+        },
+        "otherDependents": {
+          "label": "Outros Dependentes",
+          "placeholder": "0"
+        }
+      },
+      "preTaxDeductions": {
+        "title": "Deduções Pré-impostos",
+        "retirement401k": {
+          "label": "Contribuições 401(k)/403(b)",
+          "placeholder": "0"
+        },
+        "healthInsurance": {
+          "label": "Prêmios de Seguro de Saúde",
+          "placeholder": "0"
+        },
+        "hsaFsa": {
+          "label": "Contribuições HSA/FSA",
+          "placeholder": "0"
+        },
+        "otherPreTax": {
+          "label": "Outras Deduções Pré-impostos",
+          "placeholder": "0"
+        }
+      },
+      "postTaxAdjustments": {
+        "title": "Ajustes Pós-impostos",
+        "iraContributions": {
+          "label": "Contribuições IRA",
+          "placeholder": "0"
+        },
+        "studentLoanInterest": {
+          "label": "Juros de Empréstimo Estudantil",
+          "placeholder": "0"
+        },
+        "otherAdjustments": {
+          "label": "Outros Ajustes",
+          "placeholder": "0"
+        }
+      },
+      "itemizedDeductions": {
+        "title": "Deduções Detalhadas (se não usar padrão)",
+        "mortgageInterest": {
+          "label": "Juros de Hipoteca",
+          "placeholder": "0"
+        },
+        "charitableDonations": {
+          "label": "Doações Caritativas",
+          "placeholder": "0"
+        },
+        "stateLocalTaxes": {
+          "label": "Impostos Estaduais/Municipais",
+          "placeholder": "0"
+        },
+        "propertyTaxes": {
+          "label": "Impostos de Propriedade",
+          "placeholder": "0"
+        },
+        "salesTaxes": {
+          "label": "Impostos de Venda",
+          "placeholder": "0"
+        },
+        "medicalExpenses": {
+          "label": "Despesas Médicas (acima do limite)",
+          "placeholder": "0"
+        }
+      }
+    },
+    "calculateButton": "Calcular Salário",
+    "results": {
+      "title": "Seu Detalhamento de Salário",
+      "perPayPeriod": "Por Período de Pagamento {frequency}",
+      "taxSummary": "Resumo de Impostos",
+      "deductions": "Deduções",
+      "taxDetails": "Detalhes de Impostos",
+      "annualSummary": "Resumo Anual",
+      "grossPay": "Pagamento Bruto:",
+      "netPay": "Pagamento Líquido:",
+      "takeHomePercentage": "Porcentagem de Levar para Casa %:",
+      "federalTax": "Imposto Federal:",
+      "stateTax": "Imposto Estadual:",
+      "ficaTaxes": "Impostos FICA:",
+      "effectiveTaxRate": "Taxa de Imposto Efetiva:",
+      "preTax": "Pré-impostos:",
+      "postTax": "Pós-impostos:",
+      "itemized": "Detalhado:",
+      "socialSecurity": "Segurança Social:",
+      "medicare": "Medicare:",
+      "cityTax": "Imposto Municipal:",
+      "grossAnnual": "Bruto Anual:",
+      "totalDeductions": "Deduções Totais:",
+      "netAnnual": "Líquido Anual:"
+    }
+  },
+  "saveForGoal": {
+    "title": "Calculadora de Ahorro para Meta",
+    "description": "Calcule como alcançar sua meta de economia específica com contribuições regulares e juros compostos",
+    "requiredInformation": {
+      "title": "Informações Obrigatórias",
+      "description": "Preencha estes detalhes essenciais para calcular seu caminho para sua meta específica",
+      "goalAmount": {
+        "label": "Meta Total Desejada / Custo do Item",
+        "placeholder": "5,000",
+        "help": "O custo total do que você quer economizar"
+      },
+      "currentSavings": {
+        "label": "Saldo de Economias Atuais",
+        "placeholder": "1,000",
+        "help": "Quanto você tem economizado atualmente?"
+      },
+      "otherIncome": {
+        "label": "Outros Rendimentos (Presentes Monetários)",
+        "placeholder": "500",
+        "help": "Contribuições únicas, presentes ou outros rendimentos"
+      },
+      "contributionAmount": {
+        "label": "Contribuição Regular de Economia",
+        "placeholder": "200",
+        "help": "Quanto você está contribuindo para suas economias?"
+      },
+      "contributionFrequency": {
+        "label": "Frequência de Contribuição",
+        "placeholder": "Selecione frequência",
+        "help": "Com que frequência você está contribuindo?",
+        "options": {
+          "weekly": "Semanal",
+          "biweekly": "Quinzenal",
+          "monthly": "Mensal",
+          "quarterly": "Trimestral",
+          "yearly": "Anual"
+        }
+      },
+      "annualInterestRate": {
+        "label": "Taxa de Juros Anual (Opcional)",
+        "placeholder": "5.0",
+        "help": "Taxa de retorno anual esperada (APY) - deixe como 0 se não houver crescimento"
+      },
+      "targetTimeline": {
+        "label": "Cronograma Objetivo (Opcional)",
+        "placeholder": "12",
+        "help": "Quão rápido você quer alcançar sua meta (opcional)",
+        "units": {
+          "months": "Meses",
+          "years": "Anos"
+        }
+      }
+    },
+    "calculateButton": "Calcular Caminho para a Meta",
+    "results": {
+      "title": "Seu Caminho para {goal}",
+      "timeToGoal": "Tempo para a Meta",
+      "currentGap": "Lacuna Atual",
+      "stillNeedToSave": "Ainda precisa economizar",
+      "totalContributed": "Total Contribuído",
+      "overYears": "Durante {years} anos",
+      "finalBalance": "Saldo Final",
+      "goalAchieved": "Meta Alcançada!",
+      "belowGoal": "Abaixo da Meta",
+      "projectedGrowth": "Crescimento Projetado ao Longo do Tempo",
+      "requiredMonthlyContribution": "Contribuição Mensal Requerida",
+      "toReachGoalInTimeline": "Para alcançar sua meta de {goal} em {timeline} {unit}",
+      "setTargetTimeline": "Defina um cronograma objetivo para ver a contribuição mensal requerida",
+      "timelineSummary": "Resumo do Cronograma",
+      "goalAmount": "Valor da Meta:",
+      "currentSavings": "Economias Atuais:",
+      "otherIncome": "Outros Rendimentos:",
+      "timeToGoal": "Tempo para a Meta:",
+      "years": "anos",
+      "months": "meses",
+      "monthLabel": "Mês {month}",
+      "balanceLabel": "Saldo"
+    }
+  },
+  "savingsGrow": {
+    "title": "Calculadora de Crescimento de Economias",
+    "description": "Calcule como suas economias crescerão com o tempo com juros compostos e contribuições regulares",
+    "requiredInformation": {
+      "title": "Informações Obrigatórias",
+      "description": "Preencha estes detalhes para ver como suas economias crescerão com o tempo",
+      "initialBalance": {
+        "label": "Saldo Inicial / Depósito de Início",
+        "placeholder": "10,000",
+        "help": "Seu valor inicial de economias"
+      },
+      "annualInterestRate": {
+        "label": "Taxa de Juros Anual Esperada",
+        "placeholder": "5.5",
+        "help": "APY / taxa de retorno anual"
+      },
+      "contributionAmount": {
+        "label": "Valor de Contribuição Regular",
+        "placeholder": "5,000",
+        "help": "Valor que você adicionará a cada ano"
+      },
+      "contributionFrequency": {
+        "label": "Frequência de Contribuição",
+        "placeholder": "Selecione frequência",
+        "help": "Com que frequência você contribui (opcional se não for anual fixo)",
+        "options": {
+          "weekly": "Semanal",
+          "biweekly": "Quinzenal",
+          "monthly": "Mensal",
+          "quarterly": "Trimestral",
+          "yearly": "Anual"
+        }
+      },
+      "years": {
+        "label": "Número de Anos",
+        "placeholder": "10",
+        "help": "Horizonte temporal para suas economias"
+      },
+      "compoundingFrequency": {
+        "label": "Frequência de Capitalização",
+        "placeholder": "Selecione frequência",
+        "help": "Com que frequência os juros são capitalizados (opcional para precisão)",
+        "options": {
+          "daily": "Diário",
+          "monthly": "Mensal",
+          "quarterly": "Trimestral",
+          "yearly": "Anual"
+        }
+      }
+    },
+    "calculateButton": "Calcular Crescimento",
+    "results": {
+      "title": "Sua Projeção de Crescimento de Economias",
+      "finalBalance": "Saldo Final",
+      "afterYears": "Após {years} anos",
+      "totalContributed": "Total Contribuído",
+      "regularContributions": "Contribuições regulares",
+      "interestEarned": "Juros Ganhos",
+      "compoundGrowth": "Crescimento composto",
+      "growthPercentage": "Crescimento %",
+      "totalReturn": "Retorno total",
+      "savingsGrowthOverTime": "Crescimento de Economias ao Longo do Tempo",
+      "breakdownOfFinalBalance": "Detalhamento do Saldo Final",
+      "growthBreakdown": "Detalhamento do Crescimento",
+      "projectionSummary": "Resumo da Projeção",
+      "initialAmount": "Valor Inicial:",
+      "contributions": "Contribuições:",
+      "interestEarnedLabel": "Juros Ganhos:",
+      "growthPercent": "Crescimento %:",
+      "timePeriod": "Período de Tempo:",
+      "contributionFrequency": "Frequência de Contribuição:",
+      "compounding": "Capitalização:",
+      "annualRate": "Taxa Anual:",
+      "years": "anos",
+      "yearLabel": "Ano {year}",
+      "balanceLabel": "Saldo",
+      "amountLabel": "Valor"
+    }
   }
 }
