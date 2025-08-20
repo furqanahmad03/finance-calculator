@@ -59,6 +59,13 @@ export function ChartTooltip({
   )
 }
 
+interface TooltipPayload {
+  value: number | string
+  payload: Record<string, unknown>
+  dataKey: string
+  name: string
+}
+
 export function ChartTooltipContent({
   active,
   payload,
@@ -66,7 +73,7 @@ export function ChartTooltipContent({
   hideLabel = false,
 }: {
   active?: boolean
-  payload?: any[]
+  payload?: TooltipPayload[]
   label?: string
   hideLabel?: boolean
 }) {

@@ -1,6 +1,5 @@
 "use client";
 
-import { ReactNode } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalculatorLayoutProps } from "@/interfaces/calculator";
 
@@ -11,7 +10,7 @@ export default function CalculatorLayout({
   children,
 }: CalculatorLayoutProps) {
   return (
-    <div className="space-y-6 max-w-7xl mx-auto">
+    <div className="space-y-6 max-w-7xl mx-auto overflow-hidden">
       {/* Calculator Header */}
       <Card className="border-2 border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
         <CardHeader>

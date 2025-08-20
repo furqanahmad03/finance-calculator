@@ -68,6 +68,11 @@
         "placeholder": "5,000",
         "help": "Dinheiro que você tem economizado para a compra"
       },
+      "carPrice": {
+        "label": "Preço do Carro Novo",
+        "placeholder": "25,000",
+        "help": "Preço total do carro novo que você quer comprar"
+      },
       "tradeInValue": {
         "label": "Valor da Troca",
         "placeholder": "8,000",
@@ -79,19 +84,20 @@
         "help": "Saldo restante no seu empréstimo de carro atual"
       },
       "loanTerm": {
-        "label": "Prazo do Empréstimo (Anos)",
-        "placeholder": "Selecione um prazo",
+        "label": "Quão rápido você quer pagar seu carro?",
+        "placeholder": "Selecione prazo do empréstimo em anos",
+        "help": "Prazos mais curtos = pagamentos mensais mais altos mas menos juros totais. Prazos mais longos = pagamentos mensais mais baixos mas mais juros totais.",
         "options": {
-          "1": "1 Ano (12 Meses)",
-          "2": "2 Anos (24 Meses)",
-          "3": "3 Anos (36 Meses)",
-          "4": "4 Anos (48 Meses)",
-          "5": "5 Anos (60 Meses)",
-          "6": "6 Anos (72 Meses)",
-          "7": "7 Anos (84 Meses)",
-          "8": "8 Anos (96 Meses)",
-          "9": "9 Anos (108 Meses)",
-          "10": "10 Anos (120 Meses)"
+          "1": "1 Ano (12 Meses) - Pagamento mensal mais alto",
+          "2": "2 Anos (24 Meses) - Pagamento mensal alto",
+          "3": "3 Anos (36 Meses) - Pagamento mensal moderado",
+          "4": "4 Anos (48 Meses) - Pagamento mensal moderado",
+          "5": "5 Anos (60 Meses) - Pagamento mensal mais baixo",
+          "6": "6 Anos (72 Meses) - Pagamento mensal mais baixo",
+          "7": "7 Anos (84 Meses) - Pagamento mensal baixo",
+          "8": "8 Anos (96 Meses) - Pagamento mensal baixo",
+          "9": "9 Anos (108 Meses) - Pagamento mensal muito baixo",
+          "10": "10 Anos (120 Meses) - Pagamento mensal muito baixo"
         }
       },
       "interestRate": {
@@ -127,12 +133,17 @@
       "desiredPayoffHorizon": {
         "label": "Horizonte de Pagamento Desejado",
         "placeholder": "Selecione horizonte de pagamento",
-        "help": "Anos para pagar (se menor que o prazo do empréstimo)"
+        "help": "Quão rápido você quer pagar o empréstimo (pode ser menor que o prazo do empréstimo para pagamento antecipado)"
       },
       "incomeGuidelinePercentage": {
         "label": "Porcentagem de Diretriz de Renda",
         "placeholder": "15",
         "help": "% do salário líquido mensal para despesas do carro"
+      },
+      "monthlyIncome": {
+        "label": "Renda Mensal Líquida",
+        "placeholder": "5,000",
+        "help": "Seu salário mensal líquido após impostos e deduções"
       }
     },
     "calculateButton": "Calcular Meu Empréstimo de Carro",
@@ -142,8 +153,10 @@
       "costDistribution": "Distribuição de Custos",
       "loanDetails": "Detalhes do Empréstimo",
       "costBreakdown": "Detalhamento de Custos",
+      "carPrice": "Preço do Carro",
+      "salesTax": "Imposto de Venda",
+      "otherCosts": "Outros Custos",
       "affordability": "Acessibilidade",
-      "recommendedBudget": "Orçamento Recomendado",
       "monthlyPayment": "Pagamento Mensal",
       "loanAmount": "Valor do Empréstimo",
       "totalInterest": "Juros Totais",
@@ -154,7 +167,47 @@
       "otherCosts": "Outros Custos",
       "affordable": "Acessível",
       "overBudget": "Acima do Orçamento",
-      "percentageOfTotal": "{percentage}% do total"
+      "percentageOfTotal": "{percentage}% do total",
+      "calculationExplanation": "Detalhamento do Cálculo",
+      "monthlyPaymentFormula": "Fórmula do Pagamento Mensal",
+      "formulaExplanation": "Pagamento Mensal = P × (r × (1 + r)^n) / ((1 + r)^n - 1)",
+      "formulaVariables": "Onde: P = Principal, r = Taxa Mensal, n = Número de Pagamentos",
+      "affordabilityTip": "💡 Dica: Com seu orçamento atual, você pode pagar um carro de até o preço máximo acessível mostrado acima. Considere um prazo mais longo ou um preço mais baixo se o pagamento exceder seu orçamento.",
+      "budgetComparison": "Orçamento vs. Pagamento Necessário",
+      "budgetDifference": "Diferença do Orçamento",
+      "affordabilityAnalysis": "Análise de Acessibilidade",
+      "monthlyPaymentBudget": "Orçamento de Pagamento Mensal",
+      "requiredMonthlyPayment": "Pagamento Mensal Necessário",
+      "budgetUtilization": "Utilização do Orçamento",
+      "maxAffordableCar": "Carro Máximo Acessível",
+      "maxAffordableCarPrice": "Preço Máximo do Carro Acessível",
+      "maxAffordableLoanAmount": "Valor Máximo do Empréstimo Acessível",
+      "monthlyPaymentForDesiredHorizon": "Pagamento Mensal (Horizonte Desejado)",
+      "incomeGuidelines": "Diretrizes de Renda",
+      "monthlyIncome": "Renda Mensal",
+      "maxRecommendedPayment": "Pagamento Máximo Recomendado",
+      "incomeUtilization": "Utilização da Renda",
+      "incomeGuidelineCheck": "Status das Diretrizes",
+      "addMonthlyIncomeForGuidelines": "Adicione renda mensal para ver diretrizes de renda",
+      "withinGuidelines": "Dentro das diretrizes",
+      "exceedsGuidelines": "Excede as diretrizes"
+    },
+    "toasts": {
+      "calculating": "Calculando seu empréstimo de carro...",
+      "calculationCompleted": "Cálculo do empréstimo de carro concluído!",
+      "monthlyPayment": "Pagamento mensal: ${amount}",
+      "paymentExceedsBudget": "O pagamento excede seu orçamento",
+      "considerLongerTerm": "Considere um prazo mais longo ou um preço mais baixo do carro",
+      "paymentFitsBudget": "O pagamento se ajusta ao seu orçamento!",
+      "canAffordCar": "Você pode pagar este carro com seu orçamento atual",
+      "calculationFailed": "O cálculo falhou",
+      "checkInputsAndRetry": "Por favor verifique suas entradas e tente novamente",
+      "formComplete": "Formulário completo!",
+      "clickToCalculate": "Clique em calcular para ver sua análise de empréstimo de carro",
+      "highValueCar": "Carro de alto valor detectado",
+      "considerLongerTermForHighValue": "Considere um prazo mais longo para manter pagamentos mensais gerenciáveis",
+      "lowMonthlyBudget": "Orçamento mensal baixo",
+      "budgetMayLimitOptions": "Este orçamento pode limitar suas opções de carro. Considere economizar mais para a entrada."
     }
   },
   "saveMillion": {
@@ -207,6 +260,16 @@
       }
     },
     "calculateButton": "Calcular Caminho para a Meta",
+    "calculatingButton": "Calculando...",
+    "toasts": {
+      "calculating": "Calculando seu caminho para a liberdade financeira...",
+      "goalAchievable": "Meta é atingível!",
+      "youCanReachGoal": "Você pode atingir sua meta de economia com seu plano atual.",
+      "goalNotAchievable": "Meta pode ser desafiadora",
+      "considerIncreasingContributions": "Considere aumentar suas contribuições ou estender sua linha do tempo.",
+      "calculationFailed": "Cálculo falhou",
+      "checkInputsAndRetry": "Por favor verifique suas entradas e tente novamente."
+    },
     "results": {
       "title": "Seu Caminho para {goal}",
       "timeToGoal": "Tempo para a Meta",
@@ -258,11 +321,13 @@
       },
       "monthlyPaymentAmount": {
         "label": "Valor do Pagamento Mensal",
-        "placeholder": "200"
+        "placeholder": "200",
+        "help": "Valor fixo que você pode pagar a cada mês"
       },
       "desiredPayoffTimeline": {
         "label": "Cronograma de Pagamento Desejado",
         "placeholder": "24",
+        "help": "Quão rápido você quer estar livre de dívidas (em meses ou anos)",
         "units": {
           "months": "Meses",
           "years": "Anos"
@@ -270,6 +335,14 @@
       }
     },
     "calculateButton": "Calcular Plano de Pagamento",
+    "calculatingButton": "Calculando...",
+    "toasts": {
+      "calculating": "Calculando seu plano de pagamento...",
+      "calculationCompleted": "Cálculo de pagamento concluído!",
+      "payoffPlanReady": "Seu plano de pagamento de cartão de crédito está pronto para visualizar.",
+      "calculationFailed": "O cálculo falhou",
+      "checkInputsAndRetry": "Por favor verifique suas entradas e tente novamente."
+    },
     "results": {
       "title": "Seu Plano de Pagamento",
       "monthsToPayoff": "Meses para Pagar",
@@ -329,6 +402,11 @@
           "head-of-household": "Chefe de Família"
         }
       },
+      "taxYear": {
+        "label": "Ano Fiscal",
+        "placeholder": "Selecione ano",
+        "help": "Ano fiscal para cálculos (afeta as faixas de imposto e deduções)"
+      },
       "stateTaxRate": {
         "label": "Taxa de Imposto Estadual",
         "placeholder": "5.0",
@@ -353,87 +431,112 @@
         "title": "Renda Adicional",
         "otherEarnedIncome": {
           "label": "Outra Renda Ganha (2º/3º trabalho, freelance)",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Renda de empregos secundários, trabalho freelance ou trabalhos adicionais"
         },
         "unearnedIncome": {
           "label": "Renda Não Ganha (juros, dividendos, aluguel)",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Renda passiva de investimentos, propriedades de aluguel ou juros"
         }
       },
       "dependents": {
         "title": "Dependentes",
         "childrenUnder17": {
           "label": "Filhos Menores de 17 Anos",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Filhos menores de 17 anos se qualificam para $2,000 de crédito fiscal cada"
         },
         "otherDependents": {
           "label": "Outros Dependentes",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Outros dependentes (17+ anos) se qualificam para $500 de crédito cada"
         }
       },
       "preTaxDeductions": {
         "title": "Deduções Pré-impostos",
         "retirement401k": {
           "label": "Contribuições 401(k)/403(b)",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Contribuições de aposentadoria que reduzem sua renda tributável"
         },
         "healthInsurance": {
           "label": "Prêmios de Seguro de Saúde",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Custos de seguro de saúde pagos através do seu empregador"
         },
         "hsaFsa": {
           "label": "Contribuições HSA/FSA",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Contribuições para Conta de Poupança de Saúde ou Conta de Despesas Flexíveis"
         },
         "otherPreTax": {
           "label": "Outras Deduções Pré-impostos",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Outras deduções tomadas antes dos impostos (seguro de vida, etc.)"
         }
       },
       "postTaxAdjustments": {
         "title": "Ajustes Pós-impostos",
         "iraContributions": {
           "label": "Contribuições IRA",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Contribuições IRA tradicionais (dedutíveis do AGI)"
         },
         "studentLoanInterest": {
           "label": "Juros de Empréstimo Estudantil",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Juros pagos em empréstimos estudantis (dedutíveis até $2,500)"
         },
         "otherAdjustments": {
           "label": "Outros Ajustes",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Outros ajustes à renda (pensão alimentícia, despesas de mudança, etc.)"
         }
       },
       "itemizedDeductions": {
         "title": "Deduções Detalhadas (se não usar padrão)",
         "mortgageInterest": {
           "label": "Juros de Hipoteca",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Juros pagos na sua hipoteca de casa (dedutíveis)"
         },
         "charitableDonations": {
           "label": "Doações Caritativas",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Doações para organizações caritativas qualificadas"
         },
         "stateLocalTaxes": {
           "label": "Impostos Estaduais/Municipais",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Impostos estaduais e municipais sobre renda pagos (dedutíveis)"
         },
         "propertyTaxes": {
           "label": "Impostos de Propriedade",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Impostos de propriedade sobre imóveis que você possui"
         },
         "salesTaxes": {
           "label": "Impostos de Venda",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Impostos de venda pagos (alternativa ao imposto estadual sobre renda)"
         },
         "medicalExpenses": {
           "label": "Despesas Médicas (acima do limite)",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Despesas médicas que excedem 7.5% do AGI (dedutíveis)"
         }
       }
     },
     "calculateButton": "Calcular Salário",
+    "calculatingButton": "Calculando...",
+    "toasts": {
+      "calculating": "Calculando seu detalhamento de salário...",
+      "calculationCompleted": "Cálculo de salário concluído!",
+      "paycheckBreakdownReady": "Seu detalhamento de salário está pronto para visualizar.",
+      "calculationFailed": "Cálculo falhou",
+      "checkInputsAndRetry": "Por favor verifique suas entradas e tente novamente."
+    },
     "results": {
       "title": "Seu Detalhamento de Salário",
       "perPayPeriod": "Por Período de Pagamento {frequency}",
@@ -445,6 +548,7 @@
       "netPay": "Pagamento Líquido:",
       "takeHomePercentage": "Porcentagem de Levar para Casa %:",
       "federalTax": "Imposto Federal:",
+      "taxCredits": "Créditos Fiscais:",
       "stateTax": "Imposto Estadual:",
       "ficaTaxes": "Impostos FICA:",
       "effectiveTaxRate": "Taxa de Imposto Efetiva:",
@@ -513,6 +617,16 @@
       }
     },
     "calculateButton": "Calcular Caminho para a Meta",
+    "calculatingButton": "Calculando...",
+    "toasts": {
+      "calculating": "Calculando seu caminho para sua meta...",
+      "goalAchievable": "Meta é atingível!",
+      "youCanReachGoal": "Você pode atingir sua meta de economia com seu plano atual.",
+      "goalNotAchievable": "Meta pode ser desafiadora",
+      "considerAdjustingPlan": "Considere aumentar suas contribuições ou estender sua linha do tempo.",
+      "calculationFailed": "Cálculo falhou",
+      "checkInputsAndRetry": "Por favor verifique suas entradas e tente novamente."
+    },
     "results": {
       "title": "Seu Caminho para {goal}",
       "timeToGoal": "Tempo para a Meta",
@@ -589,6 +703,14 @@
       }
     },
     "calculateButton": "Calcular Crescimento",
+    "calculatingButton": "Calculando...",
+    "toasts": {
+      "calculating": "Calculando sua projeção de crescimento de economias...",
+      "calculationCompleted": "Projeção de crescimento concluída!",
+      "growthProjectionReady": "Sua projeção de crescimento de economias está pronta para visualizar.",
+      "calculationFailed": "Cálculo falhou",
+      "checkInputsAndRetry": "Por favor verifique suas entradas e tente novamente."
+    },
     "results": {
       "title": "Sua Projeção de Crescimento de Economias",
       "finalBalance": "Saldo Final",

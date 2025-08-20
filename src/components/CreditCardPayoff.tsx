@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,32 +36,9 @@ import {
   TrendingDown,
   Clock,
   Target,
+  Loader2,
 } from "lucide-react";
-
-interface CreditCardPayoffForm {
-  // Debt Details
-  balance: string;
-  annualInterestRate: string;
-  
-  // Payment Approach
-  paymentApproach: "monthly-payment" | "payoff-timeline";
-  
-  // Monthly Payment (if approach 1)
-  monthlyPayment: string;
-  
-  // Payoff Timeline (if approach 2)
-  payoffMonths: string;
-}
-
-interface CreditCardPayoffResults {
-  monthsToPayoff: number;
-  requiredMonthlyPayment: string;
-  totalInterest: string;
-  totalCost: string;
-  payoffDate: string;
-  savings: string;
-  projectedPayoff: Array<{ month: number; balance: string; payment: string; interest: string; principal: string }>;
-}
+import { CreditCardPayoffForm, CreditCardPayoffResults } from "@/interfaces/credit-card-payoff";
 
 export default function CreditCardPayoff() {
   const t = useTranslations();
@@ -74,6 +52,7 @@ export default function CreditCardPayoff() {
   });
 
   const [results, setResults] = useState<CreditCardPayoffResults | null>(null);
+  const [isCalculating, setIsCalculating] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -94,41 +73,46 @@ export default function CreditCardPayoff() {
   };
 
   const calculatePayoff = () => {
-    // Parse form data
-    const balance = parseFloat(formData.balance) || 0;
-    const annualInterestRate = parseFloat(formData.annualInterestRate) || 0;
-    const monthlyInterestRate = annualInterestRate / 100 / 12;
+    setIsCalculating(true);
+    toast.loading(t('creditCardPayoff.toasts.calculating'), {
+      id: "credit-card-payoff-calculation",
+    });
+
+    setTimeout(() => {
+      try {
+        const balance = parseFloat(formData.balance) || 0;
+        const annualInterestRate = parseFloat(formData.annualInterestRate) || 0;
+        const monthlyInterestRate = annualInterestRate / 100 / 12;
 
     let monthsToPayoff = 0;
     let requiredMonthlyPayment = 0;
     let totalInterest = 0;
-    let projectedPayoff = [];
+    const projectedPayoff = [];
 
     if (formData.paymentApproach === "monthly-payment") {
-      // Calculate months to payoff with fixed monthly payment
       const monthlyPayment = parseFloat(formData.monthlyPayment) || 0;
       
       if (monthlyPayment <= monthlyInterestRate * balance) {
-        // Payment is too low to ever pay off the debt
         monthsToPayoff = Infinity;
         requiredMonthlyPayment = monthlyPayment;
         totalInterest = Infinity;
       } else {
-        // Calculate months to payoff
         let remainingBalance = balance;
         let month = 0;
         
-        while (remainingBalance > 0 && month < 600) { // Cap at 50 years
+        // Add starting balance
+        projectedPayoff.push({
+          month: 0,
+          balance: balance.toFixed(2),
+          payment: "0.00",
+          interest: "0.00",
+          principal: "0.00",
+        });
+        
+        while (remainingBalance > 0 && month < 600) {
           month++;
           const interest = remainingBalance * monthlyInterestRate;
           const principal = monthlyPayment - interest;
-          
-          if (principal <= 0) {
-            // Payment only covers interest
-            monthsToPayoff = Infinity;
-            totalInterest = Infinity;
-            break;
-          }
           
           remainingBalance = Math.max(0, remainingBalance - principal);
           totalInterest += interest;
@@ -140,26 +124,34 @@ export default function CreditCardPayoff() {
             interest: interest.toFixed(2),
             principal: principal.toFixed(2),
           });
+          
+          if (remainingBalance <= 0) {
+            break;
+          }
         }
         
-        if (month < 600) {
-          monthsToPayoff = month;
-        }
+        monthsToPayoff = month;
       }
       
       requiredMonthlyPayment = monthlyPayment;
     } else {
-      // Calculate required monthly payment for desired timeline
       const targetMonths = parseFloat(formData.payoffMonths) || 0;
       
       if (targetMonths > 0 && monthlyInterestRate > 0) {
-        // Calculate required monthly payment using amortization formula
         requiredMonthlyPayment = (balance * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, targetMonths)) / 
           (Math.pow(1 + monthlyInterestRate, targetMonths) - 1);
         
-        // Project payoff over the timeline
         let remainingBalance = balance;
         totalInterest = 0;
+        
+        // Add starting balance
+        projectedPayoff.push({
+          month: 0,
+          balance: balance.toFixed(2),
+          payment: "0.00",
+          interest: "0.00",
+          principal: "0.00",
+        });
         
         for (let month = 1; month <= targetMonths; month++) {
           const interest = remainingBalance * monthlyInterestRate;
@@ -181,14 +173,13 @@ export default function CreditCardPayoff() {
       }
     }
 
-    // Calculate total cost and payoff date
     const totalCost = balance + totalInterest;
-    // Use a fixed reference date to prevent hydration mismatches
     const currentDate = new Date('2024-01-01');
-    const payoffDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + monthsToPayoff, currentDate.getDate());
+    const payoffDate = monthsToPayoff === Infinity ? 
+      new Date('9999-12-31') : 
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + monthsToPayoff, currentDate.getDate());
     
-    // Calculate potential savings (if paying minimum vs. calculated payment)
-    const minimumPayment = Math.max(balance * 0.01, 25); // 1% of balance or $25 minimum
+    const minimumPayment = Math.max(balance * 0.01, 25);
     let minimumMonths = 0;
     let minimumInterest = 0;
     
@@ -203,21 +194,35 @@ export default function CreditCardPayoff() {
       }
     }
     
-    const savings = minimumInterest > 0 ? (minimumInterest - totalInterest).toFixed(2) : "0";
+    const savings = (minimumInterest > 0 && totalInterest !== Infinity) ? (minimumInterest - totalInterest).toFixed(2) : "0";
 
-    setResults({
-      monthsToPayoff: monthsToPayoff === Infinity ? 999 : monthsToPayoff,
-      requiredMonthlyPayment: requiredMonthlyPayment.toFixed(2),
-      totalInterest: totalInterest === Infinity ? "∞" : totalInterest.toFixed(2),
-      totalCost: totalCost === Infinity ? "∞" : totalCost.toFixed(2),
-      payoffDate: payoffDate.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      }) || 'Unknown Date',
-      savings: savings,
-      projectedPayoff: projectedPayoff,
-    });
+        setResults({
+          monthsToPayoff: monthsToPayoff === Infinity ? 999 : monthsToPayoff,
+          requiredMonthlyPayment: requiredMonthlyPayment.toFixed(2),
+          totalInterest: totalInterest === Infinity ? "∞" : totalInterest.toFixed(2),
+          totalCost: totalCost === Infinity ? "∞" : totalCost.toFixed(2),
+          payoffDate: payoffDate.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          }) || 'Unknown Date',
+          savings: savings,
+          projectedPayoff: projectedPayoff,
+        });
+
+        toast.success(t('creditCardPayoff.toasts.calculationCompleted'), {
+          description: t('creditCardPayoff.toasts.payoffPlanReady'),
+        });
+      } catch (error) {
+        toast.error(t('creditCardPayoff.toasts.calculationFailed'), {
+          description: t('creditCardPayoff.toasts.checkInputsAndRetry'),
+        });
+        console.error("Calculation error:", error);
+      } finally {
+        setIsCalculating(false);
+        toast.dismiss("credit-card-payoff-calculation");
+      }
+    }, 800);
   };
 
   const isFormValid = () => {
@@ -238,10 +243,6 @@ export default function CreditCardPayoff() {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     });
-  };
-
-  const formatPercentage = (value: string) => {
-    return `${parseFloat(value).toFixed(2)}%`;
   };
 
   return (
@@ -357,7 +358,7 @@ export default function CreditCardPayoff() {
                       className="w-full h-12 px-4 border-2 border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-100 rounded-sm transition-all duration-200 text-lg font-medium"
                     />
                     <p className="text-xs text-gray-500">
-                      {t('creditCardPayoff.paymentApproach.monthlyPayment.description')}
+                      {t('creditCardPayoff.paymentApproach.monthlyPaymentAmount.help')}
                     </p>
                   </div>
                 ) : (
@@ -393,7 +394,7 @@ export default function CreditCardPayoff() {
                       </Select>
                     </div>
                     <p className="text-xs text-gray-500">
-                      {t('creditCardPayoff.paymentApproach.payoffTimeline.description')}
+                      {t('creditCardPayoff.paymentApproach.desiredPayoffTimeline.help')}
                     </p>
                   </div>
                 )}
@@ -402,11 +403,20 @@ export default function CreditCardPayoff() {
               <div className="flex justify-center pt-4">
                 <Button
                   onClick={calculatePayoff}
-                  disabled={!isFormValid()}
+                  disabled={!isFormValid() || isCalculating}
                   className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Calculator className="w-5 h-5 mr-2" />
-                  {t('creditCardPayoff.calculateButton')}
+                  {isCalculating ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      {t('creditCardPayoff.calculatingButton')}
+                    </>
+                  ) : (
+                    <>
+                      <Calculator className="w-5 h-5 mr-2" />
+                      {t('creditCardPayoff.calculateButton')}
+                    </>
+                  )}
                 </Button>
               </div>
             </div>
@@ -425,7 +435,7 @@ export default function CreditCardPayoff() {
             <CardContent className="p-8">
               <div className="space-y-8">
                 {/* Summary Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl border border-red-200">
                     <div className="flex items-center space-x-3 mb-3">
                       <Clock className="w-6 h-6 text-red-600" />
@@ -518,6 +528,10 @@ export default function CreditCardPayoff() {
                           dataKey="month" 
                           stroke="#6b7280"
                           tick={{ fontSize: 12 }}
+                          tickFormatter={(value) => {
+                            if (value === 0) return "Start";
+                            return `${value}m`;
+                          }}
                         />
                         <YAxis 
                           stroke="#6b7280"
@@ -525,8 +539,11 @@ export default function CreditCardPayoff() {
                           tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                         />
                         <Tooltip 
-                          formatter={(value: any) => [formatCurrency(value), t('creditCardPayoff.results.amountLabel')]}
-                          labelFormatter={(label) => t('creditCardPayoff.results.monthLabel', { month: label })}
+                          formatter={(value: number) => [formatCurrency(value.toString()), t('creditCardPayoff.results.balanceReduction')]}
+                          labelFormatter={(label) => {
+                            if (label === 0) return "Starting Balance";
+                            return t('creditCardPayoff.results.monthLabel', { month: label });
+                          }}
                         />
                         <Area 
                           type="monotone" 
@@ -535,6 +552,7 @@ export default function CreditCardPayoff() {
                           stroke="#ef4444" 
                           fill="#ef4444"
                           fillOpacity={0.6}
+                          name={t('creditCardPayoff.results.balanceReduction')}
                         />
                       </AreaChart>
                     </ResponsiveContainer>
@@ -555,6 +573,10 @@ export default function CreditCardPayoff() {
                           dataKey="month" 
                           stroke="#6b7280"
                           tick={{ fontSize: 12 }}
+                          tickFormatter={(value) => {
+                            if (value === 0) return "Start";
+                            return `${value}m`;
+                          }}
                         />
                         <YAxis 
                           stroke="#6b7280"
@@ -562,8 +584,20 @@ export default function CreditCardPayoff() {
                           tickFormatter={(value) => `$${(value / 100).toFixed(0)}`}
                         />
                         <Tooltip 
-                          formatter={(value: any) => [formatCurrency(value), t('creditCardPayoff.results.amountLabel')]}
-                          labelFormatter={(label) => t('creditCardPayoff.results.monthLabel', { month: label })}
+                          formatter={(value: number, name: string) => {
+                            if (name === 'payment') {
+                              return [formatCurrency(value.toString()), t('creditCardPayoff.results.totalPayment')];
+                            } else if (name === 'principal') {
+                              return [formatCurrency(value.toString()), t('creditCardPayoff.results.principal')];
+                            } else if (name === 'interest') {
+                              return [formatCurrency(value.toString()), t('creditCardPayoff.results.interest')];
+                            }
+                            return [formatCurrency(value.toString()), name];
+                          }}
+                          labelFormatter={(label) => {
+                            if (label === 0) return "Starting Balance";
+                            return t('creditCardPayoff.results.monthLabel', { month: label });
+                          }}
                         />
                         <Line 
                           type="monotone" 

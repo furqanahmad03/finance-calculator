@@ -143,7 +143,7 @@ export default function Calculators() {
                 </DialogTitle>
               </DialogHeader>
               
-              <div className="mt-6">
+              <div className="mt-6 max-w-7xl mx-auto">
                 <selectedCalc.component />
               </div>
             </DialogContent>

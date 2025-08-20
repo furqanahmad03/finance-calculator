@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { useRouter, usePathname } from "next/navigation"
-import { Globe } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,7 +34,7 @@ export default function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="h-9 px-3 bg-white !border-gray-700">
+        <Button variant="outline" size="sm" className="sm:h-9 h-7 sm:px-3 px-2 bg-white !border-gray-700">
           <span className="w-4 h-auto mr-1">{currentLanguage.flag}</span>
           <span className="hidden sm:inline-block mr-1">{currentLanguage.name}</span>
         </Button>

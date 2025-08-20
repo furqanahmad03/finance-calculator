@@ -73,25 +73,31 @@
         "placeholder": "8,000",
         "help": "What dealer will pay for your current car"
       },
+      "carPrice": {
+        "label": "New Car Price",
+        "placeholder": "25,000",
+        "help": "Total price of the new car you want to purchase"
+      },
       "outstandingLoanBalance": {
         "label": "Outstanding Loan Balance",
         "placeholder": "3,000",
         "help": "Remaining balance on your current car loan"
       },
       "loanTerm": {
-        "label": "Loan Term (Years)",
-        "placeholder": "Select a term",
+        "label": "How quickly do you want to pay off your car?",
+        "placeholder": "Select loan term in years",
+        "help": "Shorter terms = higher monthly payments but less total interest. Longer terms = lower monthly payments but more total interest.",
         "options": {
-          "1": "1 Year (12 Months)",
-          "2": "2 Years (24 Months)",
-          "3": "3 Years (36 Months)",
-          "4": "4 Years (48 Months)",
-          "5": "5 Years (60 Months)",
-          "6": "6 Years (72 Months)",
-          "7": "7 Years (84 Months)",
-          "8": "8 Years (96 Months)",
-          "9": "9 Years (108 Months)",
-          "10": "10 Years (120 Months)"
+          "1": "1 Year (12 Months) - Higher monthly payment",
+          "2": "2 Years (24 Months) - High monthly payment",
+          "3": "3 Years (36 Months) - Moderate monthly payment",
+          "4": "4 Years (48 Months) - Moderate monthly payment",
+          "5": "5 Years (60 Months) - Lower monthly payment",
+          "6": "6 Years (72 Months) - Lower monthly payment",
+          "7": "7 Years (84 Months) - Low monthly payment",
+          "8": "8 Years (96 Months) - Low monthly payment",
+          "9": "9 Years (108 Months) - Very low monthly payment",
+          "10": "10 Years (120 Months) - Very low monthly payment"
         }
       },
       "interestRate": {
@@ -127,12 +133,17 @@
       "desiredPayoffHorizon": {
         "label": "Desired Payoff Horizon",
         "placeholder": "Select payoff horizon",
-        "help": "Years to pay off (if shorter than loan term)"
+        "help": "How quickly you want to pay off the loan (can be shorter than loan term for early payoff)"
       },
       "incomeGuidelinePercentage": {
         "label": "Income Guideline Percentage",
         "placeholder": "15",
         "help": "% of monthly take-home pay for car expenses"
+      },
+      "monthlyIncome": {
+        "label": "Monthly Take-Home Income",
+        "placeholder": "5,000",
+        "help": "Your monthly take-home pay after taxes and deductions"
       }
     },
     "calculateButton": "Calculate My Car Loan",
@@ -142,8 +153,10 @@
       "costDistribution": "Cost Distribution",
       "loanDetails": "Loan Details",
       "costBreakdown": "Cost Breakdown",
+      "carPrice": "Car Price",
+      "salesTax": "Sales Tax",
+      "otherCosts": "Other Costs",
       "affordability": "Affordability",
-      "recommendedBudget": "Recommended Budget",
       "monthlyPayment": "Monthly Payment",
       "loanAmount": "Loan Amount",
       "totalInterest": "Total Interest",
@@ -154,7 +167,47 @@
       "otherCosts": "Other Costs",
       "affordable": "Affordable",
       "overBudget": "Over Budget",
-      "percentageOfTotal": "{percentage}% of total"
+      "percentageOfTotal": "{percentage}% of total",
+      "calculationExplanation": "Calculation Breakdown",
+      "monthlyPaymentFormula": "Monthly Payment Formula",
+      "formulaExplanation": "Monthly Payment = P × (r × (1 + r)^n) / ((1 + r)^n - 1)",
+      "formulaVariables": "Where: P = Principal, r = Monthly Rate, n = Number of Payments",
+      "affordabilityTip": "💡 Tip: With your current budget, you can afford a car up to the maximum affordable price shown above. Consider a longer loan term or lower car price if the payment exceeds your budget.",
+      "budgetComparison": "Budget vs. Required Payment",
+      "budgetDifference": "Difference from Budget",
+      "affordabilityAnalysis": "Affordability Analysis",
+      "monthlyPaymentBudget": "Monthly Payment Budget",
+      "requiredMonthlyPayment": "Required Monthly Payment",
+      "budgetUtilization": "Budget Utilization",
+      "maxAffordableCar": "Maximum Affordable Car",
+      "maxAffordableCarPrice": "Max Affordable Car Price",
+      "maxAffordableLoanAmount": "Max Affordable Loan Amount",
+      "monthlyPaymentForDesiredHorizon": "Monthly Payment (Desired Horizon)",
+      "incomeGuidelines": "Income Guidelines",
+      "monthlyIncome": "Monthly Income",
+      "maxRecommendedPayment": "Max Recommended Payment",
+      "incomeUtilization": "Income Utilization",
+      "incomeGuidelineCheck": "Guideline Status",
+      "addMonthlyIncomeForGuidelines": "Add monthly income to see income guidelines",
+      "withinGuidelines": "Within guidelines",
+      "exceedsGuidelines": "Exceeds guidelines"
+    },
+    "toasts": {
+      "calculating": "Calculating your car loan...",
+      "calculationCompleted": "Car loan calculation completed!",
+      "monthlyPayment": "Monthly payment: ${amount}",
+      "paymentExceedsBudget": "Payment exceeds your budget",
+      "considerLongerTerm": "Consider a longer loan term or lower car price",
+      "paymentFitsBudget": "Payment fits within your budget!",
+      "canAffordCar": "You can afford this car with your current budget",
+      "calculationFailed": "Calculation failed",
+      "checkInputsAndRetry": "Please check your inputs and try again",
+      "formComplete": "Form complete!",
+      "clickToCalculate": "Click calculate to see your car loan analysis",
+      "highValueCar": "High-value car detected",
+      "considerLongerTermForHighValue": "Consider a longer loan term to keep monthly payments manageable",
+      "lowMonthlyBudget": "Low monthly budget",
+      "budgetMayLimitOptions": "This budget may limit your car options. Consider saving more for down payment."
     }
   },
   "saveMillion": {
@@ -207,6 +260,16 @@
       }
     },
     "calculateButton": "Calculate Path to Goal",
+    "calculatingButton": "Calculating...",
+    "toasts": {
+      "calculating": "Calculating your path to financial freedom...",
+      "goalAchievable": "Goal is achievable!",
+      "youCanReachGoal": "You can reach your savings goal with your current plan.",
+      "goalNotAchievable": "Goal may be challenging",
+      "considerIncreasingContributions": "Consider increasing your contributions or extending your timeline.",
+      "calculationFailed": "Calculation failed",
+      "checkInputsAndRetry": "Please check your inputs and try again."
+    },
     "results": {
       "title": "Your Path to {goal}",
       "timeToGoal": "Time to Goal",
@@ -258,11 +321,13 @@
       },
       "monthlyPaymentAmount": {
         "label": "Monthly Payment Amount",
-        "placeholder": "200"
+        "placeholder": "200",
+        "help": "Fixed amount you can afford to pay each month"
       },
       "desiredPayoffTimeline": {
         "label": "Desired Payoff Timeline",
         "placeholder": "24",
+        "help": "How quickly you want to be debt-free (in months or years)",
         "units": {
           "months": "Months",
           "years": "Years"
@@ -270,6 +335,14 @@
       }
     },
     "calculateButton": "Calculate Payoff Plan",
+    "calculatingButton": "Calculating...",
+    "toasts": {
+      "calculating": "Calculating your payoff plan...",
+      "calculationCompleted": "Payoff calculation completed!",
+      "payoffPlanReady": "Your credit card payoff plan is ready to view.",
+      "calculationFailed": "Calculation failed",
+      "checkInputsAndRetry": "Please check your inputs and try again."
+    },
     "results": {
       "title": "Your Payoff Plan",
       "monthsToPayoff": "Months to Payoff",
@@ -329,6 +402,11 @@
           "head-of-household": "Head of Household"
         }
       },
+      "taxYear": {
+        "label": "Tax Year",
+        "placeholder": "Select year",
+        "help": "Tax year for calculations (affects tax brackets and deductions)"
+      },
       "stateTaxRate": {
         "label": "State Income Tax Rate",
         "placeholder": "5.0",
@@ -353,87 +431,112 @@
         "title": "Additional Income",
         "otherEarnedIncome": {
           "label": "Other Earned Income (2nd/3rd job, freelance)",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Income from second jobs, freelance work, or side hustles"
         },
         "unearnedIncome": {
           "label": "Unearned Income (interest, dividends, rental)",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Passive income from investments, rental properties, or interest"
         }
       },
       "dependents": {
         "title": "Dependents",
         "childrenUnder17": {
           "label": "Children Under Age 17",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Children under 17 qualify for $2,000 child tax credit each"
         },
         "otherDependents": {
           "label": "Other Dependents",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Other dependents (17+ years) qualify for $500 credit each"
         }
       },
       "preTaxDeductions": {
         "title": "Pre-tax Deductions",
         "retirement401k": {
           "label": "401(k)/403(b) Contributions",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Retirement contributions that reduce your taxable income"
         },
         "healthInsurance": {
           "label": "Health Insurance Premiums",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Health insurance costs paid through your employer"
         },
         "hsaFsa": {
           "label": "HSA/FSA Contributions",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Health Savings Account or Flexible Spending Account contributions"
         },
         "otherPreTax": {
           "label": "Other Pre-tax Deductions",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Other deductions taken before taxes (life insurance, etc.)"
         }
       },
       "postTaxAdjustments": {
         "title": "Post-tax Adjustments",
         "iraContributions": {
           "label": "IRA Contributions",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Traditional IRA contributions (deductible from AGI)"
         },
         "studentLoanInterest": {
           "label": "Student Loan Interest",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Interest paid on student loans (deductible up to $2,500)"
         },
         "otherAdjustments": {
           "label": "Other Adjustments",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Other adjustments to income (alimony, moving expenses, etc.)"
         }
       },
       "itemizedDeductions": {
         "title": "Itemized Deductions (if not using standard)",
         "mortgageInterest": {
           "label": "Mortgage Interest",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Interest paid on your home mortgage (deductible)"
         },
         "charitableDonations": {
           "label": "Charitable Donations",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Donations to qualified charitable organizations"
         },
         "stateLocalTaxes": {
           "label": "State/Local Income Taxes",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "State and local income taxes paid (deductible)"
         },
         "propertyTaxes": {
           "label": "Property Taxes",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Property taxes on real estate you own"
         },
         "salesTaxes": {
           "label": "Sales Taxes",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Sales taxes paid (alternative to state income tax)"
         },
         "medicalExpenses": {
           "label": "Medical Expenses (above threshold)",
-          "placeholder": "0"
+          "placeholder": "0",
+          "help": "Medical expenses exceeding 7.5% of AGI (deductible)"
         }
       }
     },
     "calculateButton": "Calculate Paycheck",
+    "calculatingButton": "Calculating...",
+    "toasts": {
+      "calculating": "Calculating your paycheck breakdown...",
+      "calculationCompleted": "Paycheck calculation completed!",
+      "paycheckBreakdownReady": "Your paycheck breakdown is ready to view.",
+      "calculationFailed": "Calculation failed",
+      "checkInputsAndRetry": "Please check your inputs and try again."
+    },
     "results": {
       "title": "Your Paycheck Breakdown",
       "perPayPeriod": "Per {frequency} Pay Period",
@@ -445,6 +548,7 @@
       "netPay": "Net Pay:",
       "takeHomePercentage": "Take Home %:",
       "federalTax": "Federal Tax:",
+      "taxCredits": "Tax Credits:",
       "stateTax": "State Tax:",
       "ficaTaxes": "FICA Taxes:",
       "effectiveTaxRate": "Effective Tax Rate:",
@@ -513,6 +617,16 @@
       }
     },
     "calculateButton": "Calculate Path to Goal",
+    "calculatingButton": "Calculating...",
+    "toasts": {
+      "calculating": "Calculating your path to your goal...",
+      "goalAchievable": "Goal is achievable!",
+      "youCanReachGoal": "You can reach your savings goal with your current plan.",
+      "goalNotAchievable": "Goal may be challenging",
+      "considerAdjustingPlan": "Consider increasing your contributions or extending your timeline.",
+      "calculationFailed": "Calculation failed",
+      "checkInputsAndRetry": "Please check your inputs and try again."
+    },
     "results": {
       "title": "Your Path to {goal}",
       "timeToGoal": "Time to Goal",
@@ -589,6 +703,14 @@
       }
     },
     "calculateButton": "Calculate Growth",
+    "calculatingButton": "Calculating...",
+    "toasts": {
+      "calculating": "Calculating your savings growth projection...",
+      "calculationCompleted": "Growth projection completed!",
+      "growthProjectionReady": "Your savings growth projection is ready to view.",
+      "calculationFailed": "Calculation failed",
+      "checkInputsAndRetry": "Please check your inputs and try again."
+    },
     "results": {
       "title": "Your Savings Growth Projection",
       "finalBalance": "Final Balance",
