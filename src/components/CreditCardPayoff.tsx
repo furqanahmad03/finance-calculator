@@ -180,7 +180,8 @@ export default function CreditCardPayoff() {
 
     // Calculate total cost and payoff date
     const totalCost = balance + totalInterest;
-    const currentDate = new Date();
+    // Use a fixed reference date to prevent hydration mismatches
+    const currentDate = new Date('2024-01-01');
     const payoffDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + monthsToPayoff, currentDate.getDate());
     
     // Calculate potential savings (if paying minimum vs. calculated payment)
@@ -210,7 +211,7 @@ export default function CreditCardPayoff() {
         year: 'numeric', 
         month: 'long', 
         day: 'numeric' 
-      }),
+      }) || 'Unknown Date',
       savings: savings,
       projectedPayoff: projectedPayoff,
     });

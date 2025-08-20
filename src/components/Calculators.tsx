@@ -83,11 +83,6 @@ export default function Calculators() {
     setIsDialogOpen(true);
   };
 
-  const handleCloseDialog = () => {
-    setIsDialogOpen(false);
-    setSelectedCalculator(null);
-  };
-
   const selectedCalc = selectedCalculator ? calculators.find(calc => calc.id === selectedCalculator) : null;
 
   return (

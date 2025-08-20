@@ -2,28 +2,13 @@
 
 import { useState } from "react";
 import {
-  ChevronDown,
-  Globe,
   DollarSign,
   TrendingUp,
   PiggyBank,
 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-const languages = [
-  { code: "en", name: "English", flag: "🇺🇸" },
-  { code: "sp", name: "Español", flag: "🇪🇸" },
-  { code: "pt", name: "Português", flag: "🇵🇹" },
-];
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
-
   return (
     <nav className="bg-gradient-to-r from-gray-100 via-white to-gray-100 shadow-lg border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -76,40 +61,9 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Language Dropdown - Right Side */}
+          {/* Language Switcher - Right Side */}
           <div className="flex items-center">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="flex items-center space-x-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 border border-gray-300 rounded-lg px-3 py-1.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400">
-                  <Globe className="w-4 h-4" />
-                  <span>{selectedLanguage.flag}</span>
-                  <span className="hidden sm:inline">
-                    {selectedLanguage.code.toUpperCase()}
-                  </span>
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="w-48 bg-white/95 backdrop-blur-sm border border-gray-200 shadow-xl"
-              >
-                {languages.map((language) => (
-                  <DropdownMenuItem
-                    key={language.code}
-                    onClick={() => setSelectedLanguage(language)}
-                    className="flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-150"
-                  >
-                    <span className="text-lg">{language.flag}</span>
-                    <span className="font-medium text-gray-700">
-                      {language.name}
-                    </span>
-                    {selectedLanguage.code === language.code && (
-                      <span className="ml-auto text-gray-600">✓</span>
-                    )}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <LanguageSwitcher />
           </div>
         </div>
       </div>

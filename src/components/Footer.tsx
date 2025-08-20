@@ -1,10 +1,8 @@
-"use client"
-
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Heart } from "lucide-react"
 
 export default function Footer() {
-  // Get current year during render to avoid hydration mismatch
-  const currentYear = new Date().getFullYear().toString()
+  // Calculate current year on the server side
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-gradient-to-r from-gray-50 via-white to-gray-50 text-gray-800 border-t border-gray-200">
@@ -80,26 +78,6 @@ export default function Footer() {
                 <MapPin className="w-4 h-4 text-blue-600" />
                 <span className="text-gray-600 text-sm">123 Finance St, NY 10001</span>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Newsletter Signup */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <div className="max-w-md mx-auto text-center">
-            <h4 className="text-lg font-semibold text-gray-900 mb-3">Stay Updated</h4>
-            <p className="text-gray-600 text-sm mb-4">
-              Get the latest financial tips and updates delivered to your inbox.
-            </p>
-            <div className="flex space-x-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 font-medium">
-                Subscribe
-              </button>
             </div>
           </div>
         </div>

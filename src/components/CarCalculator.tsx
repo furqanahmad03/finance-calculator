@@ -94,8 +94,7 @@ export default function CarCalculator() {
     // Parse required fields
     const downPayment = parseFloat(formData.downPayment) || 0;
     const tradeInValue = parseFloat(formData.tradeInValue) || 0;
-    const outstandingLoanBalance =
-      parseFloat(formData.outstandingLoanBalance) || 0;
+    const outstandingLoanBalance = parseFloat(formData.outstandingLoanBalance) || 0;
     const loanTerm = parseFloat(formData.loanTerm) || 0;
     const interestRate = parseFloat(formData.interestRate) || 0;
     const salesTaxRate = parseFloat(formData.salesTaxRate) || 0;
@@ -104,10 +103,8 @@ export default function CarCalculator() {
     // Parse optional fields
     const dealerRebates = parseFloat(formData.dealerRebates) || 0;
     const additionalFees = parseFloat(formData.additionalFees) || 0;
-    const desiredPayoffHorizon =
-      parseFloat(formData.desiredPayoffHorizon) || loanTerm;
-    const incomeGuidelinePercentage =
-      parseFloat(formData.incomeGuidelinePercentage) || 15;
+    const desiredPayoffHorizon = parseFloat(formData.desiredPayoffHorizon) || loanTerm;
+    const incomeGuidelinePercentage = parseFloat(formData.incomeGuidelinePercentage) || 15;
 
     // Calculate net trade-in value
     const tradeInNetValue = tradeInValue - outstandingLoanBalance;
@@ -116,16 +113,14 @@ export default function CarCalculator() {
     const effectiveDownPayment = downPayment + tradeInNetValue;
 
     // Calculate loan amount (assuming car price is derived from down payment + trade-in + loan)
-    const estimatedCarPrice =
-      effectiveDownPayment + monthlyPaymentBudget * loanTerm * 12;
+    const estimatedCarPrice = effectiveDownPayment + monthlyPaymentBudget * loanTerm * 12;
     const loanAmount = estimatedCarPrice - effectiveDownPayment;
 
     // Calculate sales tax
     const salesTax = (estimatedCarPrice - tradeInValue) * (salesTaxRate / 100);
 
     // Calculate total cost including fees
-    const totalCost =
-      estimatedCarPrice + salesTax + additionalFees - dealerRebates;
+    const totalCost = estimatedCarPrice + salesTax + additionalFees - dealerRebates;
 
     // Calculate monthly payment
     const monthlyRate = interestRate / 100 / 12;
