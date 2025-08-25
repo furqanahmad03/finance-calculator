@@ -506,7 +506,7 @@ export default function SavingsGrow() {
 
         {/* Results */}
         {results && (
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-emerald-50/30">
+          <Card className="py-0 border-0 shadow-lg bg-gradient-to-br from-white to-emerald-50/30">
             <CardHeader className="bg-gradient-to-r py-4 from-emerald-600 to-emerald-700 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-3 text-xl">
                 <TrendingUp className="w-6 h-6 text-yellow-300" />
